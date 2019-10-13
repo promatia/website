@@ -1,0 +1,11 @@
+{
+  "name": "promatia",
+  "version": "0.0.1",
+  "description": "Promatia website",
+  "main": "server/main.js",
+  "scripts": {
+    
+  },
+  "author": "",
+  "license": "MIT"
+}
