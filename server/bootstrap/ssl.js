@@ -6,7 +6,7 @@ module.exports = async function ssl(httpsServer){
     let renewingCertPromise = null
     let lastRenewal
 
-    const [privateKey, csr] = await acme.forge.createCsr({
+    const [key, csr] = await acme.forge.createCsr({
         commonName: ENV.sslDomains[0],
         altNames: ENV.sslDomains
     })
@@ -34,7 +34,7 @@ module.exports = async function ssl(httpsServer){
         console.log(cert)
 
         httpsServer.setSecureContext({
-            key: privateKey,
+            key,
             cert
         })
 

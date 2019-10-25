@@ -17,6 +17,10 @@ async function startServer(){
         app.use(sslify()) //enforce HTTPS
     }
 
+    app.use((ctx, next) => {
+        ctx.body = "success"
+    })
+
     httpServer.listen(80)
     httpsServer.listen(443)
 }
