@@ -17,6 +17,7 @@ module.exports = async function ssl(httpsServer){
     })
 
     async function newCert(){
+        console.log('called')
         let cert = await client.auto({
             csr: csr.toString(),
             email: ENV.sslEmail,
