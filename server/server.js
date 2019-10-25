@@ -12,7 +12,7 @@ async function startServer(){
     let httpsServer = https.createServer(app.callback())
     let httpServer = http.createServer(app.callback())
     
-    if(ENV.useSSL){
+    if(ENV.ssl.enabled){
         app.use(await ssl(httpsServer)) //generate SSL certificate if one does not exist, or is expired
         app.use(sslify()) //enforce HTTPS
     }
