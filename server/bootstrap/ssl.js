@@ -13,13 +13,12 @@ module.exports = async function ssl(httpsServer){
     
     const client = new acme.Client({
         directoryUrl: ENV.sslProduction ? acme.directory.letsencrypt.production : acme.directory.letsencrypt.staging,
-        accountKey: privateKey
+        accountKey: await acme.forge.createPrivateKey(2048)
     })
 
     async function newCert(){
-        console.log('called')
         let cert = await client.auto({
-            csr: csr.toString(),
+            csr,
             email: ENV.sslEmail,
             termsOfServiceAgreed: true,
             async challengeCreateFn(authz, challenge, challengeContents) {
