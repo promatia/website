@@ -3,7 +3,6 @@ const acme = require('acme-client')
 module.exports = async function ssl(httpsServer){
     let challengeFilePath
     let challengeFileContents
-    let cert
     let renewingCertPromise = null
     let lastRenewal
 
@@ -18,9 +17,8 @@ module.exports = async function ssl(httpsServer){
     })
 
     async function newCert(){
-        console.log('test')
-        cert = await client.auto({
-            csr,
+        let cert = await client.auto({
+            csr: csr.toString(),
             email: ENV.sslEmail,
             termsOfServiceAgreed: true,
             async challengeCreateFn(authz, challenge, challengeContents) {
@@ -34,6 +32,7 @@ module.exports = async function ssl(httpsServer){
         lastRenewal = new Date()
         
         console.log(cert)
+
         httpsServer.setSecureContext({
             key: privateKey,
             cert
@@ -43,8 +42,8 @@ module.exports = async function ssl(httpsServer){
     }
 
     function shouldRenewCert(){
-        //if there is no certificate, generate one
-        if(!cert) return true
+        //if there is no renewal date, generate a new cert
+        if(!lastRenewal) return true
 
         //check last renewal, and if more than 2 months, renew certificate
         //letsnecrypt certificates expire every 3 months
