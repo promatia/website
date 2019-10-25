@@ -30,13 +30,13 @@ module.exports = async function ssl(httpsServer){
         })
 
         lastRenewal = new Date()
-        
-        console.log(cert)
 
         httpsServer.setSecureContext({
             key,
             cert
         })
+
+        console.log('httpsServer context replaced')
 
         renewingCertPromise = null
     }
@@ -47,7 +47,7 @@ module.exports = async function ssl(httpsServer){
 
         //check last renewal, and if more than 2 months, renew certificate
         //letsnecrypt certificates expire every 3 months
-        return new Date() < lastRenewal.setMonth(date.getMonth() + 2)
+        return new Date() < lastRenewal.setMonth(lastRenewal.getMonth() + 2)
     }
 
     /**
