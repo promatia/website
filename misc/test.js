@@ -1,8 +1,27 @@
 const Graph = require('./graph')
 
+`
+message UpdateUser(...UpdateUserInput): User
+
+input UpdateUserInput {
+    _id ObjectID
+    firstName String @hasScope(scope: "updateProfile")
+    lastName String @hasScope(scope: "updateProfile")
+    email String @lowercase @email @hasScope(scope: "updateProfile")
+}
+
+type User @contextUser {
+    _id ObjectID
+    firstName String @hasScope(scope: "viewProfile")
+    lastName String @hasScope(scope: "viewProfile")
+    fullName String @hasScope(scope: "viewProfile") @deprecated(reason: "Use firstName and lastName")
+    friends [User]
+}
+`
+
 const typedefs = `
 
-message UpdateUser(
+message UpdateUser (
     _id ObjectID
     firstName HasScope(scope "updateProfile") String 
     lastName HasScope(scope "updateProfile") String 
@@ -11,9 +30,9 @@ message UpdateUser(
 
 type User contextUser {
     _id ObjectID
-    firstName HasScope(scope "updateProfile") String
-    lastName HasScope(scope "updateProfile") String
-    fullName HasScope(scope "updateProfile") String Deprecated(reason "Use firstName and lastName")
+    firstName HasScope(scope "viewProfile") String
+    lastName HasScope(scope "viewProfile") String
+    fullName HasScope(scope "viewProfile") String Deprecated(reason "Use firstName and lastName")
     friends [User]
 }
 `
