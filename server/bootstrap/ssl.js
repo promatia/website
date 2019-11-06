@@ -23,8 +23,12 @@ module.exports = async function ssl(server){
             async challengeCreateFn(authz, challenge, challengeContents) {
                 if (challenge.type === 'http-01') {
                     challengeFilePaths[`/.well-known/acme-challenge/${challenge.token}`] = challengeContents
+                    console.log('Created SSL challenge')
                 }
-                console.log('Created SSL challenge')
+            },
+            async challengeRemoveFn(auths, challenge){
+                delete challengeFilePaths[`/.well-known/acme-challenge/${challenge.token}`]
+                console.log('Deleted challenge file')
             }
         })
 
@@ -48,15 +52,15 @@ module.exports = async function ssl(server){
     }
 
     //create first cert when server begins listening
-    // server.on('listening', async () => {
-    //     try {
-    //         renewingCertPromise = newCert()
-    //         console.log('SSL Renewed')
-    //     } catch(error){
-    //         console.error('SSL Could not be renewed')
-    //         console.error(error)
-    //     }
-    // })
+    server.on('listening', async () => {
+        try {
+            renewingCertPromise = newCert()
+            console.log('SSL Renewed')
+        } catch(error){
+            console.error('SSL Could not be renewed')
+            console.error(error)
+        }
+    })
     /**
      * Return letsencrypt challenge middleware
      */
