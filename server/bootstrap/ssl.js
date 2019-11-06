@@ -1,8 +1,7 @@
 const acme = require('acme-client')
 
 module.exports = async function ssl(server){
-    let challengeFilePath
-    let challengeFileContents
+    let challengeFilePaths = {}
     let renewingCertPromise = null
     let lastRenewal
     
@@ -23,12 +22,13 @@ module.exports = async function ssl(server){
             termsOfServiceAgreed: true,
             async challengeCreateFn(authz, challenge, challengeContents) {
                 if (challenge.type === 'http-01') {
-                    challengeFilePath = `/.well-known/acme-challenge/${challenge.token}`
-                    challengeFileContents = challengeContents
+                    challengeFilePaths[`/.well-known/acme-challenge/${challenge.token}`] = challengeContents
                 }
                 console.log('Created SSL challenge')
             }
         })
+
+        console.log('Certificate generated')
 
         lastRenewal = new Date()
 
@@ -61,10 +61,10 @@ module.exports = async function ssl(server){
      * Return letsencrypt challenge middleware
      */
     return async function middleware(ctx, next){
-        if(ctx.url === challengeFilePath){
-            return ctx.body = challengeFileContents
+        if(challengeFilePaths[ctx.url]){
+            return ctx.body = challengeFilePaths[ctx.url]
         }
-        
+
         if(shouldRenewCert() && !renewingCertPromise){
             renewingCertPromise = newCert()
             await renewingCertPromise
