@@ -12,7 +12,7 @@ module.exports = async function ssl(server){
     let sslDataPath = path.resolve(os.homedir(), './ssl/')
 
     try {
-        let accountData = JSON.parse(fs.readFileSync(sslDataPath + 'data.json'), 'utf8')
+        let accountData = JSON.parse(fs.readFileSync(`${sslDataPath}${ENV.ssl.mode}.json`), 'utf8')
 
         client = await new acme.Client({
             directoryUrl,
@@ -39,7 +39,7 @@ module.exports = async function ssl(server){
         }
 
         fs.mkdirSync(sslDataPath, { recursive: true })
-        fs.writeFileSync(path.resolve(sslDataPath + 'data.json'), JSON.stringify(accountData), 'utf8')
+        fs.writeFileSync(path.resolve(`${sslDataPath}${ENV.ssl.mode}.json`), JSON.stringify(accountData), 'utf8')
     }
 
     async function newCert(){
