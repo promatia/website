@@ -1,11 +1,12 @@
 
-require('./bootstrap/env')
+require('./bootstrap/env') //setup global ENV utility
 
 const Koa = require('koa')
 const ssl = require('./bootstrap/ssl')
 const sslify = require('koa-sslify').default
 const https = require('https')
 const http = require('http')
+const router = require('./routes/router')
 
 async function startServer(){
     let app = new Koa()
@@ -16,13 +17,12 @@ async function startServer(){
         app.use(await ssl(httpsServer)) //generate SSL certificate if one does not exist, or is expired
         app.use(sslify()) //enforce HTTPS
     }
-
-    app.use((ctx, next) => {
-        ctx.body = "success"
-    })
+    app.use((await router()).routes())
 
     httpServer.listen(80)
-    httpsServer.listen(443)
+    if(ENV.ssl.enabled) httpsServer.listen(443)
 }
 
-startServer()
+startServer().catch(err => {
+    console.error(err)
+})

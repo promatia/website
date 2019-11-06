@@ -79,6 +79,27 @@ type User ContextUser
     fullName String HasScope["viewProfile"] Deprecated["Use firstName and lastName"]
 `
 
+const typedef2 = gql`
+
+message createUser(_id: ObjectID, ...UpdateUserInput): User
+
+input UpdateUserInput {
+    _id: ObjectID!
+    firstName: String! @hasScope(scope: "updateProfile")
+    lastName: String! @hasScope(scope: "updateProfile")
+    email: String! @lowercase @email @hasScope(scope: "updateProfile")
+}
+
+type User @contextUser {
+    _id: ObjectID
+    firstName: String @hasScope(scope: "viewProfile")
+    lastName: String @hasScope(scope: "viewProfile")
+    fullName: String @hasScope(scope: "viewProfile") @deprecated(reason: "Use firstName and lastName")
+    friends: [User]
+}
+
+`
+
 class User extends Directive {
     resolver(){
 

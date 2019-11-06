@@ -13,7 +13,8 @@ module.exports = async function ssl(server){
 
     async function newCert(){
         const [key, csr] = await acme.forge.createCsr({
-            commonName: ENV.ssl.domains[0]
+            commonName: ENV.ssl.domains[0],
+            altNames: ENV.ssl.domains
         })
 
         let cert = await client.auto({
@@ -42,13 +43,23 @@ module.exports = async function ssl(server){
 
         //check last renewal, and if more than 2 months, renew certificate
         //letsnecrypt certificates expire every 3 months
-        return new Date() > lastRenewal.setMonth(lastRenewal.getMonth() + 2)
+        return new Date() > new Date(lastRenewal).setMonth(lastRenewal.getMonth() + 2)
     }
+
+    //create first cert when server begins listening
+    server.on('listening', async () => {
+        try {
+            renewingCertPromise = await newCert()
+        } catch(error){
+            console.error('SSL Could not be renewed')
+            console.error(error)
+        }
+    })
 
     /**
      * Return letsencrypt challenge middleware
      */
-    return async (ctx, next) => {
+    return async function middleware(ctx, next){
         if(ctx.url === challengeFilePath){
             return ctx.body = challengeFileContents
         }

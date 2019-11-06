@@ -1,2 +1,4 @@
 env.json
 node_modules/*
+server/dist/*
+package-lock.json

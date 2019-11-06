@@ -1,5 +1,11 @@
 {
-    "useSSL": true,
-    "sslDomains": ["promatia.com"],
-    "sslProduction": true
+    "ssl": {
+        "enabled": false,
+        "domains": ["promatia.com", "www.promatia.com"],
+        "mode": "production",
+        "email": "gov@promatia.com"
+    },
+    "domain": "promatia.com",
+    "environment": "production",
+    "secret": "XXXXXXXXXXXXXXXX"
 }
