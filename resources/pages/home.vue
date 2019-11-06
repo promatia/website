@@ -9,7 +9,8 @@
                 "alternateName": "Government of Promatia",
                 "url": "https://promatia.com",
                 "logo": "https://promatia.com/apple-icon.png",
-                "foundingDate": "1998",
+                "foundingDate": "1999",
+                "description": "Promatia is a new government project located in Northern Australia with the goals of establishing a new, technologically innovative and environmentally sustainable nation with high living standards"
                 "founders": [
                     {
                         "@type": "Person",
