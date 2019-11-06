@@ -51,7 +51,7 @@
 <script>
 import web from "@/layouts/web"
 import hero from "@/components/hero"
-import northernTerritory from "@/images/northernTerritory.png"
+import northernTerritory from "@/images/northernTerritory.jpg"
 
 export default {
     setup() {

@@ -4,6 +4,7 @@ const koaCookie = require('koa-cookie')
 const path = require('path')
 const mount = require('koa-mount')
 const koastatic = require('koa-static')
+const compress = require('koa-compress')
 
 const sessionToken = require('./middleware/sessionToken')
 const errorMiddleware = require('./middleware/errorMiddleware')
@@ -14,6 +15,7 @@ const router = new Router()
 
 module.exports = async () => {
     return router
+        .use(compress())
         .use(errorMiddleware)
         .use(noWWW)
         .use(koaCookie.default())
