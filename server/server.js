@@ -14,13 +14,12 @@ async function startServer(){
     let httpServer = http.createServer(app.callback())
     
     if(ENV.ssl.enabled){
-        app.use(await ssl(httpsServer)) //generate SSL certificate if one does not exist, or is expired
+        app.use(await ssl(httpServer, httpsServer)) //generate SSL certificate if one does not exist, or is expired
         app.use(sslify()) //enforce HTTPS
     }
     app.use((await router()).routes())
 
     httpServer.listen(80)
-    if(ENV.ssl.enabled) httpsServer.listen(443)
 }
 
 startServer().catch(err => {

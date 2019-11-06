@@ -3,7 +3,7 @@ const fs = require('fs')
 const path = require('path')
 const os = require('os')
 
-module.exports = async function ssl(server){
+module.exports = async function ssl(httpServer, httpsServer){
     let challengeFilePaths = {}
     let renewingCertPromise = null
     let lastRenewal
@@ -70,7 +70,7 @@ module.exports = async function ssl(server){
 
         lastRenewal = new Date()
 
-        server.setSecureContext({
+        httpsServer.setSecureContext({
             key,
             cert
         })
@@ -85,15 +85,16 @@ module.exports = async function ssl(server){
         return new Date() > new Date(lastRenewal).setMonth(lastRenewal.getMonth() + 2)
     }
 
-    //create first cert when server begins listening
-    server.on('listening', () => {
+    httpServer.on('listening', () => {
         try {
             renewingCertPromise = newCert()
-        } catch(error){
+            httpsServer.listen(443)
+        } catch (error) {
             console.error('SSL Could not be renewed')
             console.error(error)
         }
     })
+
     /**
      * Return letsencrypt challenge middleware
      */
