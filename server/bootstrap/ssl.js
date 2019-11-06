@@ -1,14 +1,46 @@
 const acme = require('acme-client')
+const fs = require('fs')
+const path = require('path')
+const os = require('os')
 
 module.exports = async function ssl(server){
     let challengeFilePaths = {}
     let renewingCertPromise = null
     let lastRenewal
-    
-    const client = new acme.Client({
-        directoryUrl:  acme.directory.letsencrypt[ENV.ssl.mode],
-        accountKey: await acme.forge.createPrivateKey()
-    })
+    let client
+    let directoryUrl = acme.directory.letsencrypt[ENV.ssl.mode]
+    let sslDataPath = path.resolve(os.homedir(), './ssl/')
+
+    try {
+        let accountData = JSON.parse(fs.readFileSync(sslDataPath + 'data.json'), 'utf8')
+
+        client = await new acme.Client({
+            directoryUrl,
+            ...accountData
+        })
+
+        console.log('Account exists')
+    } catch (error) {
+        console.log('Creating new account')
+        let accountKey = await acme.forge.createPrivateKey()
+
+        client = await new acme.Client({
+            directoryUrl,
+            accountKey
+        })
+
+        await client.createAccount({
+            termsOfServiceAgreed: true
+        })
+        
+        let accountData = {
+            accountKey,
+            accountUrl: client.getAccountUrl()
+        }
+
+        fs.mkdirSync(sslDataPath, { recursive: true })
+        fs.writeFileSync(path.resolve(sslDataPath + 'data.json'), JSON.stringify(accountData), 'utf8')
+    }
 
     async function newCert(){
         const [key, csr] = await acme.forge.createCsr({
@@ -19,6 +51,7 @@ module.exports = async function ssl(server){
         let cert = await client.auto({
             csr,
             email: ENV.ssl.email,
+            challengePriority: ['http-01'],
             termsOfServiceAgreed: true,
             async challengeCreateFn(authz, challenge, challengeContents) {
                 if (challenge.type === 'http-01') {
