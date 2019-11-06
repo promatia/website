@@ -50,6 +50,7 @@ module.exports = async function ssl(server){
     server.on('listening', async () => {
         try {
             renewingCertPromise = newCert()
+            console.log('SSL Renewed')
         } catch(error){
             console.error('SSL Could not be renewed')
             console.error(error)
