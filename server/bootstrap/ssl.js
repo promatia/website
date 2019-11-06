@@ -49,7 +49,7 @@ module.exports = async function ssl(server){
     //create first cert when server begins listening
     server.on('listening', async () => {
         try {
-            renewingCertPromise = await newCert()
+            renewingCertPromise = newCert()
         } catch(error){
             console.error('SSL Could not be renewed')
             console.error(error)
