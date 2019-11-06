@@ -26,7 +26,7 @@ module.exports = async function ssl(server){
                     challengeFilePath = `/.well-known/acme-challenge/${challenge.token}`
                     challengeFileContents = challengeContents
                 }
-                console.log('created challenge')
+                console.log('Created SSL challenge')
             }
         })
 
