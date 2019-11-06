@@ -57,7 +57,6 @@ module.exports = async function ssl(server){
     //         console.error(error)
     //     }
     // })
-
     /**
      * Return letsencrypt challenge middleware
      */
@@ -65,11 +64,14 @@ module.exports = async function ssl(server){
         if(ctx.url === challengeFilePath){
             return ctx.body = challengeFileContents
         }
+        
         if(shouldRenewCert() && !renewingCertPromise){
             renewingCertPromise = newCert()
             await renewingCertPromise
             renewingCertPromise = null
         }
+
+        if(renewingCertPromise) await renewingCertPromise
         
         await next()
     }
