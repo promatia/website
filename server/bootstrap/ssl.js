@@ -70,7 +70,7 @@ module.exports = async function ssl(httpServer, httpsServer, http2server){
             altNames: ENV.ssl.domains
         })
 
-        privateKey = key
+        privateKey = String(key)
         certificate = await client.auto({
             csr,
             challengePriority: ['http-01'],
