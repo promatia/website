@@ -30,7 +30,7 @@ let renderer = createRenderer(bundle, clientManifest)
 module.exports = async () => {
     let middlewares = []
     let hotMiddleware
-    if(ENV.environment) hotMiddleware = await hotReloading()
+    if(ENV.environment === "development") hotMiddleware = await hotReloading()
     if(hotMiddleware) middlewares.push(hotMiddleware)
 
     middlewares.push(async (ctx, next) => {
