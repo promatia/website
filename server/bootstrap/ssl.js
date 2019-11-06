@@ -84,7 +84,7 @@ module.exports = async function ssl(httpServer, httpsServer, http2server){
             }
         })
 
-        writeSSLObject(...readSSLObject(), privateKey, certificate)
+        writeSSLObject({...readSSLObject(), privateKey, certificate})
         expires = getExpiry(certificate)
 
         httpsServer.setSecureContext({
