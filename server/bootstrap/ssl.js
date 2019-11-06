@@ -2,7 +2,6 @@ const acme = require('acme-client')
 const fs = require('fs')
 const path = require('path')
 const os = require('os')
-const crypto = require('crypto')
 const forge = require('node-forge')
 
 const directoryUrl = acme.directory.letsencrypt[ENV.ssl.mode]
@@ -31,7 +30,7 @@ async function getClient(){
     if(sslObject.accountKey) opts.accountKey = sslObject.accountKey
     if(sslObject.accountUrl) opts.accountUrl = sslObject.accountUrl
 
-    if(!opts.accountKey) opts.accountKey = String(await acme.forge.createPrivateKey())
+    if(!opts.accountKey) opts.accountKey = String((await acme.forge.createPrivateKey()))
 
     const client = new acme.Client(opts)
     
@@ -109,8 +108,15 @@ module.exports = async function ssl(httpServer, http2server){
         try {
             if(shouldRenewCert()) renewingCertPromise = newCert()
 
-            await renewingCertPromise
-            
+            if(renewingCertPromise){
+                await renewingCertPromise
+            }else{
+                http2server.setSecureContext({
+                    privateKey,
+                    certificate
+                })
+            }
+
             http2server.listen(443)
         } catch (error) {
             console.error(error)
