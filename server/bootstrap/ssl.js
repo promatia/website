@@ -2,46 +2,67 @@ const acme = require('acme-client')
 const fs = require('fs')
 const path = require('path')
 const os = require('os')
+const crypto = require('crypto')
+const forge = require('node-forge')
 
-module.exports = async function ssl(httpServer, httpsServer){
-    let challengeFilePaths = {}
-    let renewingCertPromise = null
-    let lastRenewal
-    let client
-    let directoryUrl = acme.directory.letsencrypt[ENV.ssl.mode]
-    let sslDataPath = path.resolve(os.homedir(), './ssl/')
+const directoryUrl = acme.directory.letsencrypt[ENV.ssl.mode]
+const sslDataPath = path.resolve(os.homedir(), './ssl/')
 
+function writeSSLObject(obj){
+    fs.mkdirSync(sslDataPath, { recursive: true })
+    fs.writeFileSync(`${sslDataPath}/${ENV.ssl.mode}.json`, JSON.stringify(obj), 'utf8')
+}
+
+function readSSLObject(){
     try {
-        let accountData = JSON.parse(fs.readFileSync(`${sslDataPath}/${ENV.ssl.mode}.json`), 'utf8')
-
-        client = await new acme.Client({
-            directoryUrl,
-            ...accountData
-        })
-
-        console.log('Account exists')
+        return JSON.parse(fs.readFileSync(`${sslDataPath}/${ENV.ssl.mode}.json`), 'utf8')
     } catch (error) {
-        console.log('Creating new account')
-        let accountKey = String(await acme.forge.createPrivateKey())
+        return {}
+    }
+}
 
-        client = await new acme.Client({
-            directoryUrl,
-            accountKey
-        })
+async function getClient(){
+    let opts = {
+        directoryUrl
+    }
 
+    const sslObject = readSSLObject()
+
+    if(sslObject.accountKey) opts.accountKey = sslObject.accountKey
+    if(sslObject.accountUrl) opts.accountUrl = sslObject.accountUrl
+
+    if(!opts.accountKey) opts.accountKey = String(await acme.forge.createPrivateKey())
+
+    const client = new acme.Client(opts)
+    
+    try {
+        client.getAccountUrl() //check if account exists
+    } catch (error) {
         await client.createAccount({
+            email: ENV.ssl.email,
             termsOfServiceAgreed: true
         })
-        
-        let accountData = {
-            accountKey,
-            accountUrl: client.getAccountUrl()
-        }
 
-        fs.mkdirSync(sslDataPath, { recursive: true })
-        fs.writeFileSync(path.resolve(`${sslDataPath}/${ENV.ssl.mode}.json`), JSON.stringify(accountData), 'utf8')
-        console.log('Saved account')    
+        writeSSLObject({...sslObject, accountUrl: client.getAccountUrl(), accountKey: opts.accountKey})
     }
+
+    return { 
+        client,
+        certificate: sslObject.certificate,
+        privateKey: sslObject.privateKey
+    }
+}
+
+function getExpiry(certificate){
+    if(certificate) return forge.pki.certificateFromPem(certificate).validity.notAfter
+}
+
+module.exports = async function ssl(httpServer, httpsServer, http2server){
+    let challengeFilePaths = {}
+    let renewingCertPromise = null
+
+    let { client, certificate, privateKey } = await getClient()
+    let expires = getExpiry(certificate)
 
     async function newCert(){
         const [key, csr] = await acme.forge.createCsr({
@@ -49,48 +70,55 @@ module.exports = async function ssl(httpServer, httpsServer){
             altNames: ENV.ssl.domains
         })
 
-        let cert = await client.auto({
+        privateKey = key
+        certificate = await client.auto({
             csr,
-            email: ENV.ssl.email,
             challengePriority: ['http-01'],
-            termsOfServiceAgreed: true,
             async challengeCreateFn(authz, challenge, challengeContents) {
                 if (challenge.type === 'http-01') {
                     challengeFilePaths[`/.well-known/acme-challenge/${challenge.token}`] = challengeContents
-                    console.log('Created SSL challenge')
                 }
             },
             async challengeRemoveFn(auths, challenge){
                 delete challengeFilePaths[`/.well-known/acme-challenge/${challenge.token}`]
-                console.log('Deleted challenge file')
             }
         })
 
-        console.log('SSL Renewed')
-
-        lastRenewal = new Date()
+        writeSSLObject(...readSSLObject(), privateKey, certificate)
+        expires = getExpiry(certificate)
 
         httpsServer.setSecureContext({
-            key,
-            cert
+            privateKey,
+            certificate
+        })
+
+        http2server.setSecureContext({
+            privateKey,
+            certificate
         })
     }
 
     function shouldRenewCert(){
         //if there is no renewal date, generate a new cert
-        if(!lastRenewal) return true
+        if(!expires) return true
 
         //check last renewal, and if more than 2 months, renew certificate
         //letsnecrypt certificates expire every 3 months
-        return new Date() > new Date(lastRenewal).setMonth(lastRenewal.getMonth() + 2)
+        let renewAfter = new Date(expires).setMonth(expires.getMonth() - 1)
+        let now = new Date()
+        
+        return now > renewAfter
     }
 
-    httpServer.on('listening', () => {
+    httpServer.on('listening', async () => {
         try {
-            renewingCertPromise = newCert()
+            if(shouldRenewCert()) renewingCertPromise = newCert()
+
+            await renewingCertPromise
+            
             httpsServer.listen(443)
+            http2server.listen(443)
         } catch (error) {
-            console.error('SSL Could not be renewed')
             console.error(error)
         }
     })

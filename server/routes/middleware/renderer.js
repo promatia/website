@@ -3,19 +3,22 @@ const path = require('path')
 
 function createRenderer(bundle, clientManifest) {
     return createBundleRenderer(bundle, {
-        template: async (result, context) => (`<!DOCTYPE html>
-        <html${ context.htmlattrs ? ' ' + context.htmlattrs : ''}>
-            <head>
-                ${ context.head ? context.head : ''}
-                ${ context.renderResourceHints()}
-                ${ context.renderStyles()}
-                ${ context.renderScripts() }
-                ${ context.renderState({ windowKey: '__INITIAL_ROOTSTATE__', contextKey: 'state' })}
-            </head>
-            <body>
-                ${ result }
-            </body>
-        </html>`),
+        template: async (result, context) => {
+            console.log(context.getPreloadFiles())
+            return `<!DOCTYPE html>
+<html${ context.htmlattrs ? ' ' + context.htmlattrs : ''}>
+    <head>
+        ${ context.head ? context.head : ''}
+        ${ context.renderResourceHints()}
+        ${ context.renderStyles()}
+        ${ context.renderState({ windowKey: '__INITIAL_ROOTSTATE__', contextKey: 'state' })}
+        ${ context.renderScripts() }
+    </head>
+    <body>
+        ${ result }
+    </body>
+</html>`
+        },
         clientManifest,
         inject: false,
         runInNewContext: true, //ensure SSR state is refreshed
