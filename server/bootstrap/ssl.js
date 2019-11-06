@@ -57,7 +57,7 @@ function getExpiry(certificate){
     if(certificate) return forge.pki.certificateFromPem(certificate).validity.notAfter
 }
 
-module.exports = async function ssl(httpServer, httpsServer, http2server){
+module.exports = async function ssl(httpServer, http2server){
     let challengeFilePaths = {}
     let renewingCertPromise = null
 
@@ -87,11 +87,6 @@ module.exports = async function ssl(httpServer, httpsServer, http2server){
         writeSSLObject({...readSSLObject(), privateKey, certificate})
         expires = getExpiry(certificate)
 
-        httpsServer.setSecureContext({
-            privateKey,
-            certificate
-        })
-
         http2server.setSecureContext({
             privateKey,
             certificate
@@ -116,7 +111,6 @@ module.exports = async function ssl(httpServer, httpsServer, http2server){
 
             await renewingCertPromise
             
-            httpsServer.listen(443)
             http2server.listen(443)
         } catch (error) {
             console.error(error)
