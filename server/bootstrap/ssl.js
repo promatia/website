@@ -47,15 +47,15 @@ module.exports = async function ssl(server){
     }
 
     //create first cert when server begins listening
-    server.on('listening', async () => {
-        try {
-            renewingCertPromise = newCert()
-            console.log('SSL Renewed')
-        } catch(error){
-            console.error('SSL Could not be renewed')
-            console.error(error)
-        }
-    })
+    // server.on('listening', async () => {
+    //     try {
+    //         renewingCertPromise = newCert()
+    //         console.log('SSL Renewed')
+    //     } catch(error){
+    //         console.error('SSL Could not be renewed')
+    //         console.error(error)
+    //     }
+    // })
 
     /**
      * Return letsencrypt challenge middleware
