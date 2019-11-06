@@ -32,7 +32,7 @@ module.exports = async function ssl(server){
             }
         })
 
-        console.log('Certificate generated')
+        console.log('SSL Renewed')
 
         lastRenewal = new Date()
 
@@ -52,10 +52,9 @@ module.exports = async function ssl(server){
     }
 
     //create first cert when server begins listening
-    server.on('listening', async () => {
+    server.on('listening', () => {
         try {
             renewingCertPromise = newCert()
-            console.log('SSL Renewed')
         } catch(error){
             console.error('SSL Could not be renewed')
             console.error(error)
