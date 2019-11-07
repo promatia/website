@@ -47,21 +47,21 @@ async function getClient(){
 
     return { 
         client,
-        certificate: sslObject.certificate,
+        cert: sslObject.cert,
         key: sslObject.key
     }
 }
 
-function getExpiry(certificate){
-    if(certificate) return forge.pki.certificateFromPem(certificate).validity.notAfter
+function getExpiry(cert){
+    if(cert) return forge.pki.certificateFromPem(cert).validity.notAfter
 }
 
 module.exports = async function ssl(httpServer, http2server){
     let challengeFilePaths = {}
     let renewingCertPromise = null
 
-    let { client, certificate, key } = await getClient()
-    let expires = getExpiry(certificate)
+    let { client, cert, key } = await getClient()
+    let expires = getExpiry(cert)
 
     async function newCert(){
         const [privateKey, csr] = await acme.forge.createCsr({
@@ -70,7 +70,7 @@ module.exports = async function ssl(httpServer, http2server){
         })
 
         key = String(privateKey)
-        certificate = await client.auto({
+        cert = await client.auto({
             csr,
             challengePriority: ['http-01'],
             async challengeCreateFn(authz, challenge, challengeContents) {
@@ -83,12 +83,12 @@ module.exports = async function ssl(httpServer, http2server){
             }
         })
 
-        writeSSLObject({...readSSLObject(), key, certificate})
-        expires = getExpiry(certificate)
+        writeSSLObject({...readSSLObject(), key, cert})
+        expires = getExpiry(cert)
 
         http2server.setSecureContext({
             key,
-            certificate
+            cert
         })
     }
 
@@ -113,7 +113,7 @@ module.exports = async function ssl(httpServer, http2server){
             }else{
                 http2server.setSecureContext({
                     key,
-                    certificate
+                    cert
                 })
             }
 
