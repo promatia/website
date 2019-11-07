@@ -6,31 +6,14 @@
             <slot name="head"/>
         </template>
         <template slot="content">
-            <div class="body-container">
-                <div class="announcement-bar">
-                    Website under construction
-                </div>
-                <headerComponent/>
-                <div class="main-content">
-                    <div class="content-wrapper"><slot name="content"/></div>
-                    <footerComponent/>
-                </div>
-            </div>
+            <div class="announcement-bar">Website under construction</div>
+            <headerComponent/>
+            <div class="content-wrapper"><slot name="content"/></div>
+            <footerComponent/>
         </template>
     </minimal>
 </template>
 <style lang="stylus" scoped>
-
-.body-container
-    display flex
-    flex-direction column
-    flex 1
-
-.main-content
-    flex 1
-    display flex
-    flex-direction column
-
 .content-wrapper
     flex 1
 

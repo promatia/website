@@ -4,7 +4,8 @@ const path = require('path')
 function createRenderer(bundle, clientManifest) {
     return createBundleRenderer(bundle, {
         template: async (result, context) => {
-            console.log(context.getPreloadFiles())
+            //console.log(context.getPreloadFiles()) http2 push these files
+
             return `<!DOCTYPE html>
 <html${ context.htmlattrs ? ' ' + context.htmlattrs : ''}>
     <head>
