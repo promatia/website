@@ -7,11 +7,7 @@ import "@/state"
 
 export function createApp(){
     const app = new Vue({
-        render: h => h('div', {
-                attrs: {
-                    id: 'app',
-                },
-            }, [h('router-view')]),
+        render: h => h('router-view'),
         router
     })
 

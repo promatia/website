@@ -105,7 +105,7 @@ export default {
         firstRender = true
     },
     render(h){
-        return h('div', { class: "servue-wrapper", }, this.$slots.body)
+        return h('div', { attrs: { id: 'app'}}, this.$slots.body)
     }
 };
 </script>

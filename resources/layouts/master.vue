@@ -17,11 +17,10 @@
 <style lang="stylus">
 @import "~@/stylus/normalise"
 
-html, body, #app, .servue-wrapper
-    height 100%
-
-.servue-wrapper
+html, body, #app
     display flex
+    min-height 100%
+    flex 1
     flex-direction column
 
 </style>
