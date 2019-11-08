@@ -15,7 +15,6 @@
 </template>
 <style lang="stylus" scoped>
 
-
 .content-wrapper
     flex 1
 
