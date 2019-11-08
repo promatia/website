@@ -19,7 +19,7 @@
     flex 1
 
 .announcement-bar
-    background #992222
+    background #882222
     color white
     font-size 17px
     font-weight 500
