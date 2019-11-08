@@ -109,6 +109,9 @@ a
     background mix(#0d0d0d, $main, 95%)
     border-top 1px solid #ffffff18
     padding 0 20px
+    display flex
+    .inner-footer
+        flex-wrap wrap
     a
         padding 5px
 

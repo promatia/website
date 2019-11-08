@@ -8,7 +8,7 @@
 
 .button
     display inline-block
-    background $main
+    background mix(#000, $main, 10%)
     color white
     padding 8px 14px
     font-weight 500
@@ -18,7 +18,7 @@
     text-decoration none
     &:focus, &:hover
         outline 0
-        background mix(#fff, $main, 8%)
+        background mix(#fff, $main, 10%)
 
 </style>
 <script>

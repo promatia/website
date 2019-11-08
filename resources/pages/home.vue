@@ -1,5 +1,6 @@
 <template>
     <web>
+        <template slot="description">Promatia is a new developing nation-state which is in the process of establishing a new and autonomous government, city, community, country, society and nation. Promatia is on-track to becoming a self-sufficient, sustainable and independent nation.</template>
         <template slot="head">
             <script type="application/ld+json">
             {
@@ -182,7 +183,7 @@ import buttonInput from "@/components/buttonInput"
 export default {
     setup() {
         return {
-            count: 280,
+            count: 283,
             lastMonth: 150,
             northernTerritory
         }

@@ -21,7 +21,7 @@ module.exports = async () => {
         .use(koaCookie.default())
         .use(bodyParser())
         .use(sessionToken)
-        .use(mount('/dist', koastatic(path.resolve(__dirname, '../dist'))))
+        .use(mount('/dist', koastatic(path.resolve(__dirname, '../dist'), {maxage: 1000 * 60 * 60 * 1})))
         .use(await renderer())
         .use(koastatic(path.resolve(__dirname, '../../resources/public')))
         .get('(.*)', async (ctx) => {

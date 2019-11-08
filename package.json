@@ -20,6 +20,7 @@
     "chart.js": "^2.9.2",
     "css-loader": "^3.2.0",
     "file-loader": "^4.2.0",
+    "image-webpack-loader": "^6.0.0",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.11.0",
     "koa-bodyparser": "^4.2.1",
