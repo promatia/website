@@ -66,6 +66,8 @@ header
     flex 1
     display flex
     align-items flex-end
+    @media (max-width 800px)
+        display none
 
 .menu-item
     display block

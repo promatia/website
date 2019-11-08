@@ -34,6 +34,7 @@
 <style lang="stylus">
 @import "~@/stylus/variables"
 
+
 body
     background #eee
     font-family 'Roboto', sans-serif

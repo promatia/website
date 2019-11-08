@@ -52,10 +52,12 @@ export default {
                 font-size: 1.1em
     &.full
         height calc(100vh - 90px)
-&.padding-none
+&.padding-10
     padding 10px
-&.padding-tiny
+&.padding-20
     padding 20px
+&.padding-40
+    padding 40px 10px
 &.padding-small
     padding 5vh 10px
 &.padding-medium
