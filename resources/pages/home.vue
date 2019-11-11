@@ -30,14 +30,16 @@
                     "https://facebook.com/promatiagov",
                     "https://twitter.com/promatiagov",
                     "https://promatia.com"
-                ],
+                ]
+            }
+            </script>
+            <!-- SEO Test to remove aggregate rating
                 "aggregateRating": {
                     "@type": "AggregateRating",
                     "ratingValue": "5",
                     "ratingCount": "290"
                 }
-            }
-            </script>
+            -->
         </template>
         <template slot="content">
             <hero class="hero image" :img="northernTerritory">
@@ -56,7 +58,7 @@
                                 Welcome to Promatia, a new country project located in Northern Australia with its own government, currency and laws.
                             </p>
                             <p>
-                                Promatia's historical roots go as far back as 1999, a large number of new nation-state projects have been unified to form promatia.
+                                Promatia's historical roots go as far back as 1999, formed from large number of new nation-state projects that unified to form promatia.
                             </p>
                             <p>
                                 Promatia is in the process of establishing a new and autonomous government, city, community, country, society and nation. Promatia is on-track to becoming a self-sufficient, sustainable and independent nation.
