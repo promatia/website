@@ -11,6 +11,7 @@ function statCheck(stat, headers){
 
 function pushFile(stream, path){
     stream.pushStream({ ":path": '/dist/' + path }, (err, pushStream) => {
+        console.log(err)
         if(err) return
 
         console.log(pushStream.pushAllowed)
