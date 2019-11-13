@@ -16,8 +16,6 @@ function pushFile(stream, path){
         pushStream.respondWithFile(`${basedir}/${path}`, {
             "content-type": mime.getType(path),
         }, { statCheck })
-
-        pushStream.end()
     })
 }
 
