@@ -35,7 +35,7 @@
                         Gain the 50 Proma (Promatia’s currency) by signing up today 
                     </p>
                     <p>
-                        <buttonInput text="Start" href="/start"/>
+                        <buttonInput text="Sign Up" href="/start"/>
                     </p>
                 </div>
             </div>

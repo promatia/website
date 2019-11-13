@@ -6,7 +6,7 @@
             </a>
             <div class="right-header">
                 <div class="actions">
-                    <buttonInput href="/start" text="Start"/>
+                    <buttonInput href="/start" text="Sign Up"/>
                     <a class="menu-icon" @click="menuOpened = !menuOpened">
                         <MenuIcon :size="30"/>
                     </a>
