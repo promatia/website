@@ -11,7 +11,7 @@ function statCheck(stat, headers){
 
 function pushFile(stream, path){
     stream.pushStream({ ":path": '/dist/' + path }, (err, pushStream) => {
-        if(err) throw err
+        if(err) return
 
         pushStream.respondWithFile(`${basedir}/${path}`, {
             "content-type": mime.getType(path),
