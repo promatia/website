@@ -6,6 +6,7 @@ const mime = require('mime')
 const basedir = path.resolve(__dirname, '../../dist')
 
 function statCheck(stat, headers){
+    console.log('stat')
     headers['content-length'] = stat.size
 }
 
@@ -16,6 +17,11 @@ function pushFile(stream, path, filename){
         pushStream.respondWithFile(path, {
             "content-type": mime.getType(filename),
         }, { statCheck })
+
+        pushStream.on('close', () => {
+            console.log('close')
+        })
+        pushStream.end()
     })
 }
 
