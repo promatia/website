@@ -25,12 +25,18 @@ module.exports = async () => {
         .use(await renderer())
         .use(koastatic(path.resolve(__dirname, '../../resources/public')))
         .get('(.*)', async (ctx) => {
-            ctx.body = await ctx.render({
+            let body = await ctx.render({
                 url: ctx.url,
                 ctx,
                 ENV: {
                     domain: ENV.domain,
                 }
             })
+            let stream = ctx.res.stream
+            if(stream){
+                stream.end(body)
+            }else{
+                ctx.body = body
+            }
         })
 }

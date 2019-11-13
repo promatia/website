@@ -6,7 +6,6 @@ const mime = require('mime')
 const basedir = path.resolve(__dirname, '../../dist')
 
 function statCheck(stat, headers){
-    console.log('stat')
     headers['content-length'] = stat.size
 }
 
@@ -17,18 +16,18 @@ function pushFile(stream, path, filename){
         pushStream.respondWithFile(path, {
             "content-type": mime.getType(filename),
         }, { statCheck })
-
-        pushStream.end()
     })
 }
 
 function createRenderer(bundle, clientManifest) {
     return createBundleRenderer(bundle, {
         template: async (result, context) => {
-            if(context.ctx.res.stream){ //use http2 push
+            let stream = context.ctx.res.stream
+
+            if(stream && stream.pushAllowed){ //use http2 push
                 try {
                     context.getPreloadFiles().map(file => {
-                        pushFile(context.ctx.res.stream, `${basedir}/${file.file}`, file.file)
+                        pushFile(stream, `${basedir}/${file.file}`, file.file)
                     })
                 } catch (error) {
                     console.log(error)
