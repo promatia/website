@@ -25,7 +25,7 @@ function createRenderer(bundle, clientManifest) {
             if(context.ctx.res.stream){ //use http2 push
                 try {
                     context.getPreloadFiles().map(file => {
-                        pushFile(context.ctx.res.stream, `${basedir}/${file.filename}`, file.filename)
+                        pushFile(context.ctx.res.stream, `${basedir}/${file.file}`, file.file)
                     })
                 } catch (error) {
                     console.log(error)
