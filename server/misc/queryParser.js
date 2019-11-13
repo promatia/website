@@ -168,11 +168,8 @@ module.exports = (queryString) => {
 
         if(isOperator('message')){
             next()
-            return parseMessage()
+            parseMessage()
         }
-        
-        //todo: subscription
-        croak(`No valid operator match, found: "${peek().value}"`)
     }
 
     while (!eof()) {

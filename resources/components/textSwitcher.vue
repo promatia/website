@@ -1,12 +1,12 @@
 <template>
-    <div class="wrapper" :style="{ width: width }">
+    <div class="wrapper" :style="{ width }">
         <span ref="text" class="switcher"></span>
     </div>
 </template>
 <style lang="stylus" scoped>
 .wrapper
     transition width 350ms ease-in-out
-    width 0px
+    width auto
     display inline-flex
     overflow hidden
 
@@ -27,7 +27,7 @@ export default {
     data(){
         return {
             index: 0,
-            width: '0px'
+            width: null
         }
     },
     methods: {
@@ -40,18 +40,22 @@ export default {
             }
         },
         async shrink(){
-            await new Promise(resolve => setTimeout(resolve, 2500))
+            await new Promise(resolve => setTimeout(resolve, 3200))
             this.width = '0px'
             await new Promise(resolve => setTimeout(resolve, 350))
+        },
+        async doLoop(){
+            while (true) {
+                await this.shrink()
+                await this.enlarge()
+            }
         }
     },
-    async mounted(){
-        await this.enlarge()
+    mounted(){
+        this.$refs.text.textContent = this.items[this.index++]
+        this.width = this.$refs.text.getBoundingClientRect().width + 'px'
 
-        while (true) {
-            await this.shrink()
-            await this.enlarge()
-        }
+        this.doLoop()
     }
 }
 </script>

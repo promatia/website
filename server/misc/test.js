@@ -1,4 +1,5 @@
 const Graph = require('./graph')
+const API = require('./api')
 
 const schema = `
 scalar ObjectID
@@ -73,31 +74,35 @@ const directiveResolvers = {
     }
 }
 
-let graph = new Graph({
+let graph = API(new Graph({
     schema,
     messageResolvers,
     directiveResolvers,
-})
+}))
+
+
 
 async function main(){
-    let result = await graph(`
-    message UpdateUser(
-        _id: "123"
-        firstName: "Bill"
+    let msg = {
+        _id: "123",
+        firstName: "Bill",
         friends: {
             test: 1
         }
-    ) {
-        _id
-        firstName
-        roles
-        friends(limit: 5) {
-            items {
-                firstName
+    }
+
+    await graph`
+        message updateUser (${msg}) {
+            _id
+            firstName
+            roles
+            friends(limit: 5) {
+                items {
+                    firstName
+                }
             }
         }
-    }
-    `)
+    `
 }
 
 main().catch((err)=> {

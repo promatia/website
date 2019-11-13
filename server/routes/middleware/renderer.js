@@ -13,10 +13,10 @@ function createRenderer(bundle, clientManifest) {
         ${ context.renderResourceHints()}
         ${ context.renderStyles()}
         ${ context.renderState({ windowKey: '__INITIAL_ROOTSTATE__', contextKey: 'state' })}
-        ${ context.renderScripts() }
     </head>
     <body>
         ${ result }
+        ${ context.renderScripts() }
     </body>
 </html>`
         },

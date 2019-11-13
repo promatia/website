@@ -2,6 +2,7 @@
 const queryParser = require('./queryParser')
 const schemaParser = require('./schemaParser')
 
+
 function Graph({schema, messageResolvers, directiveResolvers, scalarResolvers}){
     const {
         types,
@@ -11,8 +12,6 @@ function Graph({schema, messageResolvers, directiveResolvers, scalarResolvers}){
         directives,
         paginators
     } = schemaParser(schema)
-
-    console.log(types.User.fields.roles)
     
     function getValue(value){
         if(scalarTypes.indexOf(value) !== 0){
@@ -29,6 +28,7 @@ function Graph({schema, messageResolvers, directiveResolvers, scalarResolvers}){
         }
     }
 
+    //expand types recursively (circularly)
     for(let typeName in types){
         let type = types[typeName]
         for(let fieldName in type.fields){
@@ -43,6 +43,7 @@ function Graph({schema, messageResolvers, directiveResolvers, scalarResolvers}){
                 }
             }
 
+            //expand paginators into full output type
             if(field.type === 'paginator'){
                 type.fields[fieldName] = {
                     args: field.args,
@@ -54,9 +55,14 @@ function Graph({schema, messageResolvers, directiveResolvers, scalarResolvers}){
                         ...paginators[field.paginator].fields
                     }
                 }
-                continue
+                console.log(type.fields[fieldName])
             }
-            console.log(field.type)
+
+            if(field.type === 'type'){
+                field.value = types[field.value]
+            }
+
+
             if(field.type === ''){}
         }
     }
@@ -139,6 +145,7 @@ function Graph({schema, messageResolvers, directiveResolvers, scalarResolvers}){
     }
 }
 
+
 function typesToDirectives(types){
     let directives = {}
 
@@ -175,94 +182,6 @@ function filterInputs(userProvidedInputs, typeProvidedInputs){
     }
 
     return filtered
-}
-
-function parseMessage(message){
-    let { peek, next, eof, croak } = TokenStream(message)
-
-    let messages = {}
-
-    function isVar() {
-        return peek().type === "var";
-    }
-
-    function isPunc(type){
-        return peek().type === 'punc' && peek().value === type
-    }
-
-    function getWants() {
-        let wants = {}
-        while (true) {
-            if(isPunc('newline')){
-                next()
-                continue
-            }
-            
-            if(isPunc('{')){
-                next()
-                continue
-            }
-            
-            if(isPunc('}')){
-                next()
-                break
-            }
-
-            if(isVar()) {
-                let name = next().value
-                if(isPunc('{')){
-                    wants[name] = getWants()
-                }else{
-                    wants[name] = true
-                }
-            }
-        }
-
-        return wants;
-    }
-
-    function isOperator(type) {
-        return peek().type === "operator" && peek().value === type
-    }
-
-    function parseMessage(){
-        let token = next()
-        messages[token.value] = {
-            inputs: getInputs(),
-            wants: getWants()
-        }
-        
-    }
-
-
-    function getInputs(){
-        let inputs = {}
-
-        next()
-
-        while(!isPunc(')')){
-            if(isPunc('newline')){
-                next()
-                continue
-            }
-            if(isPunc(')')){
-                break
-            }
-            if(isVar()){
-                let name = next().value
-                
-                if(isPunc('{')){
-                    inputs[name] = getInputs()
-                }else{
-                    inputs[name] = next().value
-                }
-            }
-        }
-
-        next()
-
-        return inputs
-    }
 }
 
 module.exports = Graph

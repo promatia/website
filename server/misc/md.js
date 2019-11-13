@@ -148,3 +148,44 @@ let resolvers = [
 ]
 
 graph(typedef, resolvers)
+
+
+const x = {
+    User: {
+        fields: {
+            firstName: {
+                type: 'scalar',
+                value: 'String',
+                directives: ['haha'],
+                args: {}
+            },
+            roles: {
+                type: 'array',
+                value: {
+                    type: 'scalar',
+                    value: 'String'
+                }
+            },
+            friends: {
+                type: 'paginator',
+                nonNullable: true,
+                directives: ['lol'],
+                args: {},
+                fields: {
+                    models: {
+                        type: 'array',
+                        value: {
+                            type: 'type',
+                            fields: User.fields,
+                            nonNullable: false
+                        },
+                        nonNullable: true
+                    },
+                    startCursor: {
+                        type: 'ObjectID'
+                    }
+                }
+            }
+        }
+    }
+}
