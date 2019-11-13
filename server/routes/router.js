@@ -32,7 +32,5 @@ module.exports = async () => {
                     domain: ENV.domain,
                 }
             })
-
-            await new Promise(resolve => setTimeout(resolve, 1000))
         })
 }

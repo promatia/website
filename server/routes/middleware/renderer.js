@@ -5,36 +5,43 @@ const mime = require('mime')
 
 const basedir = path.resolve(__dirname, '../../dist')
 
-function statCheck(stat, headers){
-    headers['content-length'] = stat.size
-}
+// function statCheck(stat, headers){
+//     headers['content-length'] = stat.size
+// }
 
-function pushFile(stream, path, filename){
-    stream.pushStream({ ":path": path }, (err, pushStream) => {
-        if(err) throw err
+// function pushFile(stream, path){
+//     stream.pushStream({ ":path": path }, (err, pushStream) => {
+//         if(err) throw err
 
-        pushStream.respondWithFile(path, {
-            "content-type": mime.getType(filename),
-        }, { statCheck })
+//         pushStream.respondWithFile(`${basedir}/${path}`, {
+//             "content-type": mime.getType(path),
+//         }, { statCheck })
 
-        pushStream.end()
-    })
-}
+//         pushStream.end()
+//     })
+// }
 
 function createRenderer(bundle, clientManifest) {
     return createBundleRenderer(bundle, {
         template: async (result, context) => {
-            let stream = context.ctx.res.stream
+            // let stream = context.ctx.res.stream
 
-            if(stream && stream.pushAllowed){ //use http2 push
-                try {
-                    context.getPreloadFiles().map(file => {
-                        pushFile(stream, `${basedir}/${file.file}`, file.file)
-                    })
-                } catch (error) {
-                    console.log(error)
-                }
-            }
+            // if(stream && stream.pushAllowed){ //use http2 push
+			// await new Promise(resolve => {
+			// 	stream.pushStream({ ":path": '/sdasda', ":status": 200 }, (err, pushStream) => {
+			// 		pushStream.end('lala')
+			// 		resolve()
+			// 	})
+			// })
+
+            //     try {
+            //         context.getPreloadFiles().map(file => {
+            //             pushFile(stream, file.file)
+            //         })
+            //     } catch (error) {
+            //         console.log(error)
+            //     }
+            // }
             
             return `
 <!DOCTYPE html>
