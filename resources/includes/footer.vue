@@ -11,7 +11,7 @@
                         Our goal is to establish a technologically innovate, environmentally sustainable nation and democratic nation.
                     </p>
                     <p>
-                        <router-link to="/information">Learn More</router-link>
+                        <router-link to="/information">Learn About Our Government</router-link>
                     </p>
                 </div>
                 <div class="grid-item">
