@@ -181,6 +181,7 @@ import hero from "@/components/hero"
 import northernTerritory from "@/images/northernTerritory.jpg"
 import textSwitcher from "@/components/textSwitcher"
 import buttonInput from "@/components/buttonInput"
+import Chart from "chart.js/dist/Chart.min"
 
 export default {
     setup() {
@@ -191,8 +192,6 @@ export default {
         }
     },
     async mounted(){
-        let Chart = (await import('chart.js/dist/Chart.min')).default
-        
         let chart = new Chart(this.$refs.canvas, {
             type: 'line',
             data: {
