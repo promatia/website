@@ -18,9 +18,6 @@ function pushFile(stream, path, filename){
             "content-type": mime.getType(filename),
         }, { statCheck })
 
-        pushStream.on('close', () => {
-            console.log('close')
-        })
         pushStream.end()
     })
 }
@@ -37,7 +34,7 @@ function createRenderer(bundle, clientManifest) {
                     console.log(error)
                 }
             }
-            await new Promise(resolve => setTimeout(resolve, 5000))
+            
             return `
 <!DOCTYPE html>
 <html${ context.htmlattrs ? ' ' + context.htmlattrs : ''}>
