@@ -103,7 +103,7 @@ a
 
 .footer-link
     display block
-    padding 3px 0
+    padding 4px 0
 
 .social-footer
     background mix(#0d0d0d, $main, 95%)

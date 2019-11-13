@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper" :style="{ width }">
-        <span ref="text" class="switcher"></span>
+        <span ref="text" class="switcher">{{ items[0] }}</span>
     </div>
 </template>
 <style lang="stylus" scoped>

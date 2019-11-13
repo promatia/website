@@ -9,7 +9,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, '../dist'),
         publicPath: '/dist/',
-        filename: '[name].[hash].js'
+        filename: ENV.environment === 'development' ? '[name].[hash].js' : '[name].[contenthash].js'
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],

@@ -1,12 +1,36 @@
 const { createBundleRenderer } = require('vue-server-renderer')
 const path = require('path')
+const fs = require('fs')
+const mime = require('mime')
+
+const basedir = path.resolve(__dirname, '../../dist')
+
+function statCheck(stat, headers){
+    headers['content-length'] = stat.size
+}
+
+function pushFile(stream, path, filename){
+    stream.pushStream({ ":path": path }, (err, pushStream) => {
+        if(err) throw err
+
+        pushStream.respondWithFile(path, {
+            "content-type": mime.getType(filename),
+        }, { statCheck })
+
+        pushStream.end()
+    })
+}
 
 function createRenderer(bundle, clientManifest) {
     return createBundleRenderer(bundle, {
         template: async (result, context) => {
-            //console.log(context.getPreloadFiles()) http2 push these files
-
-            return `<!DOCTYPE html>
+            if(context.ctx.res.stream){ //use http2 push
+                context.getPreloadFiles().map(file => {
+                    pushFile(context.ctx.res.stream, `${basedir}/${file.filename}`, file.filename)
+                })
+            }
+            return `
+<!DOCTYPE html>
 <html${ context.htmlattrs ? ' ' + context.htmlattrs : ''}>
     <head>
         ${ context.head ? context.head : ''}
@@ -23,7 +47,7 @@ function createRenderer(bundle, clientManifest) {
         clientManifest,
         inject: false,
         runInNewContext: true, //ensure SSR state is refreshed
-        basedir: path.resolve(__dirname, '../../dist')
+        basedir
     })
 }
 
