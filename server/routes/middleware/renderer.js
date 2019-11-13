@@ -23,9 +23,13 @@ function createRenderer(bundle, clientManifest) {
     return createBundleRenderer(bundle, {
         template: async (result, context) => {
             if(context.ctx.res.stream){ //use http2 push
-                context.getPreloadFiles().map(file => {
-                    pushFile(context.ctx.res.stream, `${basedir}/${file.filename}`, file.filename)
-                })
+                try {
+                    context.getPreloadFiles().map(file => {
+                        pushFile(context.ctx.res.stream, `${basedir}/${file.filename}`, file.filename)
+                    })
+                } catch (error) {
+                    console.log(error)
+                }
             }
             return `
 <!DOCTYPE html>
