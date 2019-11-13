@@ -13,6 +13,8 @@ function pushFile(stream, path){
     stream.pushStream({ ":path": '/dist/' + path }, (err, pushStream) => {
         if(err) return
 
+        console.log(pushStream.pushAllowed)
+
         pushStream.respondWithFile(`${basedir}/${path}`, {
             "content-type": mime.getType(path),
         }, { statCheck })
