@@ -25,6 +25,10 @@
                         "@type": "Person",
                         "name": "Timothy Schoonover"
                     }
+                    {
+                        "@type": "Person",
+                        "name": "Kazimír Bodnár"
+                    }
                 ],
                 "sameAs": [
                     "https://facebook.com/promatiagov",
@@ -53,6 +57,7 @@
                                 'A New City',
                                 'A New Society',
                                 'A New Country',
+                                'A New Home',
                                 'A New Life']"/></h1>
                             <p>
                                 Welcome to Promatia, a new country project located in Northern Australia with its own government, currency and laws.
@@ -69,7 +74,7 @@
                             <ul>
                                 <li>Create a pragmatic government, led by citizens for citizens.</li>
                                 <li>Allow citizens to pursue their life goals, aided by our government.</li>
-                                <li>Develop cheap, modern infrastructure, to achieve truly high living standards.</li>
+                                <li>Develop inexpensive, modern infrastructure, to achieve truly high living standards.</li>
                                 <li>Modernize and digitize banking, education, governance and much more.</li>
                                 <li>Create a model for an environmentally-sustainable and economically-viable nation</li>
                                 <li>Create a safe and free society, where citizens can pursue their life goals.</li>
