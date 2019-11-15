@@ -149,6 +149,17 @@ let resolvers = [
 
 graph(typedef, resolvers)
 
+const type = {
+    type: String,
+    directives: [{name: String, args: {}}], //for top level fields & messages only
+    args: {}, //for top level fields & messages only
+    scalar: String, //for fields & messages with scalar type only
+    nonNullable: Boolean,
+    value: String, //orginal value
+    fields: {...types}, //for subtypes (extensions, eg: User) gets type fields
+    array: type //for array sub types
+}
+
 
 const x = {
     User: {
@@ -161,9 +172,10 @@ const x = {
             },
             roles: {
                 type: 'array',
-                value: {
+                array: {
                     type: 'scalar',
-                    value: 'String'
+                    value: 'String',
+                    scalar: 'String'
                 }
             },
             friends: {

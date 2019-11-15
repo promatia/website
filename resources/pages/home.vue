@@ -198,7 +198,7 @@ export default {
                 borderColor: 'rgba(255,255,255,0.3)',
                 labels: ['June', 'July', 'August', 'September', 'November'],
                 datasets: [{
-                    label: 'Number of citizens: ',
+                    label: 'Number of citizens',
                     borderColor: 'white',
                     data: [0,20, 100, 120, 289]
                 }]

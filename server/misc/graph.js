@@ -20,6 +20,7 @@ function Graph({schema, messageResolvers, directiveResolvers, scalarResolvers}){
                 value: value
             }
         }
+
         if(Object.keys(types).indexOf(value) !== 0){
             return {
                 type: 'type',
@@ -45,25 +46,24 @@ function Graph({schema, messageResolvers, directiveResolvers, scalarResolvers}){
 
             //expand paginators into full output type
             if(field.type === 'paginator'){
-                type.fields[fieldName] = {
-                    args: field.args,
-                    type: {
-                        items: {
-                            type: 'array',
-                            value: getValue(field.value)
-                        },
-                        ...paginators[field.paginator].fields
-                    }
+                field.fields = {
+                    items: {
+                        type: 'array',
+                        value: {
+                            type: getValue(field.value)
+                        }
+                    },
+                    ...paginators[field.paginator].fields
                 }
-                console.log(type.fields[fieldName])
             }
 
             if(field.type === 'type'){
                 field.value = types[field.value]
             }
 
-
-            if(field.type === ''){}
+            if(field.type === ''){
+                
+            }
         }
     }
 

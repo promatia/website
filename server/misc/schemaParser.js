@@ -86,6 +86,10 @@ function schemaParser(typedefs) {
         }
     }
 
+    function getNullable(type){
+        
+    }
+
     function isPunc(type){
         return peek().type === 'punc' && peek().value === type
     }
