@@ -18,4 +18,4 @@ Our aspirations are to:
 
 We are always looking for new risk-loving and passionate citizens who want to start a new life in Promatia. Citizens can help through intellect, muscle, enterprise, finance or networking.
 
-- Kazimír, Minister
+-- Kazimír, Minister
