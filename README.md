@@ -5,9 +5,7 @@ Promatia info (also on the website):
 
 Promatia is a new country project located in Northern Australia with its own government, currency and laws.
 
-Promatia's historical roots go as far back as 1999, formed from large number of new nation-state projects that unified to form promatia.
-
-Promatia is in the process of establishing a new and autonomous government, city, community, country, society and nation. Promatia is on-track to becoming a self-sufficient, sustainable and independent nation.
+Promatia is a combination merger of Regelis and Arkovia.
 
 Our aspirations are to:
 
@@ -19,3 +17,5 @@ Our aspirations are to:
 - Create a safe and free society, where citizens can pursue their life goals.
 
 We are always looking for new risk-loving and passionate citizens who want to start a new life in Promatia. Citizens can help through intellect, muscle, enterprise, finance or networking.
+
+- Kazimír, Minister
