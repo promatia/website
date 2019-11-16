@@ -1,11 +1,9 @@
 # Website
 This is the official website of the government of Promatia.
 
-Promatia info (also on the website):
+### [Website](https://promatia.com)
 
 Promatia is a new country project located in Northern Australia with its own government, currency and laws.
-
-Promatia is a combination merger of Regelis and Arkovia.
 
 Our aspirations are to:
 
