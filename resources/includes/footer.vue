@@ -32,7 +32,7 @@
                         Become a citizen of Promatia today!
                     </p>
                     <p>
-                        Gain the 50Ⱀ (Promatia’s currency) by signing up today 
+                        Gain 50Ⱀ (Promatia’s currency) by signing up today 
                     </p>
                     <p>
                         <buttonInput text="Sign Up" href="/start"/>
