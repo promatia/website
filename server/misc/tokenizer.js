@@ -65,7 +65,7 @@ function tokenizer(GDLString) {
         return is_id_start(ch) || "0123456789".indexOf(ch) >= 0
     }
     function is_punc(ch) {
-        return "[]{}!.:,()".indexOf(ch) >= 0
+        return "[]{}!.:,()=".indexOf(ch) >= 0
     }
     function is_whitespace(ch) {
         return " \t".indexOf(ch) >= 0

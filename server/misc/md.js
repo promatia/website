@@ -154,9 +154,9 @@ const type = {
     directives: [{name: String, args: {}}], //for top level fields & messages only
     args: {}, //for top level fields & messages only
     scalar: String, //for fields & messages with scalar type only
-    nonNullable: Boolean,
+    nullable: Boolean,
     value: String, //orginal value
-    fields: {...types}, //for subtypes (extensions, eg: User) gets type fields
+    fields: {...typeFields}, //for subtypes (extensions, eg: User) gets type fields
     array: type //for array sub types
 }
 

@@ -5,7 +5,7 @@ module.exports = (queryString) => {
 
     let messages = []
 
-    function delimited(start, stop, path, parser){
+    function delimited(start, stop, parser){
         if(!isPunc(start)) return
         next()
         while(!isPunc(stop)){
@@ -25,7 +25,7 @@ module.exports = (queryString) => {
     function parseWants(path) {
         let fields = {}
 
-        delimited('{', '}', path, ()=>{
+        delimited('{', '}', ()=>{
             let field = next().value
             fields[field] = {
                 args: getArgs(join(path, field))
@@ -52,7 +52,7 @@ module.exports = (queryString) => {
     function getArgs(path) {
         let args = {};
 
-        delimited('(', ')', path, () => {
+        delimited('(', ')', () => {
             let { name, token } = getArg(path)
             args[name] = token
         })
@@ -101,9 +101,17 @@ module.exports = (queryString) => {
     //  Paginator[Type] - Paginated Data
     //  nullable
     function parseValue(field){
-        if(isPrimitive()){ //parse primitive
-            return next().value
+        if(isPunc('[')) {
+            let arr = []
+            let i = 0
+            delimited('[', ']', () => {
+                arr.push(parseValue(join(field, i)))
+            })
             
+            return arr
+        }
+        if(isPrimitive()){
+            return next().value
         }
         if(isObject()){
             return parseInputs(field)
@@ -122,7 +130,7 @@ module.exports = (queryString) => {
     function parseInputs(path){
         let inputs = {}
 
-        delimited('{', '}', path, ()=>{
+        delimited('{', '}', ()=>{
             let field = next().value
 
             if(!isPunc(':')) croak(`No separator for ${join(path, field)} provided`)
@@ -137,7 +145,7 @@ module.exports = (queryString) => {
     function parseInputFields(path){
         let inputs = {}
 
-        delimited('(', ')', path, ()=>{
+        delimited('(', ')', ()=>{
             let field = next().value
 
             if(!isPunc(':')) croak(`No separator for ${join(path, field)} provided`)

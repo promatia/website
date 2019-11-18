@@ -35,11 +35,13 @@ function schemaParser(typedefs) {
             next()
             let type = parseFieldValue(fieldName)
             let directives = getDirectives(fieldName)
+            let nullable = getNullable(fieldName)
 
             fields[fieldName] = {
                 args,
                 ...type,
-                directives
+                directives,
+                nullable
             }
         })
 
@@ -77,17 +79,40 @@ function schemaParser(typedefs) {
         let name = next().value;
         if(!isPunc(':')) croak("No separator provided")
         next()
+
+        let isArray
+
+        if(isPunc('[')) {
+            let values = []
+            delimited('[',']', isNextItem, ()=>{
+                values.push(next().value)
+            })
+            
+            return {
+                name,
+                token: {
+                    type: 'array',
+                    value: values
+                }
+            }
+        }
     
         let token = next()
+        let nullable = getNullable()
         
         return {
             name,
-            token
+            token,
+            nullable
         }
     }
 
-    function getNullable(type){
-        
+    function getNullable(){
+        if(isPunc('!')){
+            next()
+            return false
+        }
+        return true
     }
 
     function isPunc(type){
@@ -128,18 +153,20 @@ function schemaParser(typedefs) {
             let value = next().value
             return {
                 type: "primitive",
-                value,
+                value
             }
         }
         if(isPunc('[')){ //parse array type
             next()
             if(isVar()){
                 let value = next().value
+                let arrayItemNullable = getNullable()
                 if(!isPunc(']')) croak(`No closing "]" provided for ${parent}.${value}`)
                 next()
                 return {
                     type: "array",
-                    value
+                    value,
+                    arrayItemNullable
                 }
             }
             croak(`No valid type provided for ${parent}: Type: "${peek().type}", Value: "${peek().value}"`)
@@ -149,13 +176,15 @@ function schemaParser(typedefs) {
             if(isPunc('[')){ // paginator value
                 next()
                 if(isVar()){
-                    let paginatorType = next().value
+                    let paginator = next().value
+                    let nullableArrayItem = getNullable()
                     if(!isPunc(']')) croak(`Paginator must only have one type, expected ], got: ${peek().value}`)
                     next()
                     return {
                         type: "paginator",
-                        paginator: value,
-                        value: paginatorType
+                        paginator,
+                        value,
+                        nullableArrayItem
                     }
                 }
                 croak(`${peek().value} is not a valid paginator type`)
@@ -197,16 +226,18 @@ function schemaParser(typedefs) {
                     next()
                     continue
                 }
-
+                //support spread operators?
                 let fieldName = next().value
                 if(!isPunc(':')) croak(`No separator for ${parent}.${fieldName} provided`)
                 next()
                 let type = parseFieldValue(fieldName)
+                let nullable = getNullable(fieldName)
                 let directives = getDirectives(fieldName)
 
                 inputs[fieldName] = {
                     ...type,
-                    directives
+                    directives,
+                    nullable
                 }
             }
             next()
@@ -233,15 +264,17 @@ function schemaParser(typedefs) {
     function parseMessage(){
         let fieldName = next().value
         let inputs = getInputFields(fieldName)
-        if(!isPunc(':')) croak(`No separator for ${parent}.${fieldName} provided`)
+        if(!isPunc(':')) croak(`No separator ':' for message ${fieldName} provided`)
         next()
         let type = parseFieldValue(fieldName)
         let directives = getDirectives(fieldName)
+        let nullable = getNullable(fieldName)
 
         messages[fieldName] = {
             inputs,
             ...type,
-            directives
+            directives,
+            nullable
         }
     }
 
@@ -249,7 +282,7 @@ function schemaParser(typedefs) {
         let fieldName = next().value
         types[fieldName] = {
             fields: getFields(fieldName),
-            directives: getDirectives(fieldName),
+            directives: getDirectives(fieldName)
         }
     }
 
