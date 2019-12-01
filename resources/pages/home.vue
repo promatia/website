@@ -24,7 +24,7 @@
                     {
                         "@type": "Person",
                         "name": "Timothy Schoonover"
-                    }
+                    },
                     {
                         "@type": "Person",
                         "name": "Kazimír Bodnár"
