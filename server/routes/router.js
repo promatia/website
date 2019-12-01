@@ -10,6 +10,7 @@ const sessionToken = require('./middleware/sessionToken')
 const errorMiddleware = require('./middleware/errorMiddleware')
 const noWWW = require('./middleware/noWWW')
 const renderer = require('./middleware/renderer')
+const redirectArkovia = require('./middleware/redirectArkvoia')
 
 const router = new Router()
 
@@ -17,6 +18,7 @@ module.exports = async () => {
     return router
         .use(compress())
         .use(errorMiddleware)
+        .use(redirectArkovia)
         .use(noWWW)
         .use(koaCookie.default())
         .use(bodyParser())
