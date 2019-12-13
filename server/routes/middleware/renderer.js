@@ -43,7 +43,7 @@ function createRenderer(bundle, clientManifest) {
 <html${ context.htmlattrs ? ' ' + context.htmlattrs : ''}>
     <head>
         ${ context.renderResourceHints()}
-        ${ context.renderState({ windowKey: '__INITIAL_ROOTSTATE__', contextKey: 'state' })}
+        <script>window.__INITIAL_STATE__ = JSON.parse('${JSON.stringify(context.state)}')</script>
         ${ context.head ? context.head : ''}
         ${ context.renderStyles()}
         ${ context.renderScripts() }

@@ -1,0 +1,17 @@
+const MongoClient = require('mongodb').MongoClient
+
+let connection
+
+export async function dbsetup() {
+    let url = `mongodb://localhost`
+    try {
+        connection = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true})
+    } catch (error) {
+        console.error('Moongraph Connection Error:')
+        throw err
+    }
+}
+
+export function collection(name){
+    return connection.db('promatia').collection(name)
+}

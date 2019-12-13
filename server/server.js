@@ -1,22 +1,26 @@
 
-require('./bootstrap/env') //setup global ENV utility
+import './bootstrap/env.js' //setup global ENV utility
 
-const Koa = require('koa')
-const ssl = require('./bootstrap/ssl')
-const sslify = require('koa-sslify').default
-const http2 = require('http2')
-const http = require('http')
-const router = require('./routes/router')
+import Koa from 'koa'
+import sslify from 'koa-sslify'
+import { createSecureServer } from 'http2'
+import { createServer } from 'http'
+import router from './routes/router.js'
+import ssl from './bootstrap/ssl.js'
+import { dbsetup } from './bootstrap/db.js'
 
 async function startServer(){
     let app = new Koa()
-    let httpServer = http.createServer(app.callback())
-    let http2Server = http2.createSecureServer({allowHTTP1: true}, app.callback())
+    let httpServer = createServer(app.callback())
+    let http2Server = createSecureServer({allowHTTP1: true}, app.callback())
     
+    await dbsetup()
+
     if(ENV.ssl.enabled){
         app.use(await ssl(httpServer, http2Server)) //generate SSL certificate if one does not exist, or is expired
-        app.use(sslify()) //enforce HTTPS
+        app.use(sslify.default()) //enforce HTTPS
     }
+
     app.use((await router()).routes())
 
     httpServer.listen(80)

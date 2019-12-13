@@ -1,0 +1,133 @@
+scalar Role
+scalar Date
+
+type User {
+	email: String
+	emails: [Email]
+	password: String
+	fullname: RealName
+	displayPicture: String
+	phone: String
+	joined: Date
+	becameCitizen: Date
+	dateOfBirth: Date
+	religion: String
+	ethnicities: [String]
+	countriesOfCitizenship: [String]
+	countryOfBirth: String
+	countryOfResidence: String
+	gender: String
+	address: Address
+	roles: [Role]
+	sessions: [Session]
+	applications: [Application]
+	faceImage: String
+}
+
+type RealName {
+	firstName: String
+	lastName: String
+	allias: [String]
+}
+
+type Email {
+	email: String
+	token: String
+	verified: Boolean
+}
+
+type SignupInput {
+    email: String
+    phone: String
+    firstName: String
+    lastName: String
+    password: String
+    referer: String
+}
+
+type Application {
+	applicationDate: Date
+	user: User
+
+    # Phase 2
+	dateOfBirth: Date
+	religion: String
+	ethnicities: [String]
+	countriesOfCitizenship: [CountryOfCitizenship]
+	countryOfBirth: String
+	countryOfResidence: String
+    sex: String
+
+    # Phase 3
+    previousGender: String
+    middleNames: [String]
+    previousNames: [PreviousName]
+    residentialAddress: String
+    cityOfBirth: String
+    provinceOfBirth: String
+    proofOfAddress: Photo
+    postalAddress: String
+    eyeColor: String
+    hairColor: String
+    height: String
+    weight: String
+    occupations: [String]
+    skills: [String]
+
+    # Phase 4
+    countriesOfPermanentResidence: String
+    identityDocuments: [IdentityDocument]
+    children: [ApplicantChild]
+}
+
+type ApplicantChild {
+    applyingWithApplicant: Boolean
+    relationship: String # father, mother, auntie, etc
+    firstName: String
+    lastName: String
+    sex: String
+    dateOfBirth: Date
+    cityOfBirth: String
+    provinceOfBirth: String
+	countryOfBirth: String
+    previousNames: [PreviousName]
+    
+}
+
+type IdentityDocument {
+    photoProof: Photo,
+    firstName: String
+    lastName: String
+    identityNumber: String
+    typeOfDocument: String
+    countryOfIssue: String
+}
+
+type CountryOfCitizenship {
+    country: String
+    acquired: Date #required for phase 3 applicants
+    ended: Date #can be null - denotes whether citizenship has ended
+}
+
+
+type PreviousName {
+    name: String
+    reason: String
+}
+
+type Address {
+	full: String
+	country: String
+	postalCode: String
+	street: String
+	Number: String
+	Unit: String
+	province: String
+}
+
+type Session {
+	user: User
+	token: String
+	lastUsed: Date
+	agent: String
+}

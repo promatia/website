@@ -1,10 +1,18 @@
 <template>
-    <router-link class="button" :to="href">
-        {{ text }}<slot/>
-    </router-link>
+    <div class="button-input-wrapper">
+        <router-link v-if="to" class="button" :to="to">
+            {{ text }}<slot/>
+        </router-link>
+        <a v-else :href="href" class="button">
+            {{ text }}<slot/>
+        </a>
+    </div>
 </template>
 <style lang="stylus" scoped>
 @import '~@/stylus/variables'
+
+.button-input-wrapper
+    display inline-flex
 
 .button
     display inline-block
@@ -23,6 +31,6 @@
 </style>
 <script>
 export default {
-    props: ['href', 'text']
+    props: ['href', 'to', 'text']
 }
 </script>

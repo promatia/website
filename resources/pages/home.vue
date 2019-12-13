@@ -80,7 +80,7 @@
                                 <li>Create a safe and free society, where citizens can pursue their life goals.</li>
                             </ul>
                             <p>We are always looking for new risk-loving and passionate citizens who want to start a new life in Promatia. Citizens can help through intellect, muscle, enterprise, finance or networking</p>
-                            <buttonInput text="Become a citizen" href="/start"/>
+                            <buttonInput text="Become a citizen" to="/start"/>
                         </div>
                         <div class="canvas-area">
                             <div class="top">

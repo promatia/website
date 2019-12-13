@@ -35,7 +35,7 @@
                         Gain 50Ⱀ (Promatia’s currency) by signing up today 
                     </p>
                     <p>
-                        <buttonInput text="Sign Up" href="/start"/>
+                        <buttonInput text="Sign Up" to="/start"/>
                     </p>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                 <a href="https://www.twitch.tv/promatiagov"><Twitch :size="32"/></a>
                 <a href="https://www.reddit.com/r/Promatia/"><Reddit :size="32"/></a>
                 <a href="https://www.youtube.com/channel/UCL8Fjjq-gSzWMbAC3sEOXpA"><Youtube :size="32"/></a>
-                <a href="https://discord.gg/APzGzGg"><Discord :size="32"/></a>
+                <a href="https://discord.gg/frVSDck"><Discord :size="32"/></a>
                 <a href="http://m.me/promatiagov"><FacebookMessenger :size="32"/></a>
                 <a href="https://www.facebook.com/promatiagov"><Facebook :size="32"/></a>
                 <a href="https://twitter.com/PromatiaGov"><Twitter :size="32"/></a>

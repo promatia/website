@@ -1,6 +1,7 @@
-const path = require('path')
-const fs = require('fs')
+import { resolve, dirname } from 'path'
+import { fileURLToPath } from 'url'
+import { readFileSync } from 'fs'
 
-const envFile = fs.readFileSync(path.resolve(process.cwd(), 'env.json'), 'utf-8')
+const envFile = readFileSync(resolve(dirname(fileURLToPath(import.meta.url)), '../../env.json'), 'utf-8')
 
 global.ENV = JSON.parse(envFile)

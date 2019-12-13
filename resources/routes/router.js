@@ -7,6 +7,7 @@ Vue.use(VueRouter)
 
 let routes = [
     { path: "/", component: () => import('@/pages/home') },
+    { path: "/sign-up", component: () => import('@/pages/app/signup')},
     { path: '/*', component: () => import('@/templates/error')} //404
 ]
 
