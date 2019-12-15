@@ -1,4 +1,6 @@
-const MongoClient = require('mongodb').MongoClient
+import mongodb from 'mongodb'
+
+const { MongoClient } = mongodb
 
 let connection
 
@@ -8,7 +10,7 @@ export async function dbsetup() {
         connection = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true})
     } catch (error) {
         console.error('Moongraph Connection Error:')
-        throw err
+        throw error
     }
 }
 

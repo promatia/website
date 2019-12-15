@@ -1,20 +1,20 @@
-const acme = require('acme-client')
-const fs = require('fs')
-const path = require('path')
-const os = require('os')
-const forge = require('node-forge')
+import acme from 'acme-client'
+import { mkdirSync, writeFileSync, readFileSync } from 'fs'
+import { resolve } from 'path'
+import { homedir } from 'os'
+import forge from 'node-forge'
 
 const directoryUrl = acme.directory.letsencrypt[ENV.ssl.mode]
-const sslDataPath = path.resolve(os.homedir(), './ssl/')
+const sslDataPath = resolve(homedir(), './ssl/')
 
 function writeSSLObject(obj){
-    fs.mkdirSync(sslDataPath, { recursive: true })
-    fs.writeFileSync(`${sslDataPath}/${ENV.ssl.mode}.json`, JSON.stringify(obj), 'utf8')
+    mkdirSync(sslDataPath, { recursive: true })
+    writeFileSync(`${sslDataPath}/${ENV.ssl.mode}.json`, JSON.stringify(obj), 'utf8')
 }
 
 function readSSLObject(){
     try {
-        return JSON.parse(fs.readFileSync(`${sslDataPath}/${ENV.ssl.mode}.json`), 'utf8')
+        return JSON.parse(readFileSync(`${sslDataPath}/${ENV.ssl.mode}.json`), 'utf8')
     } catch (error) {
         return {}
     }
@@ -56,7 +56,7 @@ function getExpiry(cert){
     if(cert) return forge.pki.certificateFromPem(cert).validity.notAfter
 }
 
-module.exports = async function ssl(httpServer, http2server){
+export default async function ssl(httpServer, http2server){
     let challengeFilePaths = {}
     let renewingCertPromise = null
 

@@ -1,7 +1,10 @@
 const Model = require('./model')
 
 class User extends Model {
-    static collection = db('users')
+    static get collection(){
+        return collection('users')
+    }
+    
     static types = `
     type User {
         firstName: String

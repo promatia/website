@@ -2,7 +2,6 @@
 const { JsonWebTokenError } = require('jsonwebtoken')
 
 module.exports = async (ctx, next) => {
-    return await next()
     let token = null
     if(ctx.header.token){
         token = ctx.header.token

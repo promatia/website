@@ -10,6 +10,10 @@
                                 name="Email"
                                 v-model="user.email"
                                 />
+                            <phoneInput
+                                v-model="user.phoneNumber"
+                                :preferredCountries="['AU', 'PO', 'NZ', 'US', 'GB']"
+                                @phone="updatePhone"/>
                             <div class="grid-input">
                                 <textInput
                                     name="First Name"
@@ -108,7 +112,8 @@
 import appminimal from "@/layouts/appminimal"
 import textInput from "@/components/textInput"
 import buttonInput from "@/components/buttonInput"
-import { reactive } from "@vue/composition-api"
+import { reactive, ref } from '@vue/composition-api'
+import phoneInput from '@/components/phone'
 
 export default {
     setup(){
@@ -116,18 +121,29 @@ export default {
             email: '',
             firstName: '',
             lastName: '',
+            callingCode: '',
             phoneNumber: '',
+            countryCode: '',
             password: ''
         })
 
+        let hasNumber = false
+
         return {
-            user
+            user,
+            updatePhone(val){
+                user.callingCode = val.callingCode
+                user.phoneNumber = val.phoneNumber
+                user.countryCode = val.countryCode
+                hasNumber = val.hasNumber
+            }
         }
     },
     components: {
         appminimal,
         textInput,
-        buttonInput
+        buttonInput,
+        phoneInput
     }
 }
 </script>

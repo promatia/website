@@ -1,10 +1,10 @@
-const webpack = require('webpack')
-const merge = require('webpack-merge')
-const base = require('./webpack.base')
-const nodeExternals = require('webpack-node-externals')
-const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
+import webpack from 'webpack'
+import merge from 'webpack-merge'
+import base from './webpack.base.js'
+import nodeExternals from 'webpack-node-externals'
+import VueSSRServerPlugin from 'vue-server-renderer/server-plugin.js'
 
-module.exports = merge(base, {
+export default merge(base, {
     target: 'node',
     entry: '@/entry-server.js',
     output: {

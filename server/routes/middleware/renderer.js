@@ -1,9 +1,17 @@
-const { createBundleRenderer } = require('vue-server-renderer')
-const path = require('path')
-const fs = require('fs')
-const mime = require('mime')
+import serverRenderer from 'vue-server-renderer'
+import { fileURLToPath } from 'url'
+import { resolve, dirname } from 'path'
+import fs, { readFileSync } from 'fs'
+import mime from 'mime'
+import webpack from 'webpack'
+import koaWebpack from 'koa-webpack'
+import clientconfig from '../../webpack/webpack.client.js'
+import serverconfig from '../../webpack/webpack.server.js'
 
-const basedir = path.resolve(__dirname, '../../dist')
+const { createBundleRenderer } = serverRenderer
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const baseDirectory = resolve(__dirname, '../../../')
+const distdir = resolve(baseDirectory, './server/dist/')
 
 function statCheck(stat, headers){
     headers['content-length'] = stat.size
@@ -17,7 +25,7 @@ function pushFile(stream, path){
             return
         })
 
-        pushStream.respondWithFile(`${basedir}/${path}`, {
+        pushStream.respondWithFile(`${distdir}/${path}`, {
             "content-type": mime.getType(path),
         }, { statCheck })
     })
@@ -56,18 +64,18 @@ function createRenderer(bundle, clientManifest) {
         clientManifest,
         inject: false,
         runInNewContext: true, //ensure SSR state is refreshed
-        basedir
+        basedir: distdir
     })
 }
 
-let bundle = require('../../dist/vue-ssr-server-bundle.json')
-let clientManifest = require('../../dist/vue-ssr-client-manifest.json')
+let bundle = JSON.parse(readFileSync(resolve(distdir, './vue-ssr-server-bundle.json'), 'utf-8'))
+let clientManifest = JSON.parse(readFileSync(resolve(distdir, './vue-ssr-client-manifest.json'), 'utf-8'))
 let renderer = createRenderer(bundle, clientManifest)
 
-module.exports = async () => {
+export async function middleware() {
     let middlewares = []
     let hotMiddleware
-    if(ENV.environment === "development") hotMiddleware = await hotReloading()
+    if(ENV.environment === 'development') hotMiddleware = await hotReloading()
     if(hotMiddleware) middlewares.push(hotMiddleware)
 
     middlewares.push(async (ctx, next) => {
@@ -79,13 +87,6 @@ module.exports = async () => {
 }
 
 async function hotReloading(){
-    const fs = require('fs')
-    const webpack = require('webpack')
-    const koaWebpack = require('koa-webpack')
-
-    var clientconfig = require('../../webpack/webpack.client')
-    var serverconfig = require('../../webpack/webpack.server')
-
     var clientCompiler = webpack(clientconfig)
     var serverCompiler = webpack(serverconfig)
 
@@ -100,7 +101,7 @@ async function hotReloading(){
 
     clientCompiler.hooks.done.tap('done', ()=>{
         let mfs = middleware.devMiddleware.fileSystem
-        let file = mfs.readFileSync(path.resolve(__dirname, '../../dist/vue-ssr-client-manifest.json'), 'utf-8')
+        let file = mfs.readFileSync(resolve(__dirname, '../../dist/vue-ssr-client-manifest.json'), 'utf-8')
         clientManifest = JSON.parse(file)
         renderer = createRenderer(bundle, clientManifest)
     })
@@ -110,7 +111,7 @@ async function hotReloading(){
     serverCompiler.watch({}, ()=>{})
 
     serverCompiler.hooks.afterEmit.tap('afterEmit', ()=>{
-        let file = fs.readFileSync(path.resolve(__dirname, '../../dist/vue-ssr-server-bundle.json'), 'utf-8')
+        let file = fs.readFileSync(resolve(__dirname, '../../dist/vue-ssr-server-bundle.json'), 'utf-8')
         bundle = JSON.parse(file)
         renderer = createRenderer(bundle, clientManifest)
     })

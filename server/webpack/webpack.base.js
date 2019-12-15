@@ -1,21 +1,24 @@
-require('../bootstrap/env') //global env
+import '../bootstrap/env.js' //global env
+import vueLoader from 'vue-loader'
+import webpack from 'webpack'
+import { dirname, resolve } from 'path'
+import { fileURLToPath } from 'url'
 
-const path = require('path')
-const { VueLoaderPlugin } = require('vue-loader')
-const webpack = require('webpack')
+const { VueLoaderPlugin } = vueLoader
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-module.exports = {
+export default {
     mode: ENV.environment,
     output: {
-        path: path.resolve(__dirname, '../dist'),
+        path: resolve(__dirname, '../dist'),
         publicPath: '/dist/',
         filename: ENV.environment === 'development' ? '[name].[hash].js' : '[name].[contenthash].js'
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {
-            '@': path.resolve(__dirname, '../../resources/'),
-            "icons": path.resolve(__dirname, "../../node_modules/vue-material-design-icons/")
+            '@': resolve(__dirname, '../../resources/'),
+            "icons": resolve(__dirname, "../../node_modules/vue-material-design-icons/")
         }
     },
     module: {
