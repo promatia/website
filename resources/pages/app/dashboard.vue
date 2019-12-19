@@ -14,7 +14,7 @@
 
 .welcome
     padding 20px
-    font-size 40px
+    font-size 2.5em
     font-weight 300
     text-align center
 

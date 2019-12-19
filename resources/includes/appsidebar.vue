@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-
+    Sidebar
   </div>
 </template>
 <style lang="stylus" scoped>

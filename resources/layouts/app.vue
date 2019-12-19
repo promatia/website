@@ -22,13 +22,10 @@
 .app-wrapper
     display grid
     grid-template-columns 300px 1fr
-    grid-template-rows 50px 1fr
+    grid-template-rows 60px 1fr
     grid-template-areas "sidebar header" "sidebar content"
     background rgba(0,0,0,0.7)
     flex 1
-
-.sidebar
-    grid-area sidebar
 
 .content-frontdrop
     border-top-left-radius 20px
