@@ -3,8 +3,11 @@ import { gql } from '@promatia/prograph'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import mongodb from 'mongodb'
-import generateDisplayPicture from '../utils/displayPicture.js'
+import svgToDataURL from 'svg-to-dataurl'
+import Avatars from '@dicebear/avatars'
+import sprites from '@dicebear/avatars-jdenticon-sprites'
 
+let avatars = new Avatars.default(sprites.default())
 const { ObjectID } = mongodb
 
 /**
@@ -73,11 +76,10 @@ export class User extends Model {
     }
 
     async displayPicture () {
-        return //leaving this until canvas works with node 13.3
         if(!this.doc.displayPicture) {
-            const { firstName, lastName } = this.doc
-            let initials = firstName.substr(0, 1) + lastName.substr(0, 1)
-            this.doc.displayPicture = generateDisplayPicture(initials)
+            let svg = avatars.create(this.doc.firstName + ' ' + this.doc.lastName + this.doc.joined)
+            
+            this.doc.displayPicture = svgToDataURL(svg)
             await this.save()
         }
 

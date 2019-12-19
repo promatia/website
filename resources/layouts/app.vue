@@ -28,8 +28,8 @@
     flex 1
 
 .content-frontdrop
-    border-top-left-radius 20px
-    border-top-right-radius 20px
+    border-top-left-radius 15px
+    border-top-right-radius 15px
     background $darkbackground
     grid-area content
 
