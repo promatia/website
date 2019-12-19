@@ -12,7 +12,7 @@
 
 .switcher
     background white
-    color black
+    color #303062
     padding 0 6px
     display block
     word-wrap none
@@ -24,34 +24,34 @@
 
 export default {
     props: ['items'],
-    data(){
+    data () {
         return {
             index: 0,
             width: null
         }
     },
     methods: {
-        async enlarge(){
+        async enlarge () {
             if(this.index + 1 > this.items.length) this.index = 0
 
-            if(this.$refs.text){
+            if(this.$refs.text) {
                 this.$refs.text.textContent = this.items[this.index++]
                 this.width = this.$refs.text.getBoundingClientRect().width + 'px'
             }
         },
-        async shrink(){
+        async shrink () {
             await new Promise(resolve => setTimeout(resolve, 3200))
             this.width = '0px'
             await new Promise(resolve => setTimeout(resolve, 350))
         },
-        async doLoop(){
+        async doLoop () {
             while (true) {
                 await this.shrink()
                 await this.enlarge()
             }
         }
     },
-    mounted(){
+    mounted () {
         this.$refs.text.textContent = this.items[this.index++]
         this.width = this.$refs.text.getBoundingClientRect().width + 'px'
 
