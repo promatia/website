@@ -23,8 +23,9 @@ export class Model {
 
                 return true
             },
-            get (obj, key) {
-                if (obj[key]) return obj[key]
+            get: (obj, key) => {
+                if (obj[key] && typeof obj[key] === 'function') return obj[key].bind(this)
+                if (obj[key]) return (()=>obj[key]).bind(this)
 
                 return obj.doc[key]
             }

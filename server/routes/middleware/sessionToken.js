@@ -15,6 +15,7 @@ export default async (ctx, next) => {
     if(token) {
         try {
             let user = await User.authenticate(token, ctx)
+            
             if(user) {
                 ctx.state.token = token
                 ctx.state.user = user

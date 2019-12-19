@@ -13,12 +13,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const baseDirectory = resolve(__dirname, '../../../')
 const distdir = resolve(baseDirectory, './server/dist/')
 
-function statCheck(stat, headers){
+function statCheck (stat, headers) {
     headers['content-length'] = stat.size
 }
 
-function pushFile(stream, path){
-    stream.pushStream({ ":path": '/dist/' + path }, (err, pushStream) => {
+function pushFile (stream, path) {
+    stream.pushStream({ ':path': '/dist/' + path }, (err, pushStream) => {
         if(err) return
         
         pushStream.on('error', err => {
@@ -26,17 +26,17 @@ function pushFile(stream, path){
         })
 
         pushStream.respondWithFile(`${distdir}/${path}`, {
-            "content-type": mime.getType(path),
+            'content-type': mime.getType(path)
         }, { statCheck })
     })
 }
 
-function createRenderer(bundle, clientManifest) {
+function createRenderer (bundle, clientManifest) {
     return createBundleRenderer(bundle, {
         template: async (result, context) => {
             let stream = context.ctx.res.stream
 
-            if(stream && stream.pushAllowed){ //use http2 push
+            if(stream && stream.pushAllowed) { //use http2 push
                 try {
                     context.getPreloadFiles().map(file => {
                         pushFile(stream, file.file)
@@ -51,7 +51,7 @@ function createRenderer(bundle, clientManifest) {
 <html${ context.htmlattrs ? ' ' + context.htmlattrs : ''}>
     <head>
         ${ context.renderResourceHints()}
-        <script>window.__INITIAL_STATE__ = JSON.parse('${JSON.stringify(context.state)}')</script>
+        <script>window.__INITIAL_STATE__ = JSON.parse('${JSON.stringify(context.state).replace(/'/g, "\\'")}')</script>
         ${ context.head ? context.head : ''}
         ${ context.renderStyles()}
         ${ context.renderScripts() }
@@ -72,7 +72,7 @@ let bundle = JSON.parse(readFileSync(resolve(distdir, './vue-ssr-server-bundle.j
 let clientManifest = JSON.parse(readFileSync(resolve(distdir, './vue-ssr-client-manifest.json'), 'utf-8'))
 let renderer = createRenderer(bundle, clientManifest)
 
-export async function middleware() {
+export async function middleware () {
     let middlewares = []
     if(ENV.environment === 'development') middlewares.push(await hotReloading())
 
@@ -84,16 +84,16 @@ export async function middleware() {
     return middlewares
 }
 
-async function hotReloading(){
+async function hotReloading () {
     var clientCompiler = webpack(clientconfig)
     var serverCompiler = webpack(serverconfig)
 
     let middleware = await koaWebpack({
         compiler: clientCompiler,
         devMiddleware: {
-            publicPath: "/dist/",
+            publicPath: '/dist/',
             noInfo: true,
-            logLevel: 'error',
+            logLevel: 'error'
         }
     })
     

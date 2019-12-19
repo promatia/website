@@ -4,7 +4,6 @@
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title><slot name="title"/></title>
             <meta v-if="this.$slots.description" name="description" :content="this.$slots.description[0].text">
-            <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700&display=swap" rel="stylesheet">
             <!-- Favicon Files -->
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
@@ -33,6 +32,7 @@
 </template>
 <style lang="stylus">
 @import "~@/stylus/variables"
+@import url('https://fonts.googleapis.com/css?family=Saira:300,400,500,600,700&display=swap')
 
 .material-design-icon
     display flex
@@ -40,7 +40,7 @@
 
 body
     background #eee
-    font-family 'Roboto', sans-serif
+    font-family 'Saira', sans-serif
     color mix($main, #000, 10%)
 
 a
@@ -55,7 +55,7 @@ a
 
 </style>
 <script>
-import master from "@/layouts/master"
+import master from '@/layouts/master'
 import actionBar from '@/components/actionBar'
 
 export default {

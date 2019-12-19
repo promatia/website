@@ -128,7 +128,7 @@
         font-size 1.4em
 
 .live
-    color #ff5555
+    color #ff4444
     display inline-block
     padding 2px 4px
     border-radius 3px
@@ -146,12 +146,12 @@
         animation-name live
         animation-duration 1s
         animation-iteration-count infinite
-        background #ff5555
+        background #ff4444
 
 .graph-info
     display grid
-    grid-template-columns auto auto 
-    grid-gap 20px
+    grid-template-columns max-content 1fr
+    grid-gap 15px
     h2
         margin 0
     .green
@@ -181,57 +181,64 @@
 
 </style>
 <script>
-import web from "@/layouts/web"
-import hero from "@/components/hero"
-import northernTerritory from "@/images/northernTerritory.jpg"
-import textSwitcher from "@/components/textSwitcher"
-import buttonInput from "@/components/buttonInput"
-import Chart from "chart.js/dist/Chart.min"
+import web from '@/layouts/web'
+import hero from '@/components/hero'
+import northernTerritory from '@/images/northernTerritory.jpg'
+import textSwitcher from '@/components/textSwitcher'
+import buttonInput from '@/components/buttonInput'
+import Chart from 'chart.js/dist/Chart.min'
+import { onMounted } from '@vue/composition-api'
 
 export default {
-    setup() {
+    setup (props, { refs }) {
+        onMounted(()=>{
+            let ctx = refs.canvas.getContext('2d')
+            var gradient = ctx.createLinearGradient(0, 0, 0, 400)
+            gradient.addColorStop(0, 'rgba(255,255,255,0.5)')
+            gradient.addColorStop(1, 'rgba(255,255,255,0)')
+
+            new Chart(refs.canvas, {
+                type: 'line',
+                data: {
+                    borderColor: 'rgba(255,255,255,0.3)',
+                    labels: ['June', 'July', 'August', 'September', 'November', 'December'],
+                    datasets: [{
+                        backgroundColor: gradient,
+                        label: 'Number of citizens',
+                        borderColor: 'white',
+                        data: [0, 20, 100, 120, 289, 348]
+                    }]
+                },
+                options: {
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                fontColor: 'rgba(255,255,255,0.8)'
+                            },
+                            gridLines: {
+                                color: 'rgba(255,255,255,0.3)'
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                fontColor: 'rgba(255,255,255,0.8)'
+                            },
+                            gridLines: {
+                                display: false
+                            }
+                        }]
+                    }
+                }
+            })
+        })
         return {
-            count: 283,
+            count: 348,
             lastMonth: 150,
             northernTerritory
         }
-    },
-    async mounted(){
-        let chart = new Chart(this.$refs.canvas, {
-            type: 'line',
-            data: {
-                borderColor: 'rgba(255,255,255,0.3)',
-                labels: ['June', 'July', 'August', 'September', 'November'],
-                datasets: [{
-                    label: 'Number of citizens',
-                    borderColor: 'white',
-                    data: [0,20, 100, 120, 289]
-                }]
-            },
-            options: {
-                legend: {
-                    display: false
-                },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            fontColor: 'rgba(255,255,255,0.8)'
-                        },
-                        gridLines: {
-                            color: 'rgba(255,255,255,0.3)'
-                        }
-                    }],
-                    xAxes: [{
-                        ticks: {
-                            fontColor: 'rgba(255,255,255,0.8)'
-                        },
-                        gridLines: {
-                            display: false
-                        }
-                    }]
-                }
-            }
-        })
     },
     components: {
         web,

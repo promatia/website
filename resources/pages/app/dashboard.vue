@@ -1,13 +1,22 @@
 <template>
     <app>
         <template slot="head"><slot name="head"/></template>
+        <template slot="title">Dashboard</template>
         <template slot="content">
-            test
+            <div class="welcome">
+                Welcome {{ $state.user.firstName }}!
+            </div>
         </template>
     </app>
 </template>
 <style lang="stylus" scoped>
 @import "~@/stylus/variables"
+
+.welcome
+    padding 20px
+    font-size 40px
+    font-weight 300
+    text-align center
 
 </style>
 <script>

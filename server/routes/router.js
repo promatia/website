@@ -6,14 +6,15 @@ import { fileURLToPath } from 'url'
 import mount from 'koa-mount'
 import koastatic from 'koa-static'
 import compress from 'koa-compress'
-import { graph } from '../models/graph.js'
+import { graphMiddleware } from '../models/graph.js'
 import sessionToken from './middleware/sessionToken.js'
 
 import {
     errorMiddleware,
     noWWW,
     renderer,
-    redirectArkovia
+    redirectArkovia,
+    stateContext
 } from './middleware/index.js'
 
 const router = new Router()
@@ -23,6 +24,7 @@ const staticDir = resolve(__dirname, '../../resources/public')
 
 export default async () => router
     .use(compress())
+    .use(stateContext)
     .use(errorMiddleware)
     .use(redirectArkovia)
     .use(noWWW)
@@ -32,28 +34,14 @@ export default async () => router
     .use(mount('/dist', koastatic(distDir), {maxage: 1000 * 60 * 60 * 1}))
     .use(await renderer())
     .use(koastatic(staticDir))
-    .post('/graph/', async (ctx) => {
-        let query = ctx.request.body.query
-        try {
-            ctx.body = {
-                data: await graph(query, { context: ctx })
-            }
-        } catch (error) {
-            ctx.body = {
-                data: null,
-                error: {
-                    message: error.message,
-                    location: error.location
-                }
-            }
-        }
-    })
+    .post('/graph/', graphMiddleware)
     .get('(.*)', async (ctx) => {
         ctx.body = await ctx.render({
             url: ctx.url,
             ctx,
             ENV: {
-                domain: ENV.domain
+                domain: ENV.domain,
+                token: ctx.state.token
             }
         })
     })

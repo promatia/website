@@ -29,8 +29,8 @@ html, body, #app
 import servue from '@/utils/servue'
 
 export default {
-    created(){
-        if(this.$isServer){
+    created () {
+        if(this.$isServer) {
             this.$ssrContext.htmlattrs = 'lang="en-AU"'
         }
     },

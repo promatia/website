@@ -17,14 +17,10 @@
                 <div class="grid-item">
                     <div class="footer-title">Quick Links</div>
                     <div class="links">
-                        <div class="link-group">
-                            <a class="footer-link" v-for="link in links" :key="link.text" :href="link.href">{{ link.text }}</a>
+                        <div class="link-group" v-for="(linkGroup, index) in links" :key="index">
+                            <a class="footer-link" v-for="link in linkGroup" :key="link.text" :href="link.href">{{ link.text }}</a>
                         </div>
                     </div>
-                </div>
-                <div class="grid-item">
-                    <div class="footer-title">Signup to our newsletter</div>
-                    <p>Sign up to Promatia’s newsletter and get updated when we launch our user system</p>
                 </div>
                 <div class="grid-item">
                     <div class="footer-title">Become A Citizen</div>
@@ -35,7 +31,7 @@
                         Gain 50Ⱀ (Promatia’s currency) by signing up today 
                     </p>
                     <p>
-                        <buttonInput text="Sign Up" to="/start"/>
+                        <buttonInput text="Get Started" to="/start"/>
                     </p>
                 </div>
             </div>
@@ -88,7 +84,7 @@
 
 .footer-grid
     display grid 
-    grid-template-columns 1fr 0.5fr 1.5fr 1fr
+    grid-template-columns 1fr 1fr 1fr
     grid-gap 30px
     @media (max-width 800px)
         grid-template-columns 1fr 1fr
@@ -100,6 +96,9 @@ a
 
 .links
     padding-top 5px
+    display grid 
+    grid-gap 20px
+    grid-template-columns max-content 1fr
 
 .footer-link
     display block
@@ -139,58 +138,71 @@ a
 
 </style>
 <script>
-import { reactive } from "vue"
-import pentark from "@/images/pentark.png"
-import buttonInput from "@/components/buttonInput"
-import axios from 'axios'
+import pentark from '@/images/pentark.png'
+import buttonInput from '@/components/buttonInput'
 
 /**
  * Social Icons
  */
-import Email from "icons/Email"
-import DevTo from "icons/DevTo"
-import Twitch from "icons/Twitch"
-import Reddit from "icons/Reddit"
-import Youtube from "icons/Youtube"
-import Discord from "icons/Discord"
-import FacebookMessenger from "icons/FacebookMessenger"
-import Facebook from "icons/Facebook"
-import Twitter from "icons/Twitter"
-import Instagram from "icons/Instagram"
+import Email from 'icons/Email'
+import DevTo from 'icons/DevTo'
+import Twitch from 'icons/Twitch'
+import Reddit from 'icons/Reddit'
+import Youtube from 'icons/Youtube'
+import Discord from 'icons/Discord'
+import FacebookMessenger from 'icons/FacebookMessenger'
+import Facebook from 'icons/Facebook'
+import Twitter from 'icons/Twitter'
+import Instagram from 'icons/Instagram'
 
 export default {
-    setup(){
+    setup () {
         return {
             pentark,
             links: [
-                {
-                    text: 'Home',
-                    href: '/'
-                },
-                {
-                    text: 'Information',
-                    href: '/information'
-                },
-                {
-                    text: 'Proma Times',
-                    href: 'https://promatimes.com'
-                },
-                {
-                    text: 'Media',
-                    href: '/information/media'
-                },
-                {
-                    text: 'Services',
-                    href: '/information/services'
-                },
-                {
-                    text: 'myPro',
-                    href: '/app'
-                },
-                {
-                    text: 'Login',
-                    href: '/login'
-                }
+                [
+                    {
+                        text: 'Home',
+                        href: '/'
+                    },
+                    {
+                        text: 'Information',
+                        href: '/information'
+                    },
+                    {
+                        text: 'Proma Times',
+                        href: 'https://promatimes.com'
+                    },
+                    {
+                        text: 'Media',
+                        href: '/information/media'
+                    },
+                    {
+                        text: 'Services',
+                        href: '/information/services'
+                    }
+                ], [
+                    {
+                        text: 'Sign In',
+                        href: '/sign-in'
+                    },
+                    {
+                        text: 'myPro',
+                        href: '/app'
+                    },
+                    {
+                        text: 'PromaBank',
+                        href: 'https://promabank.com'
+                    },
+                    {
+                        text: 'Discord',
+                        href: 'https://discord.gg/frVSDck'
+                    },
+                    {
+                        text: 'Values',
+                        href: '/information/values'
+                    }
+                ]
             ]
         }
     },
@@ -205,7 +217,7 @@ export default {
         FacebookMessenger,
         Facebook,
         Twitter,
-        Instagram,
+        Instagram
     }
 }
 </script>

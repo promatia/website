@@ -27,3 +27,8 @@ export async function redirectArkovia (ctx, next) {
     }
     await next()
 }
+
+export async function stateContext (ctx, next) {
+    if(!ctx.state) ctx.state = {}
+    await next()
+}

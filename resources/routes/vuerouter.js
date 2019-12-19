@@ -11,12 +11,10 @@ let routes = [
     { path: '/sign-up', component: () => import('@/pages/app/sign-up')},
     { path: '/sign-in', component: () => import('@/pages/app/sign-in')},
     ...prefix('/app', meta({auth: true}, [
-        { path: '/', component: () => import('@/pages/app/app')}
+        { path: '/', component: () => import('@/pages/app/dashboard')}
     ])),
     { path: '/*', component: () => import('@/templates/error')} //404
 ]
-
-
 
 const router = new VueRouter({
     mode: 'history',

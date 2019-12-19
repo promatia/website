@@ -3,6 +3,7 @@ import { gql } from '@promatia/prograph'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import mongodb from 'mongodb'
+import generateDisplayPicture from '../utils/displayPicture.js'
 
 const { ObjectID } = mongodb
 
@@ -14,14 +15,6 @@ export class User extends Model {
         return collection('users')
     }
 
-    constructor () {
-        super(...arguments)
-
-        if(!this.doc.sessions) {
-            this.doc.sessions = []
-        }
-    }
-
     static types = gql`
 
     type Email {
@@ -30,6 +23,7 @@ export class User extends Model {
     }
 
     type User {
+        _id: ObjectID
         email: String # gets first email in emails array
         emails: [Email]
         firstName: String
@@ -50,6 +44,8 @@ export class User extends Model {
         lastUsed: Date
         agent: String
     }
+    
+    message me: User
 
     message loginUser (
         email: String! @lowercase
@@ -76,7 +72,22 @@ export class User extends Model {
         return bcrypt.compareSync(value, this.doc.password)
     }
 
-    email () {
+    async displayPicture () {
+        return //leaving this until canvas works with node 13.3
+        if(!this.doc.displayPicture) {
+            const { firstName, lastName } = this.doc
+            let initials = firstName.substr(0, 1) + lastName.substr(0, 1)
+            this.doc.displayPicture = generateDisplayPicture(initials)
+            await this.save()
+        }
+
+        return this.doc.displayPicture
+    }
+
+    /**
+     * Returns first email in emails array (primary)
+     */
+    get email () {
         return this.doc.emails[0].email
     }
 
@@ -133,6 +144,10 @@ export class User extends Model {
      * Create a session and return the JWT API token
      */
     async createToken () {
+        if(!this.doc.sessions) {
+            this.doc.sessions = []
+        }
+
         let secret = ENV.secret
         let session = {
             token: jwt.sign({id: String(this.doc._id), created: new Date().getTime()}, secret),
@@ -157,6 +172,11 @@ export class User extends Model {
         if(!user.comparePassword(password)) throw new Error('Password is incorrect')
 
         return user.createToken()
+    }
+
+    static async me ({}, { context }) {
+        if(!context.state.user) throw new Error('User not authenticated')
+        return context.state.user
     }
 
     static async createUser (inputs) {
@@ -206,9 +226,5 @@ export class User extends Model {
         await this.collection.createIndex({ joined: 1 })
         await this.collection.createIndex({ joined: -1 })
         await this.collection.createIndex({ referrer: 1 })
-    }
-
-    static async user ({ _id }, { wants }) {
-
     }
 }

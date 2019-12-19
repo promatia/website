@@ -2,21 +2,51 @@
     <appminimal>
         <template slot="title"><slot name="title"/></template>
         <template slot="head"><slot name="head"/></template>
+        <template slot="description"><slot name="description"/></template>
         <template slot="content">
-            <slot name="content"/>
+            <div class="app-wrapper">
+                <appheader>
+                    <template slot="title"><slot name="title"/></template>
+                </appheader>
+                <appsidebar/>
+                <div class="content-frontdrop">
+                    <slot name="content"/>
+                </div>
+            </div>
         </template>
     </appminimal>
 </template>
 <style lang="stylus" scoped>
 @import "~@/stylus/variables"
 
+.app-wrapper
+    display grid
+    grid-template-columns 300px 1fr
+    grid-template-rows 50px 1fr
+    grid-template-areas "sidebar header" "sidebar content"
+    background rgba(0,0,0,0.7)
+    flex 1
+
+.sidebar
+    grid-area sidebar
+
+.content-frontdrop
+    border-top-left-radius 20px
+    border-top-right-radius 20px
+    background $darkbackground
+    grid-area content
+
 </style>
 <script>
-import appminimal from "@/layouts/appminimal"
+import appminimal from '@/layouts/appminimal'
+import appheader from '@/includes/appheader'
+import appsidebar from '@/includes/appsidebar'
 
 export default {
     components: {
-        appminimal
+        appminimal,
+        appheader,
+        appsidebar
     }
 }
 </script>

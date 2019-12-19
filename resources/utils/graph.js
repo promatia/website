@@ -5,7 +5,7 @@ export default async function graph (strings, ...variables) {
     let config = {}
     
     const { domain, token } = $state.ENV
-
+    
     if(!domain) throw new Error('No domain provided')
     if(token) config.headers = { token }
 

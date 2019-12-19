@@ -127,35 +127,35 @@ header
 
 </style>
 <script>
-import logo from "@/images/logo.png"
-import buttonInput from "@/components/buttonInput"
-import MenuIcon from "icons/Menu"
+import logo from '@/images/logo.png'
+import buttonInput from '@/components/buttonInput'
+import MenuIcon from 'icons/Menu'
 
 export default {
-    setup(){
+    setup () {
         return {
             menuOpened: false,
             logo,
             links: [
                 {
-                    text: "Home",
-                    href: "/"
+                    text: 'Home',
+                    href: '/'
                 },
                 {
-                    text: "Information",
-                    href: "/information"
+                    text: 'Information',
+                    href: '/information'
                 },
                 {
-                    text: "Services",
-                    href: "/information/services"
+                    text: 'Services',
+                    href: '/information/services'
                 },
                 {
-                    text: "News",
-                    href: "https://promatimes.com"
+                    text: 'News',
+                    href: 'https://promatimes.com'
                 },
                 {
-                    text: "Shop",
-                    href: "/shop"
+                    text: 'Shop',
+                    href: '/shop'
                 }
             ]
         }

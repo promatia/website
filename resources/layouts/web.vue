@@ -28,9 +28,9 @@
 
 </style>
 <script>
-import minimal from "@/layouts/minimal"
-import headerComponent from "@/includes/header"
-import footerComponent from "@/includes/footer"
+import minimal from '@/layouts/minimal'
+import headerComponent from '@/includes/header'
+import footerComponent from '@/includes/footer'
 
 export default {
     components: {

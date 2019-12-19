@@ -2,9 +2,7 @@
     <minimal>
         <template slot="title">{{ this.$slots.title ? `${ this.$slots.title[0].text } - myPro`: `myPro` }}</template>
         <template slot="description"><slot name="description"/></template>
-        <template slot="head">
-            <slot name="head"/>
-        </template>
+        <template slot="head"><slot name="head"/></template>
         <template slot="content">
             <div class="app-minimal"><slot name="content"/></div>
         </template>
@@ -21,7 +19,7 @@
 
 </style>
 <script>
-import minimal from "@/layouts/minimal"
+import minimal from '@/layouts/minimal'
 
 export default {
     components: {
