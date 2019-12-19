@@ -7,12 +7,12 @@ import forge from 'node-forge'
 const directoryUrl = acme.directory.letsencrypt[ENV.ssl.mode]
 const sslDataPath = resolve(homedir(), './ssl/')
 
-function writeSSLObject(obj){
+function writeSSLObject (obj) {
     mkdirSync(sslDataPath, { recursive: true })
     writeFileSync(`${sslDataPath}/${ENV.ssl.mode}.json`, JSON.stringify(obj), 'utf8')
 }
 
-function readSSLObject(){
+function readSSLObject () {
     try {
         return JSON.parse(readFileSync(`${sslDataPath}/${ENV.ssl.mode}.json`), 'utf8')
     } catch (error) {
@@ -20,7 +20,7 @@ function readSSLObject(){
     }
 }
 
-async function getClient(){
+async function getClient () {
     let opts = {
         directoryUrl
     }
@@ -52,18 +52,18 @@ async function getClient(){
     }
 }
 
-function getExpiry(cert){
+function getExpiry (cert) {
     if(cert) return forge.pki.certificateFromPem(cert).validity.notAfter
 }
 
-export default async function ssl(httpServer, http2server){
+export default async function ssl (httpServer, http2server) {
     let challengeFilePaths = {}
     let renewingCertPromise = null
 
     let { client, cert, key } = await getClient()
     let expires = getExpiry(cert)
 
-    async function newCert(){
+    async function newCert () {
         const [privateKey, csr] = await acme.forge.createCsr({
             commonName: ENV.ssl.domains[0],
             altNames: ENV.ssl.domains
@@ -73,12 +73,12 @@ export default async function ssl(httpServer, http2server){
         cert = await client.auto({
             csr,
             challengePriority: ['http-01'],
-            async challengeCreateFn(authz, challenge, challengeContents) {
+            async challengeCreateFn (authz, challenge, challengeContents) {
                 if (challenge.type === 'http-01') {
                     challengeFilePaths[`/.well-known/acme-challenge/${challenge.token}`] = challengeContents
                 }
             },
-            async challengeRemoveFn(auths, challenge){
+            async challengeRemoveFn (auths, challenge) {
                 delete challengeFilePaths[`/.well-known/acme-challenge/${challenge.token}`]
             }
         })
@@ -92,7 +92,7 @@ export default async function ssl(httpServer, http2server){
         })
     }
 
-    function shouldRenewCert(){
+    function shouldRenewCert () {
         //if there is no renewal date, generate a new cert
         if(!expires) return true
 
@@ -108,7 +108,7 @@ export default async function ssl(httpServer, http2server){
         try {
             if(shouldRenewCert()) renewingCertPromise = newCert()
 
-            if(renewingCertPromise){
+            if(renewingCertPromise) {
                 await renewingCertPromise
             }else{
                 http2server.setSecureContext({
@@ -126,12 +126,12 @@ export default async function ssl(httpServer, http2server){
     /**
      * Return letsencrypt challenge middleware
      */
-    return async function middleware(ctx, next){
-        if(challengeFilePaths[ctx.url]){
+    return async function middleware (ctx, next) {
+        if(challengeFilePaths[ctx.url]) {
             return ctx.body = challengeFilePaths[ctx.url]
         }
 
-        if(shouldRenewCert() && !renewingCertPromise){
+        if(shouldRenewCert() && !renewingCertPromise) {
             renewingCertPromise = newCert()
             await renewingCertPromise
             renewingCertPromise = null

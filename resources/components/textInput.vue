@@ -29,7 +29,7 @@
 <script>
 
 export default {
-    props: ['type', 'name', 'value', 'error', 'v', 'helper', 'autocomplete'],
+    props: ['type', 'name', 'value', 'error', 'v', 'helper', 'autocomplete', 'autofocus'],
     data(){
         return {
             focus: false,
@@ -79,11 +79,11 @@ $mainControl = white
     left 5px
     bottom -10px
     padding-top: 4px
-    padding-left: 4px 
+    padding-left 4px 
     border-radius 3px
     color rgba(0,0,0,0.75)
     &.error
-        color #bb2222
+        color #ff3b3b
 
 .input
     caret-color $main
@@ -96,7 +96,7 @@ $mainControl = white
         margin 0
         width 100%
         font-size 16px
-        background rgba(255, 255, 255, 0.1)
+        background rgba(255, 255, 255, 0.075)
         border-radius 4px
         padding-left 12px
         padding-right 12px
@@ -128,15 +128,15 @@ $mainControl = white
             padding-bottom 4px
     
     &.error
-        caret-color: #bb2222
+        caret-color: #ff3b3b
         .label
-            color: #bb2222
+            color: #ff3b3b
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active  {
     background-color transparent
-    -webkit-transition-delay: 10000s
+    -webkit-transition-delay: 99999s
 }
 </style>

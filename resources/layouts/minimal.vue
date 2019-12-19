@@ -28,12 +28,15 @@
 
             <slot name="head"/>
         </template>
-        <template slot="body"><slot name="content"/></template>
+        <template slot="body"><slot name="content"/><actionBar/></template>
     </master>
 </template>
 <style lang="stylus">
 @import "~@/stylus/variables"
 
+.material-design-icon
+    display flex
+    align-items center
 
 body
     background #eee
@@ -53,10 +56,12 @@ a
 </style>
 <script>
 import master from "@/layouts/master"
+import actionBar from '@/components/actionBar'
 
 export default {
     components: {
-        master
+        master,
+        actionBar
     }
 }
 </script>

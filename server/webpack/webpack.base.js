@@ -5,7 +5,7 @@ import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
 
 const { VueLoaderPlugin } = vueLoader
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default {
     mode: ENV.environment,

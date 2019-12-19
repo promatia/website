@@ -4,8 +4,8 @@ const { MongoClient } = mongodb
 
 let connection
 
-export async function dbsetup() {
-    let url = `mongodb://localhost`
+export async function dbsetup () {
+    let url = 'mongodb://localhost'
     try {
         connection = await MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true})
     } catch (error) {
@@ -14,6 +14,6 @@ export async function dbsetup() {
     }
 }
 
-export function collection(name){
+export function collection (name) {
     return connection.db('promatia').collection(name)
 }

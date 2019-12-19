@@ -1,19 +1,21 @@
-//const User = require('../../models/user')
-const { JsonWebTokenError } = require('jsonwebtoken')
+import { User } from '../../models/user.js'
+import jsonwebtoken from 'jsonwebtoken'
 
-module.exports = async (ctx, next) => {
+const { JsonWebTokenError } = jsonwebtoken
+
+export default async (ctx, next) => {
     let token = null
-    if(ctx.header.token){
+    if(ctx.header.token) {
         token = ctx.header.token
     }
-    if(ctx.cookie && ctx.cookie.token){
+    if(ctx.cookie && ctx.cookie.token) {
         token = ctx.cookie.token
     }
     
-    if(token){
+    if(token) {
         try {
             let user = await User.authenticate(token, ctx)
-            if(user){
+            if(user) {
                 ctx.state.token = token
                 ctx.state.user = user
             }

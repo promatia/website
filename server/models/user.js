@@ -1,30 +1,214 @@
-const Model = require('./model')
+import { Model, collection } from './model.js'
+import { gql } from '@promatia/prograph'
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import mongodb from 'mongodb'
 
-class User extends Model {
-    static get collection(){
+const { ObjectID } = mongodb
+
+/**
+ * @extends Model
+ */
+export class User extends Model {
+    static get collection () {
         return collection('users')
     }
-    
-    static types = `
-    type User {
-        firstName: String
+
+    constructor () {
+        super(...arguments)
+
+        if(!this.doc.sessions) {
+            this.doc.sessions = []
+        }
     }
 
-    message CreateUser (
-        email: String!
+    static types = gql`
+
+    type Email {
+        email: String
+        verified: Boolean
+    }
+
+    type User {
+        email: String # gets first email in emails array
+        emails: [Email]
+        firstName: String
+        lastName: String
+        displayPicture: String
+        e164: String # International format phone number
+        phoneNumber: String # Phone number without calling code
+        callingCode: String # Phone number calling code
+        countryCode: String # Auto detected country code
+        referrer: String
+        joined: Date
+        sessions: [Session]
+    }
+
+    type Session {
+        user: User
+        token: String
+        lastUsed: Date
+        agent: String
+    }
+
+    message loginUser (
+        email: String! @lowercase
+        password: String!
+    ): String
+
+    message createUser (
+        email: String! @lowercase
         password: String!
         firstName: String!
         lastName: String!
-        phone: String!
-        referer: ObjectID
+        phoneNumber: String!
+        callingCode: String!
+        countryCode: String!
+        referrer: String
     ): Void
     `
 
     set password (value) {
-        this.doc.password = bcrypt(value)
+        this.doc.password = bcrypt.hashSync(value, 10)
     }
 
-    static async User ({ _id }, { wants }) {
+    comparePassword (value) {
+        return bcrypt.compareSync(value, this.doc.password)
+    }
+
+    email () {
+        return this.doc.emails[0].email
+    }
+
+    /**
+     * Checks if a token if a token is valid (exists and not expired)
+     * Also removes expired tokens from the user's sessions array
+     * 
+     * @returns {Promise<Boolean>}
+     */
+    async validateToken (token) {
+        let sessions = this.doc.sessions
+        let shouldSave = false
+
+        // 20 days offset allowed after lastUsed date
+        let dateOffset = (24 * 60 * 60 * 1000) * 20 //20 days
+        let match = false
+
+        for(let index in sessions) {
+            let session = sessions[index]
+
+            let sessionValidUntil = session.lastUsed + dateOffset
+            
+            if(new Date().getTime() < sessionValidUntil) {
+                if(session.token === token) {
+                    this.doc.sessions[index].lastUsed = new Date().getTime() // reset lastUsed, which extends expiry date (rolling window)
+                    shouldSave = true
+                    match = true
+                    continue
+                }
+            }else{
+                delete this.doc.sessions[index]
+                shouldSave = true
+            }
+        }
+
+        if(shouldSave) await this.save()
+
+        return match
+    }
+
+    static async authenticate (token) {
+        const { secret } = ENV
+        const decodedToken = jwt.verify(token, secret)
+
+        if(decodedToken.id) {
+            const user = await User.findOne({_id: new ObjectID(decodedToken.id)})
+            if(user && await user.validateToken(token)) return user
+        }
+
+        return null
+    }
+
+    /**
+     * Create a session and return the JWT API token
+     */
+    async createToken () {
+        let secret = ENV.secret
+        let session = {
+            token: jwt.sign({id: String(this.doc._id), created: new Date().getTime()}, secret),
+            lastUsed: new Date().getTime()
+        }
+
+        this.doc.sessions.push(session)
+
+        await this.save()
+
+        return session.token 
+    }
+
+    /**
+     * This function generates a JSON Web Token (JWT) for the given user, which can be used for API Requests.  
+     */
+    static async loginUser ({email, password}) {
+        const user = await User.findOne({'emails.email': email}) //find the user
+
+        if(!user) throw new Error(`Could not find user with email: ${email}`)
+
+        if(!user.comparePassword(password)) throw new Error('Password is incorrect')
+
+        return user.createToken()
+    }
+
+    static async createUser (inputs) {
+        const {
+            email,
+            firstName,
+            lastName,
+            callingCode,
+            phoneNumber,
+            countryCode
+        } = inputs
+
+        if(!email) throw new Error('You must enter an email address')
+        if(!firstName) throw new Error('You must enter a first name')
+        if(!lastName) throw new Error('You must enter a last name')
+        if(!callingCode) throw new Error('You must enter a calling code')
+        if(!phoneNumber) throw new Error('You must enter a phone number')
+
+        let user = new User({
+            emails: [{email, verified: false}],
+            firstName,
+            lastName,
+            callingCode,
+            phoneNumber,
+            countryCode,
+            joined: new Date().getTime()
+        })
+
+        user.password = inputs.password //hashes password
+
+        if(inputs.referrer) {
+            //todo
+        }
+
+        try {
+            await user.save()
+        } catch (error) {
+            if(error.code === 11000) throw new Error(`User with email ${email} already exists`)
+            throw error
+        }
+
+        return null
+    }
+
+    static async createIndexes () {
+        await this.collection.createIndex({ 'emails.email': 1 }, { unique: true })
+        await this.collection.createIndex({ joined: 1 })
+        await this.collection.createIndex({ joined: -1 })
+        await this.collection.createIndex({ referrer: 1 })
+    }
+
+    static async user ({ _id }, { wants }) {
 
     }
 }

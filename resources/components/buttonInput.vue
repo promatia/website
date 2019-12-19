@@ -1,5 +1,5 @@
 <template>
-    <div class="button-input-wrapper">
+    <div class="button-input-wrapper" @click="$emit('click', $event)">
         <router-link v-if="to" class="button" :to="to">
             {{ text }}<slot/>
         </router-link>

@@ -74,15 +74,13 @@ let renderer = createRenderer(bundle, clientManifest)
 
 export async function middleware() {
     let middlewares = []
-    let hotMiddleware
-    if(ENV.environment === 'development') hotMiddleware = await hotReloading()
-    if(hotMiddleware) middlewares.push(hotMiddleware)
+    if(ENV.environment === 'development') middlewares.push(await hotReloading())
 
     middlewares.push(async (ctx, next) => {
         ctx.render = renderer.renderToString.bind(renderer)
         await next()
     })
-
+    
     return middlewares
 }
 
@@ -98,20 +96,19 @@ async function hotReloading(){
             logLevel: 'error',
         }
     })
-
+    
     clientCompiler.hooks.done.tap('done', ()=>{
         let mfs = middleware.devMiddleware.fileSystem
-        let file = mfs.readFileSync(resolve(__dirname, '../../dist/vue-ssr-client-manifest.json'), 'utf-8')
+        let file = mfs.readFileSync(resolve(distdir, './vue-ssr-client-manifest.json'), 'utf-8')
         clientManifest = JSON.parse(file)
         renderer = createRenderer(bundle, clientManifest)
     })
 
     serverCompiler.inputFileSystem = fs
-
     serverCompiler.watch({}, ()=>{})
 
     serverCompiler.hooks.afterEmit.tap('afterEmit', ()=>{
-        let file = fs.readFileSync(resolve(__dirname, '../../dist/vue-ssr-server-bundle.json'), 'utf-8')
+        let file = fs.readFileSync(resolve(distdir, './vue-ssr-server-bundle.json'), 'utf-8')
         bundle = JSON.parse(file)
         renderer = createRenderer(bundle, clientManifest)
     })

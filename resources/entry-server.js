@@ -3,8 +3,6 @@ import { createApp } from './app'
 export default async context => {
     const { app, router } = createApp()
 
-    global.ENV = context.ENV
-
     $state.ENV = context.ENV
 
     // set router's location

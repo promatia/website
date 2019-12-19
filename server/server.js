@@ -8,6 +8,7 @@ import { createServer } from 'http'
 import router from './routes/router.js'
 import ssl from './bootstrap/ssl.js'
 import { dbsetup } from './bootstrap/db.js'
+import { models } from './models/graph.js'
 
 async function startServer(){
     let app = new Koa()
@@ -15,6 +16,7 @@ async function startServer(){
     let http2Server = createSecureServer({allowHTTP1: true}, app.callback())
     
     await dbsetup()
+    await Promise.all(models.map(model => model.createIndexes ? model.createIndexes() : null))
 
     if(ENV.ssl.enabled){
         app.use(await ssl(httpServer, http2Server)) //generate SSL certificate if one does not exist, or is expired

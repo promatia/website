@@ -14,7 +14,7 @@
                 :type="type ? type : 'text'"
                 ref="input"
                 v-model="inputValue"
-                :name="autocomplete"
+                :name="name || autocomplete"
                 :id="name"
                 :autocomplete="autocomplete"
                 placeholder=""
@@ -71,7 +71,7 @@ export default {
 };
 </script>
 <style lang="stylus" scoped>
-$mainControl = white;
+$mainControl = white
 
 .input-container
     align-items center
@@ -86,20 +86,20 @@ $mainControl = white;
     border-radius 3px
     color rgba(0, 0, 0, 0.75)
     &.error
-        color: #bb2222;
+        color: #ff2d2d;
 
-.input {
+.input
     caret-color: #2288ff
     position: relative
     flex 1
-    input {
+    input
         outline: 0;
         color: white;
         border: 0;
         margin: 0;
         width: 100%;
         font-size: 16px;
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.075);
         border-top-right-radius 4px
         border-bottom-right-radius 4px
         padding-left: 12px;
@@ -108,43 +108,30 @@ $mainControl = white;
         padding-bottom: 6px;
         --webkit-appearance: none;
         appearance: none;
-    }
 
-    .label {
+    .label
         font-size: 16px;
         position: absolute;
-        top: 15px;
-        left: 0;
-        color: rgba(255, 255, 255, 0.75);
-        padding-left: 12px;
-        transition: top 0.1s ease, font-size 0.1s linear;
-        cursor: text;
-    }
-
-    &.hasContent {
-        .label {
-            font-size: 13px;
-            top: 6px;
-        }
-    }
-
-    &.focus {
-        .label {
-            color: $mainControl;
-            font-size: 13px;
-            top: 6px;
-            padding-bottom: 4px;
-        }
-    }
-
-    &.error {
-        caret-color: #bb2222;
-
-        .label {
-            color: #bb2222;
-        }
-    }
-}
+        top: 15px
+        left: 0
+        color: rgba(255, 255, 255, 0.75)
+        padding-left: 12px
+        transition: top 0.1s ease, font-size 0.1s linear
+        cursor text
+    &.hasContent
+        .label
+            font-size 13px
+            top 6px
+    &.focus
+        .label
+            color $mainControl
+            font-size 13px
+            top 6px
+            padding-bottom 4px
+    &.error
+        caret-color #ff2d2d
+        .label
+            color #ff2d2d
 
 input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
     background-color: transparent;

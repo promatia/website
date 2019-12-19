@@ -6,6 +6,8 @@ import { fileURLToPath } from 'url'
 import mount from 'koa-mount'
 import koastatic from 'koa-static'
 import compress from 'koa-compress'
+import { graph } from '../models/graph.js'
+import sessionToken from './middleware/sessionToken.js'
 
 import {
     errorMiddleware,
@@ -15,28 +17,43 @@ import {
 } from './middleware/index.js'
 
 const router = new Router()
-const distDir = resolve(dirname(fileURLToPath(import.meta.url)), '../dist')
-const staticDir = resolve(dirname(fileURLToPath(import.meta.url)), '../../resources/public')
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const distDir = resolve(__dirname, '../dist')
+const staticDir = resolve(__dirname, '../../resources/public')
 
-export default async () => {
-    return router
-        .use(compress())
-        .use(errorMiddleware)
-        .use(redirectArkovia)
-        .use(noWWW)
-        .use(koaCookie.default())
-        .use(bodyParser())
-        //.use(sessionToken)
-        .use(mount('/dist', koastatic(distDir), {maxage: 1000 * 60 * 60 * 1}))
-        .use(await renderer())
-        .use(koastatic(staticDir))
-        .get('(.*)', async (ctx) => {
-            ctx.body = await ctx.render({
-                url: ctx.url,
-                ctx,
-                ENV: {
-                    domain: ENV.domain,
+export default async () => router
+    .use(compress())
+    .use(errorMiddleware)
+    .use(redirectArkovia)
+    .use(noWWW)
+    .use(koaCookie.default())
+    .use(bodyParser())
+    .use(sessionToken)
+    .use(mount('/dist', koastatic(distDir), {maxage: 1000 * 60 * 60 * 1}))
+    .use(await renderer())
+    .use(koastatic(staticDir))
+    .post('/graph/', async (ctx) => {
+        let query = ctx.request.body.query
+        try {
+            ctx.body = {
+                data: await graph(query, { context: ctx })
+            }
+        } catch (error) {
+            ctx.body = {
+                data: null,
+                error: {
+                    message: error.message,
+                    location: error.location
                 }
-            })
+            }
+        }
+    })
+    .get('(.*)', async (ctx) => {
+        ctx.body = await ctx.render({
+            url: ctx.url,
+            ctx,
+            ENV: {
+                domain: ENV.domain
+            }
         })
-}
+    })

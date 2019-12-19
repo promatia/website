@@ -153,7 +153,6 @@ export default {
     margin-left 4px
 
 .country-selector
-    border 1px solid rgba(0,0,0,0.1)
     border-top-left-radius 4px
     border-bottom-left-radius 4px
     position relative
@@ -164,7 +163,7 @@ export default {
     padding 2px
     height 46px
     padding-left 6px
-    background mix(white, transparent, 10%)
+    background rgba(255,255,255,0.075)
     .country-data
         display flex
         align-items center

@@ -27,7 +27,7 @@ type User {
 type RealName {
 	firstName: String
 	lastName: String
-	allias: [String]
+	alias: [String]
 }
 
 type Email {

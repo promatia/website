@@ -1,5 +1,9 @@
-class Model {
-    static types = ``
+
+export { collection } from '../bootstrap/db.js'
+
+export class Model {
+    static types = ''
+
     constructor (document = {}) {
         this.doc = document
 
@@ -29,14 +33,19 @@ class Model {
 
     async save () {
         let _id = this.doc._id
+        let collection = this.constructor.collection
 
         if (_id) {
-            await this.collection.updateOne({_id}, {$set: {...this.doc}}, { upsert: true })
+            await collection.updateOne({_id}, {$set: {...this.doc}}, { upsert: true })
         } else {
-            let insert = await this.collection.insertOne(this.doc)
-            this.document._id = insert.insertedId
+            let insert = await collection.insertOne(this.doc)
+            this.doc._id = insert.insertedId
         }
     }
-}
 
-module.exports = Model
+    static async findOne () {
+        let doc = await this.collection.findOne(...arguments)
+        if(!doc) return null
+        return new this(doc)
+    }
+}

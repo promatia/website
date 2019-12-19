@@ -1,0 +1,38 @@
+{
+    "parser": "vue-eslint-parser",
+    "parserOptions": {
+        "parser": "babel-eslint"
+    },
+    "env": {
+        "es6": true
+    },
+    "rules": {
+        "indent": ["error", 4],
+        "semi": ["error", "never"],
+        "quotes": [
+            "error",
+            "single",
+            {
+                "avoidEscape": true
+            }
+        ],
+        "arrow-body-style": [
+            "error",
+            "as-needed"
+        ],
+        "no-unused-vars": "error",
+        "space-before-function-paren": "error",
+        "space-infix-ops": "error",
+        "comma-spacing": "error",
+        "brace-style": "error",
+        "operator-linebreak": ["error", "before"],
+        "one-var": ["error", "never"],
+        "block-spacing": "error",
+        "comma-dangle": "error",
+        "comma-style": "error",
+        "dot-location": ["error", "property"],
+        "eol-last": "error",
+        "key-spacing": "error",
+        "space-before-blocks": "error"
+    }
+}

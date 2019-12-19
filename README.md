@@ -16,4 +16,16 @@ Our aspirations are to:
 
 We are always looking for new risk-loving and passionate citizens who want to start a new life in Promatia. Citizens can help through intellect, muscle, enterprise, finance or networking.
 
--- Kazimír, Minister
+## Project Structure
+
+The project is structured into two main subfolders: `/resources` and `/server`. The front-end app can be found inside the `/resources` area which includes:
+
+- components
+- layouts
+- pages
+- styling
+- images
+
+and other files
+
+the `/server` folder contains API Models (eg: User) and schema's for the API. It also includes middleware for authentication, data for roles/permissions, routes. All the behind-the-scenes logic occurs here.

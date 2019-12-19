@@ -1,7 +1,7 @@
 export { middleware as renderer } from './renderer.js'
 
-export async function noWWW(ctx, next) {
-    if(/^www\./.test(ctx.host)){
+export async function noWWW (ctx, next) {
+    if(/^www\./.test(ctx.host)) {
         ctx.status = 301
         
         return ctx.redirect(`${ctx.protocol}://${ctx.host.replace(/^www\./, '')}${ctx.url}`)
@@ -20,7 +20,7 @@ export async function errorMiddleware (ctx, next) {
 }
 
 export async function redirectArkovia (ctx, next) {
-    if(/^(www\.)?arkovia\.com/.test(ctx.host)){
+    if(/^(www\.)?arkovia\.com/.test(ctx.host)) {
         ctx.status = 301
         
         return ctx.redirect(`${ctx.protocol}://${ENV.domain}${ctx.url}`)

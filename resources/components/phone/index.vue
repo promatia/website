@@ -14,6 +14,7 @@
         <InputTel
             v-model="phoneNumber"
             name="Phone Number"
+            :v="v"
             ref="phoneNumberInput"
             @focus="$emit('phone-number-focused')"
             @blur="$emit('phone-number-blur')"
@@ -23,7 +24,7 @@
 <script>
 /* eslint-disable */
 import { countries, countriesIso } from "./phoneCodeCountries";
-import InputTel from "./input";
+import InputTel from "./phoneinput";
 import CountrySelector from "./country-selector";
 
 const browserLocale = () => {
@@ -50,7 +51,8 @@ export default {
         value: String,
         preferredCountries: { type: Array, default: [] },
         onlyCountries: { type: Array, default: null },
-        ignoredCountries: { type: Array, default: Array }
+        ignoredCountries: { type: Array, default: Array },
+        v: Object
     },
     data() {
         return {

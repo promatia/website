@@ -14,10 +14,12 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.6.3",
     "@promatia/phone-input": "^0.1.4",
+    "@promatia/prograph": "0.0.9",
     "@vue/composition-api": "^0.3.4",
     "acme-client": "^3.2.0",
     "axios": "^0.19.0",
     "babel-loader": "^8.0.6",
+    "bcrypt": "^3.0.7",
     "canvas": "^2.6.0",
     "chart.js": "^2.9.2",
     "css-loader": "^3.2.0",
@@ -49,15 +51,16 @@
     "vuelidate": "^0.7.4",
     "vuex": "^3.1.1",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
     "webpack-merge": "^4.2.2",
     "webpack-node-externals": "^1.7.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.0.1"
+  },
   "scripts": {
-    "build": "npm run build:client && npm run build:server",
-    "build:client": "webpack --config server/webpack/webpack.client.js --hide-modules --display errors-only",
-    "build:server": "webpack --config server/webpack/webpack.server.js --hide-modules --display errors-only"
+    "build": "node ./server/webpack/build.js"
   },
   "repository": {
     "type": "git",
