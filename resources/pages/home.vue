@@ -123,6 +123,7 @@
         grid-template-columns 1fr
 
 .special-title
+    font-weight 600
     @media (max-width 900px)
         font-size 1.6em
     @media (max-width 700px)
@@ -155,6 +156,7 @@
     grid-gap 15px
     h2
         margin 0
+        font-weight 600
     .green
         color #66ff66
 

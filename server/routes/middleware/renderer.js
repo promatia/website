@@ -21,9 +21,7 @@ function pushFile (stream, path) {
     stream.pushStream({ ':path': '/dist/' + path }, (err, pushStream) => {
         if(err) return
         
-        pushStream.on('error', err => {
-            return
-        })
+        pushStream.on('error', err => err)
 
         pushStream.respondWithFile(`${distdir}/${path}`, {
             'content-type': mime.getType(path)
