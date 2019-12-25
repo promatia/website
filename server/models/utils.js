@@ -41,6 +41,7 @@ export const directiveResolvers = {
 export const scalarResolvers = {
     ObjectID: class extends Scalar {
         async incoming ({value}) {
+            if(!value) return null // prevent undefined value returning new objectId
             return new ObjectID(value)
         }
 
