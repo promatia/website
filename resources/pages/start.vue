@@ -172,7 +172,7 @@ export default {
         ]
 
         onMounted(()=>{
-            setCookie('referrer', getQuery('referrer'))
+            if(getQuery('referrer')) setCookie('referrer', getQuery('referrer'))
         })
 
         return {
