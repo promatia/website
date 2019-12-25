@@ -213,7 +213,8 @@ export class User extends Model {
             lastName,
             callingCode,
             phoneNumber,
-            countryCode
+            countryCode,
+            referrer
         } = inputs
 
         if(!email) throw new Error('You must enter an email address')
@@ -234,14 +235,14 @@ export class User extends Model {
 
         user.password = inputs.password //hashes password
 
-        if(inputs.referrer) { // set the user's referrer by finding the user that referred them
+        if(referrer) { // set the user's referrer by finding the user that referred them
             try {
-                let referrer = User.findOne({_id: new ObjectID(inputs.referrer)})
+                let referrer = User.findOne({_id: new ObjectID(referrer)})
                 if(referrer) { //verify the user exists
-                    user.referrer = new ObjectID(inputs.referrer)
+                    user.referrer = new ObjectID(referrer)
                 }
             } catch (error) {
-                // ignore any errors setting a referrer
+                console.error(error) // ignore any errors setting a referrer
             }
         }
 
