@@ -151,7 +151,6 @@ export default {
         
         async function signup () {
             user.referrer = getCookie('referrer') || null
-            user.referrer 
 
             let { error: signupError } = await gql`message createUser(${user})` //create user api request
 

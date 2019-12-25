@@ -237,8 +237,7 @@ export class User extends Model {
 
         if(referrer) { // set the user's referrer by finding the user that referred them
             try {
-                let referrer = User.findOne({_id: new ObjectID(referrer)})
-                if(referrer) { //verify the user exists
+                if(User.findOne({_id: new ObjectID(referrer)})) { //verify the user exists
                     user.referrer = new ObjectID(referrer)
                 }
             } catch (error) {
