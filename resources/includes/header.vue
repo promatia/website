@@ -1,12 +1,12 @@
 <template>
     <header>
         <div class="inner-header">
-            <a class="logo-wrapper" href="/">
+            <router-link class="logo-wrapper" to="/">
                 <img class="logo" :src="logo" alt="Promatia Logo">
-            </a>
+            </router-link>
             <div class="right-header">
                 <div class="actions">
-                    <buttonInput to="/start" text="Sign Up"/>
+                    <buttonInput class="button" to="/start" text="Sign Up"/>
                     <a class="menu-icon" @click="menuOpened = !menuOpened">
                         <MenuIcon :size="30"/>
                     </a>

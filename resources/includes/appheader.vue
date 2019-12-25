@@ -78,8 +78,10 @@
         text-align center
 
 img.profile-image
-    width 34px
-    height 34px
+    width 36px
+    height 36px
+    border-radius 30px
+
 .title
     font-size 20px
     font-weight 500
@@ -91,12 +93,15 @@ img.profile-image
 import { ref } from '@vue/composition-api'
 import promiser from '@/utils/promiser'
 import overlayLoading from '@/components/overlayLoading'
+import graph from '@/utils/graph'
+import errToStr from '@/utils/errorToString'
+import { setCookie } from '@/utils/utils'
 
 export default {
     components: {
         overlayLoading
     },
-    setup () {
+    setup (props, { root }) {
         let userMenuToggled = ref(false)
         let promise = promiser()
 
@@ -107,7 +112,22 @@ export default {
                 userMenuToggled.value = !userMenuToggled.value
             },
             async logout () {
-                await new Promise(resolve => setTimeout(resolve, 5000))
+                let msg = {
+                    token: $state.ENV.token
+                }
+
+                let { error, data } = await graph`message deleteToken(${msg})`
+
+                if(error) return $state.createAlert(errToStr(error), 'error')
+
+                let { deleteToken: succeeded } = data
+
+                if(!succeeded) $state.createAlert('Could not delete user token', 'error')
+
+                setCookie('token', '') // remove token cookie
+                $state.user = null // set the user to null
+
+                root.$router.push('/sign-in')
             }
         }
     }

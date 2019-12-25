@@ -18,7 +18,7 @@ export default {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             '@': resolve(__dirname, '../../resources/'),
-            "icons": resolve(__dirname, "../../node_modules/vue-material-design-icons/")
+            'icons': resolve(__dirname, '../../node_modules/vue-material-design-icons/')
         }
     },
     module: {
@@ -36,7 +36,7 @@ export default {
             },
             {
                 test: /\.(png|jpe?g|gif)$/,
-                loader: 'file-loader',
+                loader: 'file-loader'
             },
             {
                 test: /\.styl(us)?$/,

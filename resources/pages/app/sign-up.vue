@@ -41,6 +41,7 @@
                                 />
                             <div class="button-wrapper">
                                 <buttonInput
+                                    class="button"
                                     text="Sign Up"
                                     @click="promise = signup()"
                                 />
@@ -116,7 +117,7 @@ import { validationMixin } from 'vuelidate'
 import { required } from 'vuelidate/lib/validators'
 import gql from '@/utils/graph'
 import errorToString from '@/utils/errorToString'
-import { setCookie } from '@/utils/cookies'
+import { setCookie, getCookie } from '@/utils/utils'
 import promiser from '@/utils/promiser'
 
 export default {
@@ -149,6 +150,8 @@ export default {
         })
         
         async function signup () {
+            user.referrer = getCookie('referrer') || null
+
             let { error: signupError } = await gql`message createUser(${user})` //create user api request
 
             if(!signupError) {
@@ -161,6 +164,7 @@ export default {
                     if(!token) return $state.createAlert('An unknown error occured', 'error')
                     
                     setCookie('token', token)
+                    $state.ENV.token = token
 
                     return root.$router.push('/app')
                 }

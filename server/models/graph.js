@@ -22,7 +22,7 @@ paginator CursorPaginator {
     previousPage: Boolean
 }
 
-directive isAuthenticated INPUT FIELD OBJECT
+directive authenticated INPUT FIELD OBJECT
 directive hasScope(scope: String!) INPUT FIELD OBJECT
 directive lowercase INPUT
 directive max INPUT
@@ -33,7 +33,8 @@ ${models.map(model => model.types).join('\n')}
 const messageResolvers = {
     createUser: User.createUser,
     loginUser: User.loginUser,
-    me: User.me
+    me: User.me,
+    deleteToken: User.deleteToken
 }
 
 let graph = new Builder({schema, messageResolvers, directiveResolvers, scalarResolvers})

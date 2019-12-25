@@ -22,6 +22,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const distDir = resolve(__dirname, '../dist')
 const staticDir = resolve(__dirname, '../../resources/public')
 
+
 export default async () => router
     .use(compress())
     .use(stateContext)
@@ -31,9 +32,9 @@ export default async () => router
     .use(koaCookie.default())
     .use(bodyParser())
     .use(sessionToken)
+    .use(koastatic(staticDir))
     .use(mount('/dist', koastatic(distDir), {maxage: 1000 * 60 * 60 * 1}))
     .use(await renderer())
-    .use(koastatic(staticDir))
     .post('/graph/', graphMiddleware)
     .get('(.*)', async (ctx) => {
         ctx.body = await ctx.render({

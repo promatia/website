@@ -6,7 +6,21 @@ const { ObjectID } = mongodb
 
 export const directiveResolvers = {
     hasScope: Directive,
-    isAuthenticated: Directive,
+    authenticated: class Authenticated extends Directive {
+        isAuthenticated (context) {
+            if(!context.state.user) throw new Error('You are not authenticated, please sign in')
+        }
+
+        async inputVisitor ({value, context}) {
+            this.isAuthenticated(context)
+            return value
+        }
+
+        async fieldVisitor ({value, context}) {
+            this.isAuthenticated(context)
+            return await value()
+        }
+    },
     lowercase: class Lowercase extends Directive {
         async inputVisitor ({value}) {
             return value.toLowerCase()

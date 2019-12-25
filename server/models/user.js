@@ -3,11 +3,8 @@ import { gql } from '@promatia/prograph'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import mongodb from 'mongodb'
-import svgToDataURL from 'svg-to-dataurl'
-import Avatars from '@dicebear/avatars'
-import sprites from '@dicebear/avatars-jdenticon-sprites'
+import { generateDisplayPicture } from '../utils/displayPicture.js'
 
-let avatars = new Avatars.default(sprites.default())
 const { ObjectID } = mongodb
 
 /**
@@ -36,7 +33,7 @@ export class User extends Model {
         phoneNumber: String # Phone number without calling code
         callingCode: String # Phone number calling code
         countryCode: String # Auto detected country code
-        referrer: String
+        referrer: ObjectID # reference to another user
         joined: Date
         sessions: [Session]
     }
@@ -48,7 +45,7 @@ export class User extends Model {
         agent: String
     }
     
-    message me: User
+    message me: User @authenticated
 
     message loginUser (
         email: String! @lowercase
@@ -63,8 +60,10 @@ export class User extends Model {
         phoneNumber: String!
         callingCode: String!
         countryCode: String!
-        referrer: String
+        referrer: ObjectID
     ): Void
+
+    message deleteToken (token: String!): Boolean @authenticated
     `
 
     set password (value) {
@@ -77,12 +76,9 @@ export class User extends Model {
 
     async displayPicture () {
         if(!this.doc.displayPicture) {
-            let svg = avatars.create(this.doc.firstName + ' ' + this.doc.lastName + this.doc.joined)
-            
-            this.doc.displayPicture = svgToDataURL(svg)
+            this.doc.displayPicture = generateDisplayPicture(this.doc.firstName.substr(0, 1) + this.doc.lastName.substr(0, 1))
             await this.save()
         }
-
         return this.doc.displayPicture
     }
 
@@ -163,6 +159,21 @@ export class User extends Model {
         return session.token 
     }
 
+    async deleteToken (token) {
+        let sessions = this.doc.sessions
+
+        let match = false
+
+        this.doc.sessions = sessions.filter((session)=>{
+            if(session.token !== token) return session
+            match = true
+        })
+        
+        await this.save()
+
+        return match
+    }
+
     /**
      * This function generates a JSON Web Token (JWT) for the given user, which can be used for API Requests.  
      */
@@ -179,6 +190,12 @@ export class User extends Model {
     static async me ({}, { context }) {
         if(!context.state.user) throw new Error('User not authenticated')
         return context.state.user
+    }
+
+    static async deleteToken ({token}, { context }) {
+        let user = context.state.user
+        if(!user) throw new Error('You must be authenticated to delete a token')
+        return await user.deleteToken(token)
     }
 
     static async createUser (inputs) {
@@ -209,8 +226,15 @@ export class User extends Model {
 
         user.password = inputs.password //hashes password
 
-        if(inputs.referrer) {
-            //todo
+        if(inputs.referrer) { // set the user's referrer by finding the user that referred them
+            try {
+                let referrer = User.findOne({_id: new ObjectId(inputs.referrer)})
+                if(referrer) { //verify the user exists
+                    user.referrer = new ObjectId(inputs.referrer)
+                }
+            } catch (error) {
+                // ignore any errors setting a referrer
+            }
         }
 
         try {

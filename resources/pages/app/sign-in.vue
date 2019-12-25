@@ -22,8 +22,9 @@
                                 />
                             <div class="button-wrapper">
                                 <buttonInput
+                                    class="button"
                                     text="Sign In"
-                                    @click="signin"
+                                    @click="promise = signin()"
                                 />
                             </div>
                             <div class="text-wrapper">
@@ -31,6 +32,7 @@
                             </div>
                         </form>
                     </div>
+                    <overlayLoading v-if="promise"/>
                 </div>
             </div>
         </template>
@@ -52,6 +54,7 @@
     background mix($main, #1a1a1a, 8%)
     margin 15px
     border-radius 8px
+    position relative
     max-width 600px
     width 100%
     display flex
@@ -86,9 +89,11 @@ import buttonInput from '@/components/buttonInput'
 import { reactive, onMounted } from '@vue/composition-api'
 import { validationMixin } from 'vuelidate'
 import { required } from 'vuelidate/lib/validators'
-import gql from '@/utils/graph'
+import graph from '@/utils/graph'
 import errorToString from '@/utils/errorToString'
-import { setCookie } from '@/utils/cookies'
+import { setCookie } from '@/utils/utils'
+import overlayLoading from '@/components/overlayLoading'
+import promiser from '@/utils/promiser'
 
 export default {
     mixins: [validationMixin],
@@ -101,6 +106,12 @@ export default {
             phoneNumber: {required}
         }
     },
+    components: {
+        appminimal,
+        textInput,
+        buttonInput,
+        overlayLoading
+    },
     setup (props, { refs, root }) {
         const user = reactive({
             email: '',
@@ -112,29 +123,25 @@ export default {
         })
         
         async function signin () {
-            let { data, error } = await gql`message loginUser(${user})`
+            let { data, error } = await graph`message loginUser(${user})`
 
-            if(!error) {
-                let { loginUser: token } = data
-                if(!token) return $state.createAlert('An unknown error occured', 'error')
-                
-                setCookie('token', token)
+            if(error) return $state.createAlert(errorToString(error), 'error')
+            
+            let { loginUser: token } = data
 
-                return root.$router.push('/app')
-            }
+            if(!token) return $state.createAlert('An unknown error occured, could not create user token', 'error')
+            
+            setCookie('token', token)
+            $state.ENV.token = token
 
-            return $state.createAlert(errorToString(error), 'error')
+            return root.$router.push('/app')
         }
 
         return {
             user,
-            signin
+            signin,
+            promise: promiser()
         }
-    },
-    components: {
-        appminimal,
-        textInput,
-        buttonInput
     }
 }
 </script>

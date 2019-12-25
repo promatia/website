@@ -31,7 +31,7 @@
                         Gain 50Ⱀ (Promatia’s currency) by signing up today 
                     </p>
                     <p>
-                        <buttonInput text="Get Started" to="/start"/>
+                        <buttonInput class="button" text="Get Started" to="/start"/>
                     </p>
                 </div>
             </div>
@@ -73,7 +73,7 @@
 
 .inner-footer
     padding 35px 0
-    max-width 1200px
+    max-width 1000px
     width 100%
     margin auto
     color #ffffffbb

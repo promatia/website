@@ -80,7 +80,7 @@
                                 <li>Create a safe and free society, where citizens can pursue their life goals.</li>
                             </ul>
                             <p>We are always looking for new risk-loving and passionate citizens who want to start a new life in Promatia. Citizens can help through intellect, muscle, enterprise, finance or networking</p>
-                            <buttonInput text="Become a citizen" to="/start"/>
+                            <buttonInput class="button" text="Become a citizen" to="/start"/>
                         </div>
                         <div class="canvas-area">
                             <div class="top">
@@ -108,6 +108,7 @@
     </web>
 </template>
 <style lang="stylus" scoped>
+@import "~@/stylus/variables"
 
 .dark-card
     background rgba(0,0,0,0.45)
