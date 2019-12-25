@@ -5,7 +5,7 @@
         <template slot="content">
             <div class="welcome">
                 <h1>Welcome {{ $state.user.firstName }}!</h1>
-                <span>Thanks for registering</span>
+                <span>Thanks for registering. If you haven't already, join our discord, and share your invite link with some friends to get 50 Ⱀ per citizen invited (Promatia's currency)</span>
             </div>
             <div class="referrals">
                 <div class="referral-box">
@@ -32,6 +32,9 @@
         margin-bottom 10px
     span 
         font-size 18px
+        max-width 750px
+        margin auto
+        display inline-block
 
 .referral-box
     padding 25px
