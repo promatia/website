@@ -4,6 +4,8 @@
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title><slot name="title"/></title>
             <meta v-if="this.$slots.description" name="description" :content="this.$slots.description[0].text">
+            <meta v-if="this.$slots.description" name="og:title" :content="this.$slots.title[0].text">
+            <meta v-if="this.$slots.description" name="og:description" :content="this.$slots.description[0].text">
             <!-- Favicon Files -->
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
@@ -23,6 +25,9 @@
             <meta name="msapplication-TileColor" content="#ffffff">
             <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
             <meta name="theme-color" content="#ffffff">
+            <meta name="twitter:site" content="@PromatiaGov">
+            <meta name="og:site_name" content="Promatia">
+
             <!-- Favicon Files -->
 
             <slot name="head"/>

@@ -33,6 +33,7 @@ router.beforeEach(async (to, from, next) => {
             lastName
             email
             displayPicture
+            userReferralCount
         }`
 
         if(error) {

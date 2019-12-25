@@ -1,5 +1,6 @@
 <template>
     <web>
+        <template slot="title">Get Started</template>
         <template slot="description">Promatia is a new developing nation-state which is in the process of establishing a new and autonomous government, city, community, country, society and nation. Promatia is on-track to becoming a self-sufficient, sustainable and independent nation.</template>
         <template slot="head">
             
@@ -93,12 +94,14 @@
         width 80px
         border-radius 50px
     .step-content
+        align-self center
         h2
             margin 0
-            font-size 28px
+            font-size 26px
             margin-bottom 5px
         span
             font-size 18px
+            font-weight 400
     .step-chevron
         align-self center
     &:hover, &:active, &:focus
@@ -113,7 +116,7 @@
     left 0
     width 100%
     height 100%
-    background-image linear-gradient(#259BCE, #03539D)
+    background-image linear-gradient(70deg, #259BCE, #03539D)
     transform skewY(-6deg)
     transform-origin top left
 </style>
@@ -143,7 +146,7 @@ export default {
             },
             {
                 title: 'Join the Discord',
-                text: 'Join our discord if you’re interested in helping out in early stages of our government.',
+                text: 'Join our discord if you’re interested in helping out during early stages of our government.',
                 href: 'https://discord.gg/frVSDck'
             },
             {

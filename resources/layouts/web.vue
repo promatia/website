@@ -1,6 +1,6 @@
 <template>
     <minimal>
-        <template slot="title">{{ this.$slots.title ? `${ this.$slots.title[0].text } - Promatia | World's Newest Nation`: `Promatia | World's Newest Nation` }}</template>
+        <template slot="title">{{ this.$slots.title ? `${ this.$slots.title[0].text } - Promatia`: `Promatia | World's Newest Nation` }}</template>
         <template slot="description"><slot name="description"/></template>
         <template slot="head">
             <slot name="head"/>

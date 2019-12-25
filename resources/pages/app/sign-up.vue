@@ -165,7 +165,7 @@ export default {
                     
                     setCookie('token', token)
                     $state.ENV.token = token
-
+                    $state.createAlert('Your registration was successful', 'success')
                     return root.$router.push('/app')
                 }
 

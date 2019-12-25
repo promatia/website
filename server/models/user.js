@@ -34,6 +34,7 @@ export class User extends Model {
         callingCode: String # Phone number calling code
         countryCode: String # Auto detected country code
         referrer: ObjectID # reference to another user
+        userReferralCount: Number @cost(cost: 50)
         joined: Date
         sessions: [Session]
     }
@@ -50,7 +51,7 @@ export class User extends Model {
     message loginUser (
         email: String! @lowercase
         password: String!
-    ): String
+    ): String @cost(cost: 500)
 
     message createUser (
         email: String! @lowercase
@@ -61,9 +62,9 @@ export class User extends Model {
         callingCode: String!
         countryCode: String!
         referrer: ObjectID
-    ): Void
+    ): Void @cost(cost: 500)
 
-    message deleteToken (token: String!): Boolean @authenticated
+    message deleteToken (token: String!): Boolean @authenticated @cost(cost: 150)
     `
 
     set password (value) {
@@ -136,6 +137,13 @@ export class User extends Model {
         }
 
         return null
+    }
+
+    /**
+     * Number of users the user has referred
+     */
+    async userReferralCount () {
+        return await User.collection.countDocuments({ referrer: this.doc._id })
     }
 
     /**
