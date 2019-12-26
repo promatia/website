@@ -1,9 +1,10 @@
 <template>
     <appminimal>
+        <template slot="title">Sign In</template>
         <template slot="content">
             <div class="dialog-wrapper">
                 <div class="dialog">
-                    <div class="dialog-title">Sign In</div>
+                    <h1 class="dialog-title">Sign In</h1>
                     <div class="dialog-contents">
                         <form class="dialog-inner">
                             <textInput
@@ -68,6 +69,7 @@
         text-align center
         border-top-left-radius 8px
         border-top-right-radius 8px
+        margin 0
     .dialog-contents
         padding 20px
     .dialog-inner

@@ -46,7 +46,7 @@ export class User extends Model {
         agent: String
     }
     
-    message me: User @authenticated
+    message me: User @authenticated @cost(cost: 50)
 
     message loginUser (
         email: String! @lowercase
