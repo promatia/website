@@ -40,7 +40,7 @@ export const directiveResolvers = {
 
 export const scalarResolvers = {
     ObjectID: class extends Scalar {
-        async incoming ({value}) {
+        async incoming (value) {
             if(!value) return null // prevent undefined value returning new objectId
             return new ObjectID(value)
         }
@@ -50,7 +50,7 @@ export const scalarResolvers = {
         }
     },
     Date: class extends Scalar {
-        async incoming ({value}) {
+        async incoming (value) {
             return new Date(value)
         }
 
