@@ -35,6 +35,7 @@
                     </div>
                     <overlayLoading v-if="promise"/>
                 </div>
+                <router-link to="/">Back to Promatia</router-link>
             </div>
         </template>
     </appminimal>
@@ -82,6 +83,7 @@
     align-items center
     flex 1
     justify-content center
+    flex-direction column
 
 </style>
 <script>
