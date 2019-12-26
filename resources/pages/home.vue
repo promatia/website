@@ -9,9 +9,18 @@
                 "name": "Promatia",
                 "alternateName": "Government of Promatia",
                 "url": "https://promatia.com",
-                "logo": "https://promatia.com/apple-icon.png",
+                "logo": "https://promatia.com/android-chrome-512x512.png",
                 "foundingDate": "22nd November 1999",
                 "description": "Promatia is a new government project located in Northern Australia with the goals of establishing a new, technologically innovative and environmentally sustainable nation with high living standards. Promatia's historical roots go as far back as 1999, but have unified with other new-country-projects to form what is now Promatia",
+
+                "sameAs": [
+                    "https://facebook.com/promatiagov",
+                    "https://twitter.com/promatiagov",
+                    "https://promatia.com"
+                ]
+            }
+            </script>
+            <!-- SEO Test to remove aggregate rating
                 "founders": [
                     {
                         "@type": "Person",
@@ -30,14 +39,6 @@
                         "name": "Kazimír Bodnár"
                     }
                 ],
-                "sameAs": [
-                    "https://facebook.com/promatiagov",
-                    "https://twitter.com/promatiagov",
-                    "https://promatia.com"
-                ]
-            }
-            </script>
-            <!-- SEO Test to remove aggregate rating
                 "aggregateRating": {
                     "@type": "AggregateRating",
                     "ratingValue": "5",

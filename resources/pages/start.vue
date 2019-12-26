@@ -6,37 +6,42 @@
             
         </template>
         <template slot="content">
-            <div class="hero-header">
-                <div class="content">
-                    <h1>Get Started</h1>
-                    <div class="subtitle">
-                        Ready to start creating?
+            <div itemscope itemtype="http://schema.org/HowTo">
+                <div class="hero-header">
+                    <div class="content">
+                        <h1 itemprop="name">Get Started</h1>
+                        <div class="subtitle" itemprop="description">
+                            Ready to start creating?
+                        </div>
                     </div>
+                    <div class="header-bg"/>
                 </div>
-                <div class="header-bg"/>
+                <hero class="hero">
+                    <div class="padding-small">
+                        <div class="step-block-container">
+                            <a
+                                class="step-block"
+                                tabindex="0"
+                                v-for="(link, index) in links"
+                                :key="index"
+                                :class="{disabled: link.disabled}"
+                                :href="link.href"
+                                itemprop="step" itemscope
+                                itemtype="http://schema.org/HowToStep"
+                                >
+                                <div class="step-number">{{ index + 1 }}</div>
+                                <div class="step-content">
+                                    <h2 itemprop="name">{{ link.title }}</h2>
+                                    <span itemprop="text">{{ link.text }}</span>
+                                </div>
+                                <div class="step-chevron">
+                                    <ChevronRight :size="60"/>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </hero>
             </div>
-            <hero class="hero">
-                <div class="padding-small">
-                    <div class="step-block-container">
-                        <a
-                            class="step-block"
-                            tabindex="0"
-                            v-for="(link, index) in links"
-                            :key="index"
-                            :class="{disabled: link.disabled}"
-                            :href="link.href">
-                            <div class="step-number">{{ index + 1 }}</div>
-                            <div class="step-content">
-                                <h2>{{ link.title }}</h2>
-                                <span>{{ link.text }}</span>
-                            </div>
-                            <div class="step-chevron">
-                                <ChevronRight :size="60"/>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </hero>
         </template>
     </web>
 </template>
@@ -44,7 +49,7 @@
 @import "~@/stylus/variables"
 
 .hero-header
-    padding 130px 20px
+    padding 140px 20px
     position relative
     overflow hidden
     color white
