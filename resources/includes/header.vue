@@ -6,7 +6,10 @@
             </router-link>
             <div class="right-header">
                 <div class="actions">
-                    <buttonInput class="button" to="/start" text="Sign Up"/>
+                    <div class="sub-actions">
+                        <buttonInput class="button" to="/start" text="Start"/>
+                        <buttonInput class="button" to="/sign-in" text="Sign In"/>
+                    </div>
                     <a class="menu-icon" @click="menuOpened = !menuOpened">
                         <MenuIcon :size="30"/>
                     </a>
@@ -41,7 +44,7 @@ header
     z-index 20
 
 .inner-header
-    max-width 1000px
+    max-width 1200px
     width 100%
     margin auto
     display flex
@@ -68,9 +71,19 @@ header
 .actions
     text-align right
     align-items center
-    display flex
+    display grid
     margin-left auto
+    grid-gap 5px
+    grid-auto-flow column
     flex 1
+    .sub-actions
+        display grid 
+        grid-auto-flow column
+        grid-gap 5px
+        @media (max-width $phoneWidth)
+            grid-auto-flow row
+            align-items center
+            justify-self center
 
 .menu-icon
     display none

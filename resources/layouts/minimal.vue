@@ -46,7 +46,7 @@
 body
     background #eee
     font-family 'Saira', sans-serif
-    color mix($main, #000, 10%)
+    color mix($main, #222222, 12%)
 
 a
     text-decoration none 

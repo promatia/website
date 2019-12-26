@@ -10,9 +10,8 @@
                 "alternateName": "Government of Promatia",
                 "url": "https://promatia.com",
                 "logo": "https://promatia.com/android-chrome-512x512.png",
-                "foundingDate": "22nd November 1999",
+                "foundingDate": "1st August, 2019",
                 "description": "Promatia is a new government project located in Northern Australia with the goals of establishing a new, technologically innovative and environmentally sustainable nation with high living standards. Promatia's historical roots go as far back as 1999, but have unified with other new-country-projects to form what is now Promatia",
-
                 "sameAs": [
                     "https://facebook.com/promatiagov",
                     "https://twitter.com/promatiagov",
@@ -64,7 +63,7 @@
                                 Welcome to Promatia, a new country project located in Northern Australia with its own government, currency and laws.
                             </p>
                             <p>
-                                Promatia's historical roots go as far back as 1999, formed from large number of new nation-state projects that unified to form promatia.
+                                Promatia formed from a unification of a number of nation-state projects, with one members history going back as far as November 1999.
                             </p>
                             <p>
                                 Promatia is in the process of establishing a new and autonomous government, city, community, country, society and nation. Promatia is on-track to becoming a self-sufficient, sustainable and independent nation.
@@ -105,11 +104,162 @@
                     </div>
                 </div>
             </hero>
+            <hero>
+                <div class="grid-info-area">
+                    <div class="main">
+                        <h2>The modern solution to governance</h2>
+                        <p>
+                            Since Promatia was formed in August 2019, our goal has been to create a citizen experience unlike any nation. Promatia is focused on technological innovation in the government, particularly in the areas of digital governance and government services.
+                        </p>
+                        <h3>
+                            Digital Governance
+                        </h3>
+                        <p>
+                            Our nation is actively working on digital technology to remove bureacracy, and make every day life for citizens easier, more convenient. In Promatia, every citizen receives a myPro account, which is used to access various government services including, but not limited to:
+                        </p>
+                        <div class="grid-list">
+                            <div>Human Services</div>
+                            <div>Banking System</div>
+                            <div>Voting System</div>
+                            <div>Licensing System</div>
+                            <div>Business System</div>
+                            <div>Employment</div>
+                            <div>Healthcare</div>
+                            <div>Education</div>
+                            <div>Budget &amp; Finances</div>
+                            <div>Land System</div>
+                            <div>Tax Affairs</div>
+                            <div>Utility Services</div>
+                        </div>
+                        <p>The heavy digitization and automation of these services, allows for smaller government, lower taxes, and faster, better and more efficient services</p>
+                        <h3>By Citizens, For Citizens</h3>
+                        <p>
+                            Promatia’s government uses a digital direct democracy for creating laws and electing officials, this means that our citizens decide laws, and elect represenatives to administer them. Every citizen has a voice in the way the nation is run. Citizens can propose laws and petition for them to be passed to the direct democracy.
+                        </p>
+                        <h3>Banking &amp; Tax</h3>
+                        <p>
+                            Promatia has created a new currency and banking system which automates taxation for nearly everyone. Our tax is a progressive consumption tax charged on purchases, income is tax free, until it is spent. Promatia only has one bank, which enables instantanous money transfers.
+                        </p>
+                        <h3>Our Plan To Establish A City</h3>
+                        <p>
+                            Promatia plans to establish a new modern city in our claim, with plans underway. The city will be named <strong>Lumina</strong>, which means <em>Light</em> in latin. The city is named after <a href="https://en.wikipedia.org/wiki/William_Light">Colonel William Light</a>, who founded the city <a href="https://en.wikipedia.org/wiki/Adelaide">Adelaide</a> in Australia. Join Promatia, as we set out to create another legacy.
+                        </p>
+                        <div class="center">
+                            <buttonInput class="button" href="/start" text="Become a citizen"/>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="info-box">
+                            <div class="center name">
+                                <h3>Promatia</h3>
+                                Government of Promatia
+                            </div>
+                            <div class="center">
+                                <h3>Flag</h3>
+                                <img src="@/images/flag.jpg" alt="Promatia Official Flag"/>
+                            </div>
+                            <div class="center">
+                                <h3>Symbol</h3>
+                                <img src="@/images/symbol.png" alt="Promatia Official Symbol"/>
+                            </div>
+                            <div class="map center">
+                                <h3>Map</h3>
+                                <img class="map" src="@/images/map.png" alt="Promatia Map"/>
+                            </div>
+
+                            <div><h3>National Language</h3></div>
+                            <div>English</div>
+
+                            <div><h3>Legislature</h3></div>
+                            <div>
+                                <router-link to="/information/ministers">Ministers</router-link> +
+                                <div>
+                                    <router-link to="/information/direct-democracy">Direct Democracy</router-link>
+                                </div>
+                            </div>
+
+                            <div><h3>Government</h3></div>
+                            <div>
+                                <div><router-link to="/information/ministries">Ministry System</router-link></div>
+                                <div><router-link to="/information/unitary-state">Unitary State</router-link></div>
+                                <div><router-link to="/information/constitution">Constitution</router-link></div>
+                            </div>
+
+                            <div><h3>Area</h3></div>
+                            <div>55,000km<sup>2</sup></div>
+
+                            <div><h3>Population</h3></div>
+                            <div>{{ count }} Citizens</div>
+
+                            <div><h3>Currency</h3></div>
+                            <div><router-link to="/information/currency">Proma Ⱀ</router-link></div>
+
+                            <div><h3>National Bank</h3></div>
+                            <div><router-link to="/information/services/PromaBank">PromaBank</router-link></div>
+
+                            <div><h3>Founding Date</h3></div>
+                            <div>1st August, 2019</div>
+                        </div>
+                    </div>
+                </div>
+            </hero>
         </template>
     </web>
 </template>
 <style lang="stylus" scoped>
 @import "~@/stylus/variables"
+
+.grid-list
+    display grid
+    grid-gap 0 10px
+    > *
+        margin-left 30px
+        display list-item
+    grid-template-columns repeat(auto-fit, minmax(180px, 1fr))
+
+.info-box
+    background white
+    box-shadow 0 5px 5px rgba(0,0,0,0.1)
+    padding 40px
+    display grid
+    grid-template-columns minmax(auto, 200px) minmax(auto, 200px)
+    grid-template-areas "name name" "flag symbol" "map map"
+    grid-gap 8px 12px
+    .center
+        text-align center
+    img
+        margin-top 15px
+        margin-bottom 15px
+        max-height 80px
+        display inline-block
+        &.map
+            max-height 200px
+    a
+        font-weight 400
+    h3
+        font-size 18px
+        margin 0
+
+.main
+    font-size 1em
+
+.map
+    grid-area map
+.name
+    grid-area name
+    padding-bottom 10px
+
+.grid-info-area
+    display grid
+    padding 50px 20px
+    margin auto
+    max-width 1300px
+    grid-template-columns 1fr max-content
+    align-items center
+    justify-items center
+    @media (max-width 900px)
+        grid-template-columns 1fr
+    grid-gap 25px
 
 .dark-card
     background rgba(0,0,0,0.45)
@@ -160,7 +310,6 @@
         font-weight 600
     .green
         color #66ff66
-
 
 .align-text-right
     text-align right
