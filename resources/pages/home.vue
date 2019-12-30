@@ -2,6 +2,7 @@
     <web>
         <template slot="description">Promatia is a new developing nation-state which is in the process of establishing a new and autonomous government, city, community, country, society and nation. Promatia is on-track to becoming a self-sufficient, sustainable and independent nation.</template>
         <template slot="head">
+            <link rel="profile" href="http://microformats.org/profile/hcard">
             <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
@@ -19,6 +20,7 @@
                 ]
             }
             </script>
+            
             <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
@@ -166,14 +168,14 @@
                         </div>
                     </div>
                     <div>
-                        <div class="info-box">
+                        <div class="info-box vcard">
                             <div class="center name">
-                                <h3>Promatia</h3>
-                                Government of Promatia
+                                <h3 class="fn org country-name organization-name adr country-name">Promatia</h3>
+                                <span class="nickname">Government of Promatia</span>
                             </div>
                             <div class="center">
                                 <h3>Flag</h3>
-                                <img src="@/images/flag.jpg" alt="Promatia Official Flag"/>
+                                <img class="logo photo" src="@/images/flag.jpg" alt="Promatia Official Flag"/>
                             </div>
                             <div class="center">
                                 <h3>Symbol</h3>
@@ -183,6 +185,9 @@
                                 <h3>Map</h3>
                                 <img class="map" src="@/images/map.png" alt="Promatia Map"/>
                             </div>
+
+                            <div><h3>Website</h3></div>
+                            <div><a href="https://promatia.com" class="url">promatia.com</a></div>
 
                             <div><h3>National Language</h3></div>
                             <div>English</div>
@@ -215,7 +220,7 @@
                             <div><router-link to="/information/services/PromaBank">PromaBank</router-link></div>
 
                             <div><h3>Founding Date</h3></div>
-                            <div>1st August, 2019</div>
+                            <div class="bday">1st August, 2019</div>
                         </div>
                     </div>
                 </div>
