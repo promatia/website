@@ -27,6 +27,7 @@ function pushFile (stream, path) {
         }
         pushStream.on('error', err => err)
         try {
+            console.log(`${distdir}/${path}`)
             let file = readFileSync(`${distdir}/${path}`, {encoding: 'binary'})// await gzip(readFileSync(`${distdir}/${path}`, 'utf8'))
 
             pushStream.respond({
@@ -38,7 +39,6 @@ function pushFile (stream, path) {
     
             pushStream.end(file)
         } catch (error) {
-            console.log(error)
             pushStream.respond({':status': 404 })
             pushStream.end('Not Found')
         }
