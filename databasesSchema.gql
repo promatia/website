@@ -135,7 +135,6 @@ type Session {
 type Role {
     name: String
     description: String
-    
     permissions: [Permission]
     inherits: [Role]
 }

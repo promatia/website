@@ -35,7 +35,7 @@
                                     <span itemprop="text">{{ link.text }}</span>
                                 </div>
                                 <div class="step-chevron">
-                                    <ChevronRight :size="60"/>
+                                    <ChevronRight :size="50"/>
                                 </div>
                             </a>
                         </div>
@@ -71,6 +71,8 @@
     margin auto 
     display grid 
     grid-gap 20px
+    @media (max-width $tabletWidth)
+        grid-gap 10px
 
 .step-block
     background mix(#fff, mix($main, #121212, 8%), 8%)
@@ -112,6 +114,18 @@
     &:hover, &:active, &:focus
         &:not(.disabled)
             background mix(#fff, mix($main, #121212, 8%), 12%)
+    @media (max-width $tabletWidth)
+        padding 15px
+        grid-gap 15px
+        .step-number
+            height 50px
+            width 50px
+            font-size 2em
+        .step-content
+            h2
+                font-size 20px
+            span 
+                font-size 15px
 
 .header-bg
     position absolute

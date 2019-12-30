@@ -40,7 +40,6 @@ header
     position sticky
     top 0
     color white
-    padding 0 15px
     z-index 20
 
 .inner-header
@@ -59,6 +58,7 @@ header
 .logo
     max-height 50px
     display block
+    padding-left 10px
     @media (max-width $phoneWidth)
         max-height 35px
 
@@ -80,6 +80,7 @@ header
         display grid 
         grid-auto-flow column
         grid-gap 5px
+        text-align center
         @media (max-width $phoneWidth)
             grid-auto-flow row
             align-items center
@@ -88,7 +89,6 @@ header
 .menu-icon
     display none
     padding 5px
-    margin-left 5px
     color white
     cursor pointer
     @media (max-width $tabletWidth)

@@ -19,6 +19,23 @@
                 ]
             }
             </script>
+            <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "myPro",
+                "applicationCategory": "https://schema.org/WebApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "4.96",
+                    "ratingCount": "364"
+                },
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0"
+                }
+            }
+            </script>
             <!-- SEO Test to remove aggregate rating
                 "founders": [
                     {
