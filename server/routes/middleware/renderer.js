@@ -31,7 +31,8 @@ function pushFile (stream, path) {
         pushStream.respond({
             ':status': 200,
             'content-type': mime.getType(path),
-            'content-encoding': 'gzip'
+            'content-encoding': 'gzip',
+            'Cache-Control': 'max-age=10000'
         })
 
         pushStream.end(await filePromise, 'utf8')
