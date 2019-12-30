@@ -27,7 +27,7 @@ function pushFile (stream, path) {
         }
         pushStream.on('error', err => err)
         try {
-            let file = readFileSync(`${distdir}/${path}`, 'utf8')// await gzip(readFileSync(`${distdir}/${path}`, 'utf8'))
+            let file = readFileSync(`${distdir}/${path}`, {encoding: 'binary'})// await gzip(readFileSync(`${distdir}/${path}`, 'utf8'))
 
             pushStream.respond({
                 ':status': 200,
