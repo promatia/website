@@ -36,9 +36,9 @@ function pushFile (stream, path) {
                 'Cache-Control': 'max-age=10000'
             })
     
-            pushStream.end(file.toString())
+            pushStream.end(String(file))
 
-            console.log(file.length)
+            console.log(String(file))
         } catch (error) {
             pushStream.respond({':status': 404 })
             pushStream.end('Not Found')
