@@ -7,6 +7,7 @@ import webpack from 'webpack'
 import koaWebpack from 'koa-webpack'
 import clientconfig from '../../webpack/webpack.client.js'
 import serverconfig from '../../webpack/webpack.server.js'
+import { gzip } from 'node-gzip'
 
 const { createBundleRenderer } = serverRenderer
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -18,15 +19,17 @@ function statCheck (stat, headers) {
 }
 
 function pushFile (stream, path) {
-    stream.pushStream({ ':path': '/dist/' + path }, (err, pushStream) => {
+    stream.pushStream({ ':path': '/dist/' + path }, async (err, pushStream) => {
         if(err) {
             pushStream.respond({':status': 500})
             return pushStream.end('Error')
         }
         pushStream.on('error', err => err)
-        
-        pushStream.respond({':status': 200, 'content-type': mime.getType(path)})
-        pushStream.end(readFileSync(`${distdir}/${path}`, 'utf8'), 'utf8')
+        let file = await gzip(readFileSync(`${distdir}/${path}`, 'utf8'))
+        console.log(file)
+
+        pushStream.respond({':status': 200, 'content-type': mime.getType(path), 'content-length': file.length})
+        pushStream.end(file, 'utf8')
         
         return 
 
