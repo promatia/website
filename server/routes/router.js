@@ -33,7 +33,7 @@ export default async () => router
     .use(bodyParser())
     .use(sessionToken)
     .use(koastatic(staticDir))
-    .use(mount('/dist', koastatic(distDir), {maxage: 1000 * 60 * 60 * 1}))
+    .use(mount('/dist', koastatic(distDir, {maxage: 1000 * 60 * 60 * 1})))
     .use(await renderer())
     .post('/graph/', graphMiddleware)
     .get('(.*)', async (ctx) => {
