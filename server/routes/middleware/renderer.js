@@ -38,6 +38,7 @@ function pushFile (stream, path) {
     
             pushStream.end(file)
         } catch (error) {
+            console.log(error)
             pushStream.respond({':status': 404 })
             pushStream.end('Not Found')
         }
