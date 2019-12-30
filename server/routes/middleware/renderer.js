@@ -19,9 +19,16 @@ function statCheck (stat, headers) {
 
 function pushFile (stream, path) {
     stream.pushStream({ ':path': '/dist/' + path }, (err, pushStream) => {
-        if(err) return
-        
+        if(err) {
+            pushStream.respond({':status': 500})
+            return pushStream.end('Error')
+        }
         pushStream.on('error', err => err)
+        
+        pushStream.respond({':status': 200, 'content-type': mime.getType(path)})
+        pushStream.end(readFileSync(`${distdir}/${path}`, 'utf8'), 'utf8')
+        
+        return 
 
         pushStream.respondWithFile(`${distdir}/${path}`, {
             'content-type': mime.getType(path)
