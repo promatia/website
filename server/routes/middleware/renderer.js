@@ -31,14 +31,12 @@ function pushFile (stream, path) {
 
             pushStream.respond({
                 ':status': 200,
-                'content-type': mime.getType(path) + '; charset=utf-8',
+                'content-type': mime.getType(path),
                 'content-encoding': 'gzip',
                 'Cache-Control': 'max-age=10000'
             })
     
-            pushStream.end(String(file))
-
-            console.log(String(file))
+            pushStream.end(file)
         } catch (error) {
             pushStream.respond({':status': 404 })
             pushStream.end('Not Found')
