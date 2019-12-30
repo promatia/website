@@ -26,11 +26,18 @@ function pushFile (stream, path) {
             return pushStream.end('Error')
         }
         pushStream.on('error', err => err)
-        let file = await gzip(readFileSync(`${distdir}/${path}`, 'utf8'))
-        console.log(file)
+        let filePromise = gzip(readFileSync(`${distdir}/${path}`, 'utf8'))
 
-        pushStream.respond({':status': 200, 'content-type': mime.getType(path), 'content-length': file.length})
-        pushStream.end(file, 'utf8')
+        pushStream.respond({
+            ':status': 200,
+            'content-type': mime.getType(path),
+            'content-length': file.length,
+            'content-encoding': 'gzip'
+        })
+        
+        pushStream.end(await filePromise, 'utf8')
+
+        console.log(await filePromise)
         
         return 
 
