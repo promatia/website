@@ -16,7 +16,7 @@ const baseDirectory = resolve(__dirname, '../../../')
 const distdir = resolve(baseDirectory, './server/dist/')
 
 function statCheck (stat, headers) {
-    headers['content-length'] = stat.size
+    //headers['content-length'] = stat.size
 }
 
 function pushFile (stream, path) {
@@ -50,7 +50,7 @@ function pushFile (stream, path) {
         */
         pushStream.respondWithFile(`${distdir}/${path}`, {
             'content-type': mime.getType(path)
-        })
+        }, { statCheck })
     })
 }
 
