@@ -36,7 +36,7 @@ function pushFile (stream, path) {
                 'Cache-Control': 'max-age=10000'
             })
     
-            pushStream.end(file)
+            pushStream.end(file.toString())
 
             console.log(file.length)
         } catch (error) {
