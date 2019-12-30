@@ -28,7 +28,7 @@ function pushFile (stream, path) {
         }
         
         pushStream.on('error', err => err)
-
+        /*
         try {
             let file = await gzip(readFileSync(`${distdir}/${path}`, 'utf8'))
 
@@ -47,10 +47,10 @@ function pushFile (stream, path) {
         }
         
         return 
-
+        */
         pushStream.respondWithFile(`${distdir}/${path}`, {
             'content-type': mime.getType(path)
-        }, { statCheck })
+        })
     })
 }
 
