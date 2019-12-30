@@ -15,10 +15,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const baseDirectory = resolve(__dirname, '../../../')
 const distdir = resolve(baseDirectory, './server/dist/')
 
-function statCheck (stat, headers) {
-    //headers['content-length'] = stat.size
-}
-
 function pushFile (stream, path) {
     stream.pushStream({':path': '/dist/' + path }, async (err, pushStream) => {
         if(err) {
@@ -36,6 +32,7 @@ function pushFile (stream, path) {
                 ':status': 200,
                 'content-type': mime.getType(path),
                 'content-encoding': 'gzip',
+                'Content-Length': file.
                 'Cache-Control': 'max-age=10000'
             })
     
@@ -49,8 +46,9 @@ function pushFile (stream, path) {
         return 
         */
         pushStream.respondWithFile(`${distdir}/${path}`, {
-            'content-type': mime.getType(path)
-        }, { statCheck })
+            'content-type': mime.getType(path),
+            'cache-control': 'max-age=3600'
+        })
     })
 }
 
