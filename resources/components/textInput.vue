@@ -30,35 +30,41 @@
 
 export default {
     props: ['type', 'name', 'value', 'error', 'v', 'helper', 'autocomplete', 'autofocus'],
-    data(){
+    data () {
         return {
-            focus: false,
+            focus: false
         }
     },
-    methods:{
-        toggleFocus(val){
-            if(val === false && this.v){
+    mounted () {
+        if(document.activeElement === this.$refs.input) {
+            console.log('test')
+        }
+    },
+    methods: {
+        toggleFocus (val) {
+            if(val === false && this.v) {
                 this.v.$touch()
             }
             this.focus = val ? val : !this.focus
-            if(this.focus === true){
+            if(this.focus === true) {
                 this.$refs.input.focus()
             }
-        },
+        }
     },
-    computed:{
-        helperText(){
-            if(this.v && this.v.$error){
+    computed: {
+        helperText () {
+            if(this.v && this.v.$error) {
                 return this.error ? this.error : this.helper
             }
             this.helper ? this.helper : ''
         },
-        inputValue:{
-            get(){
+        inputValue: {
+            get () {
                 return this.value
             },
-            set(value){
-                this.$emit("input", value)
+            set (value) {
+                this.toggleFocus(true)
+                this.$emit('input', value)
             }
         }
     }
@@ -104,6 +110,9 @@ $mainControl = white
         padding-bottom 6px
         --webkit-appearance none
         appearance none
+        &:-webkit-autofill ~ label
+            font-size 13px
+            top 6px
 
     .label
         font-size 16px

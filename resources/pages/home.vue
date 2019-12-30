@@ -361,16 +361,17 @@ import hero from '@/components/hero'
 import northernTerritory from '@/images/northernTerritory.jpg'
 import textSwitcher from '@/components/textSwitcher'
 import buttonInput from '@/components/buttonInput'
-import Chart from 'chart.js/dist/Chart.min'
 import { onMounted } from '@vue/composition-api'
 
 export default {
     setup (props, { refs }) {
-        onMounted(()=>{
+        onMounted(async ()=>{
             let ctx = refs.canvas.getContext('2d')
             var gradient = ctx.createLinearGradient(0, 0, 0, 400)
             gradient.addColorStop(0, 'rgba(255,255,255,0.5)')
             gradient.addColorStop(1, 'rgba(255,255,255,0)')
+
+            let { default: Chart } = await import('chart.js/dist/Chart.min') //lazy-load chart library
 
             new Chart(refs.canvas, {
                 type: 'line',
