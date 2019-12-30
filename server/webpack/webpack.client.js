@@ -1,6 +1,7 @@
 import merge from 'webpack-merge'
 import base from './webpack.base.js'
 import VueSSRClientPlugin from 'vue-server-renderer/client-plugin.js'
+import webpack from 'webpack'
 
 export default merge(base, {
     entry: ['@/entry-client.js'],
@@ -9,8 +10,8 @@ export default merge(base, {
     ],
     optimization: {
         splitChunks: {
-            chunks: 'all',
-            name: 'manifest'
+            name: 'manifest',
+            minChunks: Infinity
         }
     }
 })

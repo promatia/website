@@ -22,12 +22,14 @@ function statCheck (stat, headers) {
 function pushFile (stream, path) {
     stream.pushStream({':path': '/dist/' + path }, async (err, pushStream) => {
         if(err) {
+            console.error(err)
             pushStream.respond({':status': 500})
             return pushStream.end('Error')
         }
+        
         pushStream.on('error', err => err)
+
         try {
-            console.log(`${distdir}/${path}`)
             let file = await gzip(readFileSync(`${distdir}/${path}`, 'utf8'))
 
             pushStream.respond({
@@ -39,6 +41,7 @@ function pushFile (stream, path) {
     
             pushStream.end(file, 'utf8')
         } catch (error) {
+            console.error(error)
             pushStream.respond({':status': 404 })
             pushStream.end('Not Found')
         }
