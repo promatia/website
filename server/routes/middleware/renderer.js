@@ -26,7 +26,7 @@ function pushFile (stream, path) {
             return pushStream.end('Error')
         }
         pushStream.on('error', err => err)
-        let filePromise = gzip(readFileSync(`${distdir}/${path}`, 'utf8'))
+        let file = await gzip(readFileSync(`${distdir}/${path}`, 'utf8'))
 
         pushStream.respond({
             ':status': 200,
@@ -34,10 +34,10 @@ function pushFile (stream, path) {
             'content-length': file.length,
             'content-encoding': 'gzip'
         })
-        
-        pushStream.end(await filePromise, 'utf8')
 
-        console.log(await filePromise)
+        pushStream.end(file, 'utf8')
+
+        console.log(file)
         
         return 
 
