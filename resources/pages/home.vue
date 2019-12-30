@@ -170,7 +170,7 @@
                     <div>
                         <div class="info-box vcard">
                             <div class="center name">
-                                <h3 class="fn org country-name organization-name adr country-name">Promatia</h3>
+                                <h3 class="fn org country-name organization-name adr">Promatia</h3>
                                 <span class="nickname">Government of Promatia</span>
                             </div>
                             <div class="center">
