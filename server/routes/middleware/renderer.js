@@ -28,16 +28,16 @@ function pushFile (stream, path) {
         pushStream.on('error', err => err)
         try {
             console.log(`${distdir}/${path}`)
-            let file = readFileSync(`${distdir}/${path}`, {encoding: 'binary'})// await gzip(readFileSync(`${distdir}/${path}`, 'utf8'))
+            let file = await gzip(readFileSync(`${distdir}/${path}`, 'utf8'))
 
             pushStream.respond({
                 ':status': 200,
                 'content-type': mime.getType(path),
-                //'content-encoding': 'gzip',
+                'content-encoding': 'gzip',
                 'Cache-Control': 'max-age=10000'
             })
     
-            pushStream.end(file)
+            pushStream.end(file, 'utf8')
         } catch (error) {
             pushStream.respond({':status': 404 })
             pushStream.end('Not Found')
