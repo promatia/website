@@ -7,8 +7,9 @@ import webpack from 'webpack'
 import koaWebpack from 'koa-webpack'
 import clientconfig from '../../webpack/webpack.client.js'
 import serverconfig from '../../webpack/webpack.server.js'
-import { gzip } from 'node-gzip'
+import nodeGzip from 'node-gzip'
 
+const { gzip } = nodeGzip
 const { createBundleRenderer } = serverRenderer
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const baseDirectory = resolve(__dirname, '../../../')
