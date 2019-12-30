@@ -20,24 +20,29 @@ function statCheck (stat, headers) {
 }
 
 function pushFile (stream, path) {
-    stream.pushStream({ ':path': '/dist/' + path }, async (err, pushStream) => {
+    stream.pushStream({':path': '/dist/' + path }, async (err, pushStream) => {
         if(err) {
             pushStream.respond({':status': 500})
             return pushStream.end('Error')
         }
         pushStream.on('error', err => err)
-        let filePromise = gzip(readFileSync(`${distdir}/${path}`, 'utf8'))
+        try {
+            let file = await gzip(readFileSync(`${distdir}/${path}`, 'utf8'))
 
-        pushStream.respond({
-            ':status': 200,
-            'content-type': mime.getType(path),
-            'content-encoding': 'gzip',
-            'Cache-Control': 'max-age=10000'
-        })
+            pushStream.respond({
+                ':status': 200,
+                'content-type': mime.getType(path) + '; charset=utf-8',
+                'content-encoding': 'gzip',
+                'Cache-Control': 'max-age=10000'
+            })
+    
+            pushStream.end(file)
 
-        pushStream.end(await filePromise, 'utf8')
-
-        console.log(await filePromise)
+            console.log(file.length)
+        } catch (error) {
+            pushStream.respond({':status': 404 })
+            pushStream.end('Not Found')
+        }
         
         return 
 
