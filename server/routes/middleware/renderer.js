@@ -27,12 +27,12 @@ function pushFile (stream, path) {
         }
         pushStream.on('error', err => err)
         try {
-            let file = await gzip(readFileSync(`${distdir}/${path}`, 'utf8'))
+            let file = readFileSync(`${distdir}/${path}`, 'utf8')// await gzip(readFileSync(`${distdir}/${path}`, 'utf8'))
 
             pushStream.respond({
                 ':status': 200,
                 'content-type': mime.getType(path),
-                'content-encoding': 'gzip',
+                //'content-encoding': 'gzip',
                 'Cache-Control': 'max-age=10000'
             })
     
