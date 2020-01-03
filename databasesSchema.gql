@@ -134,7 +134,14 @@ type Session {
 
 type Role {
     name: String
+    slug: String
     description: String
     permissions: [Permission]
     inherits: [Role]
+}
+
+type Permission {
+    slug: String
+    name: String
+    description: String
 }

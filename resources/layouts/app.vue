@@ -24,7 +24,7 @@
     grid-template-columns 300px 1fr
     grid-template-rows 60px 1fr
     grid-template-areas "sidebar header" "sidebar content"
-    background rgba(0,0,0,0.7)
+    background rgba(0,0,0,0.5)
     flex 1
 
 .content-frontdrop

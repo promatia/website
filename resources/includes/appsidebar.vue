@@ -5,14 +5,14 @@
         </div>
         <nav class="sidebar">
             <div class="links">
-                <router-link
+                <conditionalLink
                     class="link"
                     v-for="(link, index) in links"
                     :key="index"
-                    :to="link.link">
+                    :href="link.link">
                     <component :is="link.icon"/>
                     <div class="link-text">{{ link.name }}</div>
-                </router-link>
+                </conditionalLink>
             </div>
         </nav>
     </div>
@@ -50,15 +50,18 @@
     &.router-link-active, &:hover
         color rgba(255,255,255,1)
     &:hover
-
         background $darkbackground
 
 </style>
 <script>
 import Home from 'icons/Home'
 import Discord from 'icons/Discord'
+import conditionalLink from '@/components/conditionalLink'
 
 export default {
+    components: {
+        conditionalLink
+    },
     setup () {
         return {
             links: [
@@ -69,7 +72,7 @@ export default {
                 },
                 {
                     name: 'Discord Server',
-                    link: 'https://discord.com',
+                    link: 'https://discord.gg/frVSDck',
                     icon: Discord
                 }
             ]

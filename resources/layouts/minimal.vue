@@ -25,10 +25,10 @@
             <meta name="msapplication-TileColor" content="#ffffff">
             <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
             <meta name="theme-color" content="#ffffff">
+            <!-- Favicon Files -->
+            
             <meta name="twitter:site" content="@PromatiaGov">
             <meta name="og:site_name" content="Promatia">
-
-            <!-- Favicon Files -->
 
             <slot name="head"/>
         </template>

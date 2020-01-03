@@ -2,3 +2,5 @@
 ```js
 
 hasPermission()
+
+memberOf()

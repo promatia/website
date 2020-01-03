@@ -2,6 +2,7 @@
     <web>
         <template slot="description">Promatia is a new developing nation-state which is in the process of establishing a new and autonomous government, city, community, country, society and nation. Promatia is on-track to becoming a self-sufficient, sustainable and independent nation.</template>
         <template slot="head">
+            <meta name="og:image" content="https://promatia.com/home-og.png">
             <link rel="profile" href="http://microformats.org/profile/hcard">
             <script type="application/ld+json">
             {
