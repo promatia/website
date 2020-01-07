@@ -1,5 +1,15 @@
 
 export const permissions = {
+    'human-services.staff': {
+        name: 'Human Services Powers',
+        description: 'Gives permissions to manage all human services affairs',
+        permissions: {
+            'applications': {
+                name: 'Applications',
+                description: 'Gives permissions to manage all human services applications'
+            }
+        }
+    },
     'human-services.staff.applications.view': {
         'name': 'Approve Application',
         'description': 'Users with this permission will have the ability to view citizenship applications'
@@ -32,11 +42,11 @@ export const permissions = {
         'name': 'Pin Referral',
         'description': 'Users with this permission will be able to link a referral to another account attribute'
     },
-    'human-services.staff.users.pinReferral': {
+    'human-services.staff.users.set-referrer': {
         'name': 'Pin Referral',
         'description': 'Users with this permission will be able to link a referral to another account attribute'
     },
-    'human-services.staff.users.updateAccountDetails': {
+    'human-services.staff.users.modify': {
         'name': 'Update Account Details',
         'description': 'Users with this permission will be able to update any users account details'
     },
@@ -47,5 +57,16 @@ export const permissions = {
     'notifications.send': {
         'name': 'Send Notification',
         'description': 'Send notifications to users'
+    },
+    //sysop create roles
+    //sysop assign badges
+    //sysop assign special permissions
+    //
+    'access-control.sysop.assign': {
+
     }
+}
+
+export const groups = {
+    
 }
