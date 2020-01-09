@@ -72,7 +72,7 @@ export default {
                 },
                 {
                     name: 'Discord Server',
-                    link: 'https://discord.gg/frVSDck',
+                    link: 'https://discord.gg/U6Dq8XC',
                     icon: Discord
                 }
             ]

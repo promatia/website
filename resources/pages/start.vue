@@ -166,7 +166,7 @@ export default {
             {
                 title: 'Join the Discord',
                 text: 'Join our discord if you’re interested in helping out during early stages of our government.',
-                href: 'https://discord.gg/frVSDck'
+                href: 'https://discord.gg/U6Dq8XC'
             },
             {
                 title: 'Enable notifications',

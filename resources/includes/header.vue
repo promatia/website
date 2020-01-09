@@ -169,6 +169,10 @@ export default {
                 {
                     text: 'Shop',
                     href: '/shop'
+                },
+                {
+                    text: 'Discord',
+                    href: 'https://discord.gg/U6Dq8XC'
                 }
             ]
         }
