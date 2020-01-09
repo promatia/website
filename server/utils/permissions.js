@@ -1,3 +1,4 @@
+import { ObjectId, ObjectID } from 'mongodb'
 
 export const permissions = {
     'human-services.staff': {
@@ -69,4 +70,40 @@ export const permissions = {
 
 export const groups = {
     
+}
+
+
+const organisation = {
+    _id: new ObjectID,
+    name: 'Co PTY LTD',
+    users: [{
+        id: new ObjectID,
+        roles: [new ObjectID]
+    }]
+}
+
+const body = {
+    _id: new ObjectID,
+    organisation: new ObjectID,
+    roles: [new ObjectID],
+    name: 'Board',
+    type: 'seat'
+
+}
+
+const promaBank = {
+
+}
+
+const promaBankMonetaryCouncil = {
+    roles: [new ObjectID('Monetary Council')]
+
+}
+
+const role = {
+    _id: new ObjectID,
+    organisation: new ObjectID,
+    permissions: ['organisation.users.invite'],
+    name: 'Recruiter',
+    inherits: [new ObjectID]
 }
