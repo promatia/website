@@ -159,33 +159,33 @@ export default {
     setup (props, { }) {
         let links = [
             {
-                title: 'Register your account',
-                text: 'Sign up on myPro so you can access government services & apply for citizenship',
+                title: 'Register Your Account',
+                text: 'Sign up on myPro so you can access government services & apply for citizenship.',
                 href: '/sign-up'
             },
             {
                 title: 'Join the Discord',
-                text: 'Join our discord if you’re interested in helping out during early stages of our government.',
+                text: 'Join our discord server if you’re interested in helping out during early stages of our government.',
                 href: 'https://discord.gg/U6Dq8XC'
             },
             {
-                title: 'Enable notifications',
-                text: 'Enable notifications and be the first to hear about progress and updates',
+                title: 'Enable Notifications',
+                text: 'Enable notifications, and be the first to hear about our progress and receive updates.',
                 disabled: true
             },
             {
-                title: 'Refer your friends',
-                text: 'Refer your friends and earn 50 Proma for every user that becomes a citizen.',
+                title: 'Refer Your Friends',
+                text: 'Refer your friends, and earn 50 Proma for every user that becomes a citizen.',
                 disabled: true
             },
             {
-                title: 'Become a citizen',
-                text: 'Sign up on myPro so you can access government services & apply for citizenship',
+                title: 'Become a Citizen',
+                text: 'Finalize your citizenship on myPro so you take part in lawmaking, and electing government leaders.',
                 disabled: true
             },
             {
-                title: 'Register a bank account',
-                text: 'Get a bank account - PromaBank release date estimated around March 2020.',
+                title: 'Register a PromaBank Account',
+                text: 'PromaBank release date estimated March of 2020.',
                 disabled: true
             }
         ]

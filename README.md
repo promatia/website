@@ -43,7 +43,7 @@ and other files
 the `/server` folder contains API Models (eg: User) and schema's for the API. It also includes middleware for authentication, data for roles/permissions, routes. All the behind-the-scenes logic occurs here.
 
 
-## Setting up local dev enviroment
+## Setting up local dev environment
 
 - Install MongoDB
 - Use node version 13.3

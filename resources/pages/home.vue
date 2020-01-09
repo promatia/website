@@ -71,37 +71,41 @@
                 <div class="padding-10">
                     <div class="dark-card">
                         <div>
-                            <h1 class="special-title">Start <textSwitcher :items="[
+                            <h1 class="special-title">Create <textSwitcher :items="[
                                 'Promatia',
                                 'A New Nation',
                                 'A New Government',
                                 'A New City',
+                                'Promatia',
                                 'A New Society',
                                 'A New Country',
                                 'A New Home',
+                                'Promatia',
+                                'A New Future',
+                                'A New Story',
                                 'A New Life']"/></h1>
                             <p>
-                                Welcome to Promatia, a new country project located in Northern Australia with its own government, currency and laws.
+                                Welcome to Promatia, a new country project located on the Australian continent bordering the Gulf of Carpentaria. Promatia has its own government, currency and laws.
                             </p>
                             <p>
-                                Promatia formed from a unification of a number of nation-state projects, with one members history going back as far as November 1999.
+                                Promatia formed from the unification of a many of smaller young nation projects, with history leading back to November of 1999.
                             </p>
                             <p>
-                                Promatia is in the process of establishing a new and autonomous government, city, community, country, society and nation. Promatia is on-track to becoming a self-sufficient, sustainable and independent nation.
+                                Promatia is in the process of establishing a new and autonomous government, city, community, and country. Promatia is on a fast track to becoming a self-sufficient, sustainable and independent nation.
                             </p>
                             <p>
                                 Our aspirations are to:
                             </p>
                             <ul>
-                                <li>Create a pragmatic government, led by citizens for citizens.</li>
-                                <li>Allow citizens to pursue their life goals, aided by our government.</li>
-                                <li>Develop inexpensive, modern infrastructure, to achieve truly high living standards.</li>
-                                <li>Modernize and digitize banking, education, governance and much more.</li>
-                                <li>Create a model for an environmentally-sustainable and economically-viable nation</li>
+                                <li>Create a pragmatic government, led by citizens, for citizens.</li>
+                                <li>Allow citizens to pursue their life goals, aided by Promatia's unique governmental system.</li>
+                                <li>Develop inexpensive, modern infrastructure, to achieve the highest living standards.</li>
+                                <li>Modernize and digitize every aspect of governance, banking, education, and more.</li>
+                                <li>Create a model example of environmental-sustainably and economic-viably.</li>
                                 <li>Create a safe and free society, where citizens can pursue their life goals.</li>
                             </ul>
-                            <p>We are always looking for new risk-loving and passionate citizens who want to start a new life in Promatia. Citizens can help through intellect, muscle, enterprise, finance or networking</p>
-                            <buttonInput class="button" text="Become a citizen" to="/start"/>
+                            <p>We are always looking for new risk-loving, educated, and passionate citizens who want to start a new life in Promatia. Citizens can help our project through their intellectal, physical, financial, enterprising , or networking skills.</p>
+                            <buttonInput class="button" text="> Become A Citizen" to="/start"/>
                         </div>
                         <div class="canvas-area">
                             <div class="top">
@@ -117,7 +121,7 @@
                                     <h2>{{ count }}</h2>
                                 </div>
                                 <div class="align-text-right">
-                                    <div>Past 60 days</div>
+                                    <div>Past 60 Days</div>
                                     <h2><span class="green">+{{ lastMonth }}</span> New Citizens</h2>
                                 </div>
                             </div>
@@ -128,45 +132,47 @@
             <hero>
                 <div class="grid-info-area">
                     <div class="main">
-                        <h2>The modern solution to governance</h2>
+                        <h2>The Modern Solution to Governance</h2>
                         <p>
-                            Since Promatia was formed in August 2019, our goal has been to create a citizen experience unlike any nation. Promatia is focused on technological innovation in the government, particularly in the areas of digital governance and government services.
+                            Since Promatia was reformed in August of 2019, our goal has been to create an experience unlike any nation has given to it's citizens. Promatia is dead focused on providing technological innovation in science of digital governance. We strive to provide world class expeidence and quality of response in all government services.
                         </p>
                         <h3>
                             Digital Governance
                         </h3>
                         <p>
-                            Our nation is actively working on digital technology to remove bureacracy, and make every day life for citizens easier, more convenient. In Promatia, every citizen receives a myPro account, which is used to access various government services including, but not limited to:
+                            Our nation is pioneering digital technology in an effort to eliminate bureacracy. It is our hope to make every day life for citizens easier, and be seen as the pinnacle of convenience. In Promatia, every citizen receives a myPro account, which connects them, granting access a wide range of government services including, but not limited to:
                         </p>
                         <div class="grid-list">
                             <div>Human Services</div>
-                            <div>Banking System</div>
-                            <div>Voting System</div>
-                            <div>Licensing System</div>
-                            <div>Business System</div>
-                            <div>Employment</div>
-                            <div>Healthcare</div>
-                            <div>Education</div>
+                            <div>PromaBank</div>
+                            <div>Instant Voting</div>
+                            <div>Licensing</div>
+                            <div>Business Registration</div>
+                            <div>Employment Services</div>
+                            <div>Healthcare Benefits</div>
+                            <div>Education Enrollment</div>
                             <div>Budget &amp; Finances</div>
-                            <div>Land System</div>
+                            <div>Land Allocation</div>
                             <div>Tax Affairs</div>
                             <div>Utility Services</div>
                         </div>
-                        <p>The heavy digitization and automation of these services, allows for smaller government, lower taxes, and faster, better and more efficient services</p>
+                        <p>
+                            The heavy digitization and automation, of these services, allows for smaller government, lower taxes, faster response, and better efficiency.
+                        </p>
                         <h3>By Citizens, For Citizens</h3>
                         <p>
-                            Promatia’s government uses a digital direct democracy for creating laws and electing officials, this means that our citizens decide laws, and elect represenatives to administer them. Every citizen has a voice in the way the nation is run. Citizens can propose laws and petition for them to be passed to the direct democracy.
+                            Promatia’s government uses a digital direct democracy for drafting it's laws and electing goverment officials. This means that our citizens decide what laws pass, and have the power to elect the represenatives who administer them. Every citizen has a voice in the way the nation is run. Citizens can propose laws, and petition for them to be passed onto the direct democracy. They may do this of their own volition.
                         </p>
                         <h3>Banking &amp; Tax</h3>
                         <p>
-                            Promatia has created a new currency and banking system which automates taxation for nearly everyone. Our tax is a progressive consumption tax charged on purchases, income is tax free, until it is spent. Promatia only has one bank, which enables instantanous money transfers.
+                            Promatia has created a new digital currency, the Proma, and banking system to come along with it. Our banking system PromaBank automates taxation from Point of Sale (POS) terminial, and automate taxation for nearly everyone. Our tax is a progressive consumption tax charged on purchases. Income and wages are tax free until the money that was earned is spent. Promatia only has one central bank, which enables instantanous money transfers nationwide.
                         </p>
-                        <h3>Our Plan To Establish A City</h3>
+                        <h3>The Plan To Establish a City</h3>
                         <p>
-                            Promatia plans to establish a new modern city in our claim, with plans underway. The city will be named <strong>Lumina</strong>, which means <em>Light</em> in latin. The city is named after <a href="https://en.wikipedia.org/wiki/William_Light">Colonel William Light</a>, who founded the city <a href="https://en.wikipedia.org/wiki/Adelaide">Adelaide</a> in Australia. Join Promatia, as we set out to create another legacy.
+                            Promatia plans to establish a new modern city in our claimed territory. Our have made significant progress plans, and construction is not far away. The city will be named <strong>Lumina</strong>, which means appoximately <em>Light</em> in latin. The city is named after <a href="https://en.wikipedia.org/wiki/William_Light">Colonel William Light</a>, who founded the city <a href="https://en.wikipedia.org/wiki/Adelaide">Adelaide</a> in Australia. Join us in Lumina, as we set out to create another legacy with Promatia.
                         </p>
                         <div class="center">
-                            <buttonInput class="button" href="/start" text="Become a citizen"/>
+                            <buttonInput class="button" href="/start" text="> Become A Citizen"/>
                         </div>
                     </div>
                     <div>
