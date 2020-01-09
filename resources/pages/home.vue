@@ -76,9 +76,13 @@
                                 'A New Nation',
                                 'A New Government',
                                 'A New City',
+                                'Promatia',
                                 'A New Society',
                                 'A New Country',
                                 'A New Home',
+                                'Promatia',
+                                'A New Community',
+                                'A New Age',
                                 'A New Life']"/></h1>
                             <p>
                                 Welcome to Promatia, a new country project located in Northern Australia with its own government, currency and laws.
