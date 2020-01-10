@@ -5,10 +5,10 @@
                 <div class="grid-item">
                     <div class="footer-title">About Promatia</div>
                     <p>
-                        Promatia is a new country project located in North Australia.
+                        Promatia is a new country project located on the Australian continent bordering the Gulf of Carpentaria.
                     </p>
                     <p>
-                        Our goal is to establish a technologically innovate, environmentally sustainable nation and democratic nation.
+                        Our goal is to establish a technologically innovative, environmentally sustainable, and democratic nation.
                     </p>
                     <p>
                         <router-link to="/information">Learn About Our Government</router-link>
@@ -23,15 +23,15 @@
                     </div>
                 </div>
                 <div class="grid-item">
-                    <div class="footer-title">Become A Citizen</div>
+                    <div class="footer-title">Start Creating!</div>
                     <p>
                         Become a citizen of Promatia today!
                     </p>
                     <p>
-                        Gain 50Ⱀ (Promatia’s currency) by signing up today 
+                        Gain 50Ⱀ, by signing up today. Promatia's fully digital currency.
                     </p>
                     <p>
-                        <buttonInput class="button" text="Get Started" to="/start"/>
+                        <buttonInput class="button" text="> Become A Citizen" to="/start"/>
                     </p>
                 </div>
             </div>
