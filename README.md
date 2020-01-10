@@ -49,7 +49,7 @@ the `/server` folder contains API Models (eg: User) and schema's for the API. It
 - Use node version 13.3
 - `npm i -g nodemon`
 - `npm i` on the folder directory to install packages
-- copy `example.env.json` and rename it to `env.json`
+- duplicate `example.env.json` and rename it to `env.json`
 - `npm run build` to build app and compile files to `/dist`
 - `nodemon` to run server
 
