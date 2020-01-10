@@ -49,6 +49,20 @@ the `/server` folder contains API Models (eg: User) and schema's for the API. It
 - Use node version 13.3
 - `npm i -g nodemon`
 - `npm i` on the folder directory to install packages
-- copy `example.env.json` to `env.json`
-- `nodemon` to run server
+- copy `example.env.json` and rename it to `env.json`
 - `npm run build` to build app and compile files to `/dist`
+- `nodemon` to run server
+
+## Setting up VSCode for windows
+- open terminal in vscode
+- `npm i -g nodemon`
+- `npm i`
+- copy `example.env.json` and rename it to `env.json`
+- `npm install -g node-gyp` to compile bcrypt
+- close vscode and open windows powershell as administrator
+- `npm install --g --production windows-build-tools`
+- wait for the program to install python2 and other compilers
+- open vscode and its terminal again
+- `npm install bcrypt`
+- `npm run build` to build app and compile files
+- `nodemon` to run server
