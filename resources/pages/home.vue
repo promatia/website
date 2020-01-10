@@ -77,21 +77,18 @@
                                 'A New Government',
                                 'A New City',
                                 'A New Community',
-                                'Promatia',
                                 'A New Society',
                                 'A New Country',
                                 'A New Home',
                                 'A New Family',
-                                'Promatia',
                                 'A New Future',
-                                'A New Vision',
                                 'A New Story',
                                 'A New Life']"/></h1>
                             <p>
                                 Welcome to Promatia, a new country project located on the Australian continent bordering the Gulf of Carpentaria. Promatia has its own government, currency and laws.
                             </p>
                             <p>
-                                Promatia formed from the unification of a many of smaller young nation projects, with history leading back to November of 1999.
+                                Promatia formed from the unification of a number of smaller young nation projects, with history leading back to November of 1999.
                             </p>
                             <p>
                                 Promatia is in the process of establishing a new and autonomous government, city, community, and country. Promatia is on a fast track to becoming a self-sufficient, sustainable and independent nation.
@@ -143,7 +140,7 @@
                             Digital Governance
                         </h3>
                         <p>
-                            Our nation is pioneering digital technology in an effort to eliminate bureacracy. It is our hope to make every day life for citizens easier, and be seen as the pinnacle of convenience. In Promatia, every citizen receives a myPro account, which connects them, granting access a wide range of government services including, but not limited to:
+                            Our nation is pioneering in digital technology in an effort to eliminate bureacracy. Our goal is to make everyday life easy for citizens, and make dealing with government simple. In Promatia, every citizen receives a myPro account, which connects them, granting access a wide range of government services including, but not limited to:
                         </p>
                         <div class="grid-list">
                             <div>Human Services</div>
