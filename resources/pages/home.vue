@@ -76,12 +76,15 @@
                                 'A New Nation',
                                 'A New Government',
                                 'A New City',
+                                'A New Community',
                                 'Promatia',
                                 'A New Society',
                                 'A New Country',
                                 'A New Home',
+                                'A New Family',
                                 'Promatia',
                                 'A New Future',
+                                'A New Vision',
                                 'A New Story',
                                 'A New Life']"/></h1>
                             <p>
