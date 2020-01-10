@@ -156,7 +156,7 @@ export default {
         hero,
         ChevronRight
     },
-    setup (props, { }) {
+    setup () {
         let links = [
             {
                 title: 'Register Your Account',
