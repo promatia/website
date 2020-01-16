@@ -373,7 +373,7 @@ import { onMounted, ref } from '@vue/composition-api'
 import graph from '@/utils/graph'
 import errToStr from '@/utils/errorToString'
 
-function getCounts () {
+async function getCounts () {
     let { data, error } = await graph`
         message userCount
         message userCount30Days
