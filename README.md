@@ -54,6 +54,7 @@ the `/server` folder contains API Models (eg: User) and schema's for the API. It
 - `nodemon` to run server
 
 ## Setting up VSCode for windows
+
 - open terminal in vscode
 - `npm i -g nodemon`
 - `npm i`

@@ -7,12 +7,17 @@ import errorToString from '@/utils/errorToString'
 Vue.use(VueRouter)
 
 let routes = [
-    { path: '/', component: () => import('@/pages/home') },
+    { path: '/', component: () => import('@/pages/home')},
     { path: '/sign-up', component: () => import('@/pages/app/sign-up')},
     { path: '/sign-in', component: () => import('@/pages/app/sign-in')},
-    { path: '/start', component: () => import('@/pages/start') },
+    { path: '/start', component: () => import('@/pages/start')},
+    { path: '/information', component: () => import('@/pages/information')},
     ...group('/app', {auth: true}, [
         { path: '/', component: () => import('@/pages/app/dashboard')}
+    ]),
+    ...group('/information', [
+        { path: '/media', component: () => import('@/pages/information/media')},
+        { path: '/values', component: () => import('@/pages/information/values')},
     ]),
     { path: '/*', component: () => import('@/templates/error')} //404
 ]
