@@ -39,8 +39,6 @@
 import web from "@/layouts/web"
 
 export default {
-        this.$ssrContext.ctx.status = 404
-    },
     components: {
         web
     }
