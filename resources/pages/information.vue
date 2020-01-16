@@ -121,9 +121,6 @@ a p
 import web from "@/layouts/web"
 
 export default {
-    async serverPrefetch(){
-        this.$ssrContext.ctx.status = 404
-    },
     components: {
         web
     }
