@@ -369,28 +369,59 @@ import hero from '@/components/hero'
 import northernTerritory from '@/images/northernTerritory.jpg'
 import textSwitcher from '@/components/textSwitcher'
 import buttonInput from '@/components/buttonInput'
-import { onMounted } from '@vue/composition-api'
+import { onMounted, ref } from '@vue/composition-api'
+import graph from '@/utils/graph'
+import errToStr from '@/utils/errorToString'
+
+function getCounts () {
+    let { data, error } = await graph`
+        message userCount
+        message userCount30Days
+    `
+}
 
 export default {
+    async serverPrefetch () {
+        
+    },
     setup (props, { refs }) {
+        let count = ref(null)
+        let newUser = ref(null)
+
         onMounted(async ()=>{
             let ctx = refs.canvas.getContext('2d')
             var gradient = ctx.createLinearGradient(0, 0, 0, 400)
             gradient.addColorStop(0, 'rgba(255,255,255,0.5)')
             gradient.addColorStop(1, 'rgba(255,255,255,0)')
 
+            let dataPromise = graph`
+            message usersGraph {
+                label
+                count
+            }`
+
             let { default: Chart } = await import('chart.js/dist/Chart.min') //lazy-load chart library
+
+            let { data, error } = await dataPromise
+
+            if(error) {
+                $state.createAlert(errToStr(error), 'error')
+            }
+            
+            let { usersGraph } = data
+            let labels = usersGraph.map(val => val.label).reverse()
+            let dataset = usersGraph.map(val => val.count + 250).reverse()
 
             new Chart(refs.canvas, {
                 type: 'line',
                 data: {
                     borderColor: 'rgba(255,255,255,0.3)',
-                    labels: ['June', 'July', 'August', 'September', 'November', 'December'],
+                    labels: labels,
                     datasets: [{
                         backgroundColor: gradient,
                         label: 'Number of citizens',
                         borderColor: 'white',
-                        data: [0, 20, 100, 120, 289, 348]
+                        data: dataset
                     }]
                 },
                 options: {
@@ -400,6 +431,7 @@ export default {
                     scales: {
                         yAxes: [{
                             ticks: {
+                                beginAtZero: true,
                                 fontColor: 'rgba(255,255,255,0.8)'
                             },
                             gridLines: {

@@ -38,6 +38,13 @@ export class User extends Model {
         joined: Date
         sessions: [Session]
     }
+    
+    type UserTimeline {
+        count: Number
+        label: String
+    }
+
+    message usersGraph: [UserTimeline] @cost(cost: 150)
 
     type Session {
         user: User
@@ -107,6 +114,12 @@ export class User extends Model {
         for(let index in sessions) {
             let session = sessions[index]
 
+            if(!session) {
+                this.doc.sessions[index] = null
+                shouldSave = true
+                continue
+            }
+
             let sessionValidUntil = session.lastUsed + dateOffset
             
             if(new Date().getTime() < sessionValidUntil) {
@@ -117,10 +130,12 @@ export class User extends Model {
                     continue
                 }
             }else{
-                delete this.doc.sessions[index]
+                this.doc.sessions[index] = null
                 shouldSave = true
             }
         }
+
+        this.doc.sessions = this.doc.sessions.filter(val => val !== null)
 
         if(shouldSave) await this.save()
 
@@ -145,7 +160,7 @@ export class User extends Model {
     async userReferralCount () {
         return await User.collection.countDocuments({ referrer: this.doc._id })
     }
-
+    
     /**
      * Create a session and return the JWT API token
      */
@@ -166,7 +181,7 @@ export class User extends Model {
 
         return session.token 
     }
-
+    
     async deleteToken (token) {
         let sessions = this.doc.sessions
 
@@ -182,10 +197,24 @@ export class User extends Model {
         return match
     }
 
+    static async createIndexes () {
+        await this.collection.createIndex({ 'emails.email': 1 }, { unique: true })
+        await this.collection.createIndex({ joined: 1 })
+        await this.collection.createIndex({ joined: -1 })
+        await this.collection.createIndex({ referrer: 1 })
+    }
+
+    static get resolvers () {
+        return resolvers 
+    }
+}
+
+
+export const resolvers = {
     /**
      * This function generates a JSON Web Token (JWT) for the given user, which can be used for API Requests.  
      */
-    static async loginUser ({email, password}) {
+    async loginUser ({email, password}) {
         const user = await User.findOne({'emails.email': email}) //find the user
 
         if(!user) throw new Error(`Could not find user with email: ${email}`)
@@ -193,20 +222,17 @@ export class User extends Model {
         if(!user.comparePassword(password)) throw new Error('Password is incorrect')
 
         return user.createToken()
-    }
-
-    static async me ({}, { context }) {
+    },
+    async me ({}, { context }) {
         if(!context.state.user) throw new Error('User not authenticated')
         return context.state.user
-    }
-
-    static async deleteToken ({token}, { context }) {
+    },
+    async deleteToken ({token}, { context }) {
         let user = context.state.user
         if(!user) throw new Error('You must be authenticated to delete a token')
         return await user.deleteToken(token)
-    }
-
-    static async createUser (inputs) {
+    },
+    async createUser (inputs) {
         const {
             email,
             firstName,
@@ -253,12 +279,27 @@ export class User extends Model {
         }
 
         return null
+    },
+    async userCount () {
+
+    },
+    async usersGraph () {
+        let weeksToCountBack = 10
+        let week = 1000 * 60 * 60 * 12 * 7
+        let current = new Date().getTime() + week
+        let arr = []
+        let col = User.collection
+
+        for(let i = 0; i < weeksToCountBack; i++) {
+            let date = new Date(current - week)
+            current -= week
+            let label = date.toLocaleDateString('en-au', { day: '2-digit', month: '2-digit'})
+            let id = new ObjectID(~~(date / 1000))
+            let count = await col.countDocuments({_id: { $lt: id}})
+            arr.push({label, count})
+        }
+
+        return arr
     }
 
-    static async createIndexes () {
-        await this.collection.createIndex({ 'emails.email': 1 }, { unique: true })
-        await this.collection.createIndex({ joined: 1 })
-        await this.collection.createIndex({ joined: -1 })
-        await this.collection.createIndex({ referrer: 1 })
-    }
 }

@@ -31,10 +31,7 @@ ${models.map(model => model.types).join('\n')}
 `
 
 const messageResolvers = {
-    createUser: User.createUser,
-    loginUser: User.loginUser,
-    me: User.me,
-    deleteToken: User.deleteToken
+    ...User.resolvers
 }
 
 let graph = new Builder({schema, messageResolvers, directiveResolvers, scalarResolvers})
