@@ -118,11 +118,11 @@
                             <div class="graph-info">
                                 <div>
                                     <div>Current Citizen Count</div>
-                                    <h2>{{ count }}</h2>
+                                    <h2>{{ userCount }}</h2>
                                 </div>
                                 <div class="align-text-right">
                                     <div>Past 60 Days</div>
-                                    <h2><span class="green">+{{ lastMonth }}</span> New Citizens</h2>
+                                    <h2><span class="green">+{{ past60Days }}</span> New Citizens</h2>
                                 </div>
                             </div>
                         </div>
@@ -369,26 +369,34 @@ import hero from '@/components/hero'
 import northernTerritory from '@/images/northernTerritory.jpg'
 import textSwitcher from '@/components/textSwitcher'
 import buttonInput from '@/components/buttonInput'
-import { onMounted, ref } from '@vue/composition-api'
+import { onMounted, ref, onServerPrefetch } from '@vue/composition-api'
 import graph from '@/utils/graph'
 import errToStr from '@/utils/errorToString'
 
-async function getCounts () {
-    let { data, error } = await graph`
-        message userCount
-        message userCount30Days
-    `
-}
 
 export default {
-    async serverPrefetch () {
-        
-    },
     setup (props, { refs }) {
-        let count = ref(null)
-        let newUser = ref(null)
+        let userCount = ref(null)
+        let past60Days = ref(null)
 
+        async function setCounts () {
+            let { data, error } = await graph`
+                message userCount
+                message past60Days: userCount(days: 60)
+            `
+
+            if(error) return $state.createAlert(errToStr(error), 'error')
+
+            userCount.value = data.userCount
+            past60Days.value = data.past60Days
+        }
+
+        onServerPrefetch(async ()=>{
+            await setCounts()
+        })
         onMounted(async ()=>{
+            if(userCount.value === null) setCounts()
+
             let ctx = refs.canvas.getContext('2d')
             var gradient = ctx.createLinearGradient(0, 0, 0, 400)
             gradient.addColorStop(0, 'rgba(255,255,255,0.5)')
@@ -450,9 +458,10 @@ export default {
                 }
             })
         })
+        
         return {
-            count: 348,
-            lastMonth: 150,
+            userCount,
+            past60Days,
             northernTerritory
         }
     },

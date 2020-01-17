@@ -125,7 +125,6 @@ async function hotReloading () {
         renderer = createRenderer(bundle, clientManifest)
     })
     
-    serverCompiler.inputFileSystem = fs
     serverCompiler.watch({}, ()=>{})
 
     serverCompiler.hooks.afterEmit.tap('afterEmit', ()=>{

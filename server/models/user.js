@@ -38,13 +38,6 @@ export class User extends Model {
         joined: Date
         sessions: [Session]
     }
-    
-    type UserTimeline {
-        count: Number
-        label: String
-    }
-
-    message usersGraph: [UserTimeline] @cost(cost: 150)
 
     type Session {
         user: User
@@ -53,6 +46,13 @@ export class User extends Model {
         agent: String
     }
     
+    type UserTimeline {
+        count: Number
+        label: String
+    }
+
+    message usersGraph: [UserTimeline] @cost(cost: 300)
+    message userCount(days: Number): Number @cost(cost: 150)
     message me: User @authenticated @cost(cost: 50)
 
     message loginUser (
@@ -209,7 +209,6 @@ export class User extends Model {
     }
 }
 
-
 export const resolvers = {
     /**
      * This function generates a JSON Web Token (JWT) for the given user, which can be used for API Requests.  
@@ -280,17 +279,23 @@ export const resolvers = {
 
         return null
     },
-    async userCount () {
+    async userCount ({days}) {
+        let day = 1000 * 60 * 60 * 24
+        let query = {}
+        if(days) { //check for users in the past number of days
+            query._id = { $lt: new ObjectID(~~(new Date() - day * days))}
+        }
 
+        return await User.collection.countDocuments(query)
     },
     async usersGraph () {
-        let weeksToCountBack = 10
-        let week = 1000 * 60 * 60 * 12 * 7
+        let weeksToCountBack = 8
+        let week = 1000 * 60 * 60 * 24 * 7
         let current = new Date().getTime() + week
         let arr = []
         let col = User.collection
 
-        for(let i = 0; i < weeksToCountBack; i++) {
+        for(let i = 0; i < weeksToCountBack; i++) { //create an array item containing date and count for each week
             let date = new Date(current - week)
             current -= week
             let label = date.toLocaleDateString('en-au', { day: '2-digit', month: '2-digit'})
@@ -301,5 +306,4 @@ export const resolvers = {
 
         return arr
     }
-
 }
