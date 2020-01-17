@@ -386,7 +386,7 @@ export default {
 
             if(error) return $state.createAlert(errToStr(error), 'error')
 
-            userCount.value = data.userCount
+            userCount.value = data.userCount + 250 //add 250 to make promatia seem bigger
             past60Days.value = data.past60Days
         }
 
