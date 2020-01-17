@@ -219,7 +219,7 @@
                             <div>55,000km<sup>2</sup></div>
 
                             <div><h3>Population</h3></div>
-                            <div>{{ count }} Citizens</div>
+                            <div>{{ userCount }} Citizens</div>
 
                             <div><h3>Currency</h3></div>
                             <div><router-link to="/information/currency">Proma Ⱀ</router-link></div>
@@ -373,7 +373,6 @@ import { onMounted, ref, onServerPrefetch } from '@vue/composition-api'
 import graph from '@/utils/graph'
 import errToStr from '@/utils/errorToString'
 
-
 export default {
     setup (props, { refs }) {
         let userCount = ref(null)
@@ -395,12 +394,7 @@ export default {
             await setCounts()
         })
         onMounted(async ()=>{
-            if(userCount.value === null) setCounts()
-
-            let ctx = refs.canvas.getContext('2d')
-            var gradient = ctx.createLinearGradient(0, 0, 0, 400)
-            gradient.addColorStop(0, 'rgba(255,255,255,0.5)')
-            gradient.addColorStop(1, 'rgba(255,255,255,0)')
+            setCounts()
 
             let dataPromise = graph`
             message usersGraph {
@@ -410,27 +404,12 @@ export default {
 
             let { default: Chart } = await import('chart.js/dist/Chart.min') //lazy-load chart library
 
-            let { data, error } = await dataPromise
-
-            if(error) {
-                $state.createAlert(errToStr(error), 'error')
-            }
-            
-            let { usersGraph } = data
-            let labels = usersGraph.map(val => val.label).reverse()
-            let dataset = usersGraph.map(val => val.count + 250).reverse()
-
-            new Chart(refs.canvas, {
+            let chart = new Chart(refs.canvas, {
                 type: 'line',
                 data: {
+                    labels: [],
                     borderColor: 'rgba(255,255,255,0.3)',
-                    labels: labels,
-                    datasets: [{
-                        backgroundColor: gradient,
-                        label: 'Number of citizens',
-                        borderColor: 'white',
-                        data: dataset
-                    }]
+                    datasets: []
                 },
                 options: {
                     legend: {
@@ -457,6 +436,31 @@ export default {
                     }
                 }
             })
+
+            let { data, error } = await dataPromise
+
+            if(error) {
+                $state.createAlert(errToStr(error), 'error')
+            }
+            
+            let { usersGraph } = data
+            let labels = usersGraph.map(val => val.label).reverse()
+            let dataset = usersGraph.map(val => val.count + 250).reverse()
+
+            let ctx = refs.canvas.getContext('2d')
+            var gradient = ctx.createLinearGradient(0, 0, 0, 400)
+            gradient.addColorStop(0, 'rgba(255,255,255,0.5)')
+            gradient.addColorStop(1, 'rgba(255,255,255,0)')
+
+            chart.data.labels = labels
+            chart.data.datasets.push({
+                backgroundColor: gradient,
+                label: 'Number of citizens',
+                borderColor: 'white',
+                data: dataset
+            })
+
+            chart.update()
         })
         
         return {
