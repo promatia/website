@@ -289,7 +289,7 @@ export const resolvers = {
         return await User.collection.countDocuments(query)
     },
     async usersGraph () {
-        let weeksToCountBack = 8
+        let weeksToCountBack = 7
         let week = 1000 * 60 * 60 * 24 * 7
         let current = new Date().getTime() + week
         let arr = []
