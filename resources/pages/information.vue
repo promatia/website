@@ -118,7 +118,7 @@ a p
         text-decoration: none
 </style>
 <script>
-import web from "@/layouts/web"
+import web from '@/layouts/web'
 
 export default {
     components: {
