@@ -48,6 +48,7 @@
                 <a href="https://www.facebook.com/promatiagov"><Facebook :size="32"/></a>
                 <a href="https://twitter.com/PromatiaGov"><Twitter :size="32"/></a>
                 <a href="https://www.instagram.com/promatiagov/"><Instagram :size="32"/></a>
+                <router-link to="/outlinks"><Backlink :size="32"/></router-link>
             </div>
         </div>
         <div class="footer-item bottom-footer">
@@ -154,6 +155,7 @@ import FacebookMessenger from 'icons/FacebookMessenger'
 import Facebook from 'icons/Facebook'
 import Twitter from 'icons/Twitter'
 import Instagram from 'icons/Instagram'
+import Backlink from 'icons/Link'
 
 export default {
     setup () {
@@ -217,7 +219,8 @@ export default {
         FacebookMessenger,
         Facebook,
         Twitter,
-        Instagram
+        Instagram,
+        Backlink
     }
 }
 </script>
