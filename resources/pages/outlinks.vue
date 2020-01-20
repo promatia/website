@@ -1,6 +1,6 @@
 <template>
     <web>
-        <template slot="title">Media</template>
+        <template slot="title">Outlinks</template>
         <template slot="content">
             <div class="wrapper">
                 <h1>Crawl Outlinks for Search Engine Optimisation</h1>
