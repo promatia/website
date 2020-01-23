@@ -47,6 +47,10 @@ export default {
                 {
                     link: 'https://www.google.com/maps/d/u/0/viewer?mid=10cHozI1kTV7NdduIaFhiMlXWwwh1YUW2&hl=en&ll=-15.7567357%2C135.85530719999997&z=16',
                     text: 'Promatia Map'
+                },
+                {
+                    link: 'https://ello.co/dominusvilicus',
+                    text: 'Ello DominusVilicus Promatia'
                 }
             ]
         }
