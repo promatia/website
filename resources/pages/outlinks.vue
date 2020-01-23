@@ -51,6 +51,10 @@ export default {
                 {
                     link: 'https://ello.co/dominusvilicus',
                     text: 'Ello DominusVilicus Promatia'
+                },
+                {
+                    link: 'http://s220058662.websitehome.co.uk/profile.php?pid=5e294e3bc1ddd6.58731113',
+                    text: 'Promatia Location'
                 }
             ]
         }
