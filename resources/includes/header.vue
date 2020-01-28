@@ -182,4 +182,5 @@ export default {
         MenuIcon
     }
 }
+
 </script>
