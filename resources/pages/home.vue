@@ -165,7 +165,7 @@
                         </p>
                         <h3>Banking &amp; Tax</h3>
                         <p>
-                            Promatia has created a new digital currency, the Proma, and banking system to come along with it. Our banking system PromaBank automates taxation from the Point of Sale. Our tax is a progressive consumption tax charged on purchases. Income and wages are tax-free until the money that was earned is spent. Promatia only has one central bank, which enables instantaneous money transfers nationwide.
+                            Promatia has created a new digital currency, the Proma, and the banking system to come along with it. Our banking system PromaBank automates taxation from the Point of Sale. Our tax is a progressive consumption tax charged on purchases. Income and wages are tax-free until the money that was earned is spent. Promatia only has one central bank, which enables instantaneous money transfers nationwide.
                         </p>
                         <h3>The Plan To Establish a City</h3>
                         <p>

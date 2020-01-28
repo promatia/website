@@ -55,6 +55,14 @@ export default {
                 {
                     link: 'http://s220058662.websitehome.co.uk/profile.php?pid=5e294e3bc1ddd6.58731113',
                     text: 'Promatia Location'
+                },
+                {
+                    link: 'https://aimware.net/forum/user-305608.html',
+                    text: 'Aimware Forum'
+                },
+                {
+                    link: 'https://www.wikidata.org/wiki/Q83752609',
+                    text: 'Promatia Data'
                 }
             ]
         }
