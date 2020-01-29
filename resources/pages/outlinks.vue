@@ -63,6 +63,10 @@ export default {
                 {
                     link: 'https://www.wikidata.org/wiki/Q83752609',
                     text: 'Promatia Data'
+                },
+                {
+                    link: 'https://teespring.com/stores/promatia',
+                    text: 'Teespring'
                 }
             ]
         }
