@@ -67,6 +67,22 @@ export default {
                 {
                     link: 'https://teespring.com/stores/promatia',
                     text: 'Teespring'
+                },
+                {
+                    link: 'http://www.folkd.com/detail/promatia.com',
+                    text: 'Folkd'
+                },
+                {
+                    link: 'http://www.folkd.com/user/DominusVilicus',
+                    text: 'Folkd DominusVilicus'
+                },
+                {
+                    link: 'https://www.hotfrog.com.au/company/1297530045644800',
+                    text: 'Hotfrog Promatia'
+                },
+                {
+                    link: 'https://www.hotfrog.com/company/1099622709657600',
+                    text: 'Promatia Hotfrog'
                 }
             ]
         }
