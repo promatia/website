@@ -38,17 +38,17 @@
         </div>
         <div class="footer-item social-footer">
             <div class="inner-footer flex justify-center">
-                <a href="mailto:gov@promatia.com"><Email :size="32"/></a>
-                <a href="https://dev.to/promatia"><DevTo :size="32"/></a>
-                <a href="https://www.twitch.tv/promatiagov"><Twitch :size="32"/></a>
-                <a href="https://www.reddit.com/r/Promatia/"><Reddit :size="32"/></a>
-                <a href="https://www.youtube.com/channel/UCL8Fjjq-gSzWMbAC3sEOXpA"><Youtube :size="32"/></a>
-                <a href="https://discord.gg/U6Dq8XC"><Discord :size="32"/></a>
-                <a href="http://m.me/promatiagov"><FacebookMessenger :size="32"/></a>
-                <a href="https://www.facebook.com/promatiagov"><Facebook :size="32"/></a>
-                <a href="https://twitter.com/PromatiaGov"><Twitter :size="32"/></a>
-                <a href="https://www.instagram.com/promatiagov/"><Instagram :size="32"/></a>
-                <router-link to="/outlinks"><Backlink :size="32"/></router-link>
+                <a title="Email" href="mailto:gov@promatia.com"><Email :size="32"/></a>
+                <a title="Dev.to" href="https://dev.to/promatia"><DevTo :size="32"/></a>
+                <a title="Twitch" href="https://www.twitch.tv/promatiagov"><Twitch :size="32"/></a>
+                <a title="Reddit" href="https://www.reddit.com/r/Promatia/"><Reddit :size="32"/></a>
+                <a title="Youtube" href="https://www.youtube.com/channel/UCL8Fjjq-gSzWMbAC3sEOXpA"><Youtube :size="32"/></a>
+                <a title="Discord" href="https://discord.gg/U6Dq8XC"><Discord :size="32"/></a>
+                <a title="Messenger" href="http://m.me/promatiagov"><FacebookMessenger :size="32"/></a>
+                <a title="Facebook" href="https://www.facebook.com/promatiagov"><Facebook :size="32"/></a>
+                <a title="Twitter" href="https://twitter.com/PromatiaGov"><Twitter :size="32"/></a>
+                <a title="Instagram" href="https://www.instagram.com/promatiagov/"><Instagram :size="32"/></a>
+                <router-link title="Outlinks" to="/outlinks"><Backlink :size="32"/></router-link>
             </div>
         </div>
         <div class="footer-item bottom-footer">

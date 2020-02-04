@@ -83,6 +83,14 @@ export default {
                 {
                     link: 'https://www.hotfrog.com/company/1099622709657600',
                     text: 'Promatia Hotfrog'
+                },
+                {
+                    link: 'http://www.cruisersforum.com/forums/members/dominusvilicus-222027.html',
+                    text: 'Cruisers Forum Dominus'
+                },
+                {
+                    link: 'https://www.cylex-australia.com/company/promatia-24378584.html',
+                    text: 'Cylex'
                 }
             ]
         }
