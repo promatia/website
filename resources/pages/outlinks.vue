@@ -61,7 +61,7 @@ export default {
                     text: 'Aimware Forum'
                 },
                 {
-                    link: 'https://www.wikidata.org/wiki/Q83752609',
+                    link: 'https://www.wikidata.org/wiki/Q84344141',
                     text: 'Promatia Data'
                 },
                 {
