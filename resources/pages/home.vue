@@ -22,17 +22,56 @@
                 ]
             }
             </script>
-            
+            <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "GovernmentOffice",
+                "name": "Promatia",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "1 Promatia Road",
+                    "addressLocality": "Calvert",
+                    "addressRegion": "NT",
+                    "postalCode": "0862",
+                    "addressCountry": "Australia"
+                },
+                "review": {
+                    "@type": "Review",
+                    "reviewRating": "5",
+                    "bestRating": "5",
+                    "author": {
+                        "@type": "Organization",
+                        "name": "Promatia"
+                    },
+                    "reviewBody": "You can easily access all government services on Promatia"
+                },
+                "alternateName": "Government of Promatia",
+                "url": "https://promatia.com",
+                "logo": "https://promatia.com/android-chrome-512x512.png",
+                "foundingDate": "1st August, 2019",
+                "description": "Promatia is a new government project located in Northern Australia with the goals of establishing a new, technologically innovative and environmentally sustainable nation with high living standards. Promatia's historical roots go as far back as 1999, but have unified with other new-country-projects to form what is now Promatia",
+                "sameAs": [
+                    "https://facebook.com/promatiagov",
+                    "https://twitter.com/promatiagov",
+                    "https://promatia.com"
+                ]
+            }
+            </script>
             <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
                 "@type": "SoftwareApplication",
-                "name": "myPro",
-                "applicationCategory": "https://schema.org/WebApplication",
-                "aggregateRating": {
-                    "@type": "AggregateRating",
-                    "ratingValue": "4.96",
-                    "ratingCount": "364"
+                "name": "myPro - Promatia",
+                "applicationCategory": "https://schema.org/BrowserApplication",
+                "review": {
+                    "@type": "Review",
+                    "reviewRating": "5",
+                    "bestRating": "5",
+                    "author": {
+                        "@type": "Organization",
+                        "name": "Promatia"
+                    },
+                    "reviewBody": "You can easily access all government services on Promatia"
                 },
                 "offers": {
                     "@type": "Offer",

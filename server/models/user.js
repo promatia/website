@@ -239,7 +239,8 @@ export const resolvers = {
             callingCode,
             phoneNumber,
             countryCode,
-            referrer
+            referrer,
+            password
         } = inputs
 
         if(!email) throw new Error('You must enter an email address')
@@ -247,6 +248,7 @@ export const resolvers = {
         if(!lastName) throw new Error('You must enter a last name')
         if(!callingCode) throw new Error('You must enter a calling code')
         if(!phoneNumber) throw new Error('You must enter a phone number')
+        if(!password) throw new Error('You must enter a last name')
 
         let user = new User({
             emails: [{email, verified: false}],
@@ -258,7 +260,7 @@ export const resolvers = {
             joined: new Date().getTime()
         })
 
-        user.password = inputs.password //hashes password
+        user.password = password //hashes password
 
         if(referrer) { // set the user's referrer by finding the user that referred them
             try {

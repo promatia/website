@@ -89,8 +89,20 @@ export default {
                     text: 'Cruisers Forum Dominus'
                 },
                 {
-                    link: 'https://www.cylex-australia.com/company/promatia-24378584.html',
-                    text: 'Cylex'
+                    link: 'https://amazon.com/dp/B084DFZ56G',
+                    text: 'Albert Book'
+                },
+                {
+                    link: 'https://news.google.com/articles/CAIiEJRfUAzItD2izf_vMBWD9_cqGQgEKhAIACoHCAowgZ2TCzCwyqgDMIbExwY?hl=en-AU&gl=AU&ceid=AU:en',
+                    text: 'Google News'
+                },
+                {
+                    link: 'http://www.myfolio.com/DominusVilicus',
+                    text: 'PromaTimes Folio'
+                },
+                {
+                    link: 'https://www.teamapp.com/clubs/519488/sponsors',
+                    text: 'Promatia Teamapp'
                 }
             ]
         }
