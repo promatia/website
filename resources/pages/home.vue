@@ -37,13 +37,19 @@
                 },
                 "review": {
                     "@type": "Review",
-                    "reviewRating": "5",
-                    "bestRating": "5",
-                    "author": {
-                        "@type": "Organization",
-                        "name": "Promatia"
+                    "reviewRating": {
+                        "@type": "Rating",
+                        "ratingValue": 5
                     },
-                    "reviewBody": "You can easily access all government services on Promatia"
+                    "author": {
+                        "@type": "Person",
+                        "name": "Dominus Vilicus"
+                    },
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "PromaTimes"
+                    },
+                    "reviewBody": "An amazing rapidly forming new country!"
                 },
                 "alternateName": "Government of Promatia",
                 "url": "https://promatia.com",
@@ -65,11 +71,17 @@
                 "applicationCategory": "https://schema.org/BrowserApplication",
                 "review": {
                     "@type": "Review",
-                    "reviewRating": "5",
-                    "bestRating": "5",
+                    "reviewRating": {
+                        "@type": "Rating",
+                        "ratingValue": 5
+                    },
                     "author": {
+                        "@type": "Person",
+                        "name": "Dominus Vilicus"
+                    },
+                    "publisher": {
                         "@type": "Organization",
-                        "name": "Promatia"
+                        "name": "PromaTimes"
                     },
                     "reviewBody": "You can easily access all government services on Promatia"
                 },
