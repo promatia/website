@@ -103,6 +103,18 @@ export default {
                 {
                     link: 'https://www.teamapp.com/clubs/519488/sponsors',
                     text: 'Promatia Teamapp'
+                },
+                {
+                    link: 'https://www.behance.net/albertmarashi',
+                    text: 'Behance Dominus Vilicus'
+                },
+                {
+                    link: 'https://news.google.com/publications/CAAqBwgKMIGdkwswsMqoAw?hl=en-AU&gl=AU&ceid=AU:en',
+                    text: 'Google News - PromaTimes'
+                },
+                {
+                    link: 'https://renovationsadelaide.com.au',
+                    text: 'Renovations Adelaide, Patrick Clare'
                 }
             ]
         }
