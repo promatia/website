@@ -27,6 +27,25 @@
             <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Promatia",
+                "email": "gov@promatia.com",
+                "alternateName": "Government of Promatia",
+                "url": "https://promatia.com",
+                "logo": "https://promatia.com/android-chrome-512x512.png",
+                "foundingDate": "1st August, 2019",
+                "description": "Promatia is a new government project located in Northern Australia with the goals of establishing a new, technologically innovative and environmentally sustainable nation with high living standards. Promatia's historical roots go as far back as 1999, but have unified with other new-country-projects to form what is now Promatia",
+                "sameAs": [
+                    "https://facebook.com/promatiagov",
+                    "https://twitter.com/promatiagov",
+                    "https://promatia.com",
+                    "https://www.wikidata.org/wiki/Q84344141"
+                ]
+            }
+            </script>
+            <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
                 "@type": "GovernmentOffice",
                 "name": "Promatia",
                 "address": {
