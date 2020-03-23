@@ -10,6 +10,7 @@
                 "@context": "https://schema.org",
                 "@type": "GovernmentOrganization",
                 "name": "Promatia",
+                "email": "gov@promatia.com",
                 "alternateName": "Government of Promatia",
                 "url": "https://promatia.com",
                 "logo": "https://promatia.com/android-chrome-512x512.png",
@@ -18,7 +19,8 @@
                 "sameAs": [
                     "https://facebook.com/promatiagov",
                     "https://twitter.com/promatiagov",
-                    "https://promatia.com"
+                    "https://promatia.com",
+                    "https://www.wikidata.org/wiki/Q84344141"
                 ]
             }
             </script>
