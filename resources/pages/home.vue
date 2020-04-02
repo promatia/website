@@ -20,7 +20,8 @@
                     "https://facebook.com/promatiagov",
                     "https://twitter.com/promatiagov",
                     "https://promatia.com",
-                    "https://www.wikidata.org/wiki/Q84344141"
+                    "https://www.wikidata.org/wiki/Q84344141",
+                    "https://www.youtube.com/channel/UCL8Fjjq-gSzWMbAC3sEOXpA"
                 ]
             }
             </script>
@@ -39,11 +40,12 @@
                     "https://facebook.com/promatiagov",
                     "https://twitter.com/promatiagov",
                     "https://promatia.com",
-                    "https://www.wikidata.org/wiki/Q84344141"
+                    "https://www.wikidata.org/wiki/Q84344141",
+                    "https://www.youtube.com/channel/UCL8Fjjq-gSzWMbAC3sEOXpA"
                 ]
             }
             </script>
-            <script type="application/ld+json">
+            <!--<script type="application/ld+json">
             {
                 "@context": "https://schema.org",
                 "@type": "GovernmentOffice",
@@ -80,15 +82,17 @@
                 "sameAs": [
                     "https://facebook.com/promatiagov",
                     "https://twitter.com/promatiagov",
-                    "https://promatia.com"
+                    "https://promatia.com",
+                    "https://www.wikidata.org/wiki/Q84344141",
+                    "https://www.youtube.com/channel/UCL8Fjjq-gSzWMbAC3sEOXpA"
                 ]
             }
-            </script>
+            </script>-->
             <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
                 "@type": "SoftwareApplication",
-                "name": "myPro - Promatia",
+                "name": "myPro",
                 "applicationCategory": "https://schema.org/BrowserApplication",
                 "review": {
                     "@type": "Review",
