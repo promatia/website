@@ -45,7 +45,7 @@
                 ]
             }
             </script>
-            <!--<script type="application/ld+json">
+            <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
                 "@type": "GovernmentOffice",
@@ -87,7 +87,7 @@
                     "https://www.youtube.com/channel/UCL8Fjjq-gSzWMbAC3sEOXpA"
                 ]
             }
-            </script>-->
+            </script>
             <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
