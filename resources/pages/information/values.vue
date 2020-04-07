@@ -21,7 +21,6 @@
                 <p>
                     Promatia is not a hoax, not a prank, and not a teenage dream. We are a collaboration of like minded individuals from around the globe with knowledge in diverse fields ranging from information security and public key cryptography, architectural design and city planing, and machine learning.
                 </p>
-                <p>
                 <h1 class="big-text">
                     Skills
                 </h1>
@@ -55,9 +54,6 @@
 import web from "@/layouts/web"
 
 export default {
-    async serverPrefetch(){
-        this.$ssrContext.ctx.status = 404
-    },
     components: {
         web
     }

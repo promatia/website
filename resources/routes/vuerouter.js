@@ -18,6 +18,7 @@ let routes = [
     ...group('/information', [
         { path: '/media', component: () => import('@/pages/information/media')},
         { path: '/values', component: () => import('@/pages/information/values')},
+        { path: '/government', component: () => import('@/pages/information/government')},
     ]),
     { path: '/*', component: () => import('@/templates/error')} //404
 ]

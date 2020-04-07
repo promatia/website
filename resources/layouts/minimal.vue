@@ -37,7 +37,7 @@
 </template>
 <style lang="stylus">
 @import "~@/stylus/variables"
-@import url('https://fonts.googleapis.com/css?family=Saira:300,400,500,600,700&display=swap')
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,600,700&display=swap')
 
 .material-design-icon
     display flex
@@ -45,13 +45,13 @@
 
 body
     background #eee
-    font-family 'Saira', sans-serif
+    font-family 'Fira Sans', sans-serif
     color mix($main, #222222, 12%)
 
 a
     text-decoration none 
     color $main
-    font-weight 500
+    font-weight 400
 
 .flex
     display flex
