@@ -165,7 +165,7 @@ a p
         text-decoration: none
 </style>
 <script>
-import web from "@/layouts/web"
+import web from '@/layouts/web'
 import VisionIcon from 'icons/Eye'
 import GovernmentIcon from 'icons/Bank'
 import PlanIcon from 'icons/FloorPlan'
@@ -182,7 +182,6 @@ import FamilyIcon from 'icons/HomeHeart'
 import BudgetIcon from 'icons/ChartPie'
 import LawsIcon from 'icons/ScriptText'
 import TourismIcon from 'icons/AirplaneLanding'
-import web from '@/layouts/web'
 
 export default {
     components: {
