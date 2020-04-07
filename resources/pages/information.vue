@@ -182,6 +182,7 @@ import FamilyIcon from 'icons/HomeHeart'
 import BudgetIcon from 'icons/ChartPie'
 import LawsIcon from 'icons/ScriptText'
 import TourismIcon from 'icons/AirplaneLanding'
+import web from '@/layouts/web'
 
 export default {
     components: {

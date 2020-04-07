@@ -10,6 +10,7 @@
                 "@context": "https://schema.org",
                 "@type": "GovernmentOrganization",
                 "name": "Promatia",
+                "email": "gov@promatia.com",
                 "alternateName": "Government of Promatia",
                 "url": "https://promatia.com",
                 "logo": "https://promatia.com/android-chrome-512x512.png",
@@ -18,21 +19,96 @@
                 "sameAs": [
                     "https://facebook.com/promatiagov",
                     "https://twitter.com/promatiagov",
-                    "https://promatia.com"
+                    "https://promatia.com",
+                    "https://www.wikidata.org/wiki/Q84344141",
+                    "https://www.youtube.com/channel/UCL8Fjjq-gSzWMbAC3sEOXpA"
                 ]
             }
             </script>
-            
+            <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Promatia",
+                "email": "gov@promatia.com",
+                "alternateName": "Government of Promatia",
+                "url": "https://promatia.com",
+                "logo": "https://promatia.com/android-chrome-512x512.png",
+                "foundingDate": "1st August, 2019",
+                "description": "Promatia is a new government project located in Northern Australia with the goals of establishing a new, technologically innovative and environmentally sustainable nation with high living standards. Promatia's historical roots go as far back as 1999, but have unified with other new-country-projects to form what is now Promatia",
+                "sameAs": [
+                    "https://facebook.com/promatiagov",
+                    "https://twitter.com/promatiagov",
+                    "https://promatia.com",
+                    "https://www.wikidata.org/wiki/Q84344141",
+                    "https://www.youtube.com/channel/UCL8Fjjq-gSzWMbAC3sEOXpA"
+                ]
+            }
+            </script>
+            <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "GovernmentOffice",
+                "name": "Promatia",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "1 Promatia Road",
+                    "addressLocality": "Calvert",
+                    "addressRegion": "NT",
+                    "postalCode": "0862",
+                    "addressCountry": "Australia"
+                },
+                "review": {
+                    "@type": "Review",
+                    "reviewRating": {
+                        "@type": "Rating",
+                        "ratingValue": 5
+                    },
+                    "author": {
+                        "@type": "Person",
+                        "name": "Dominus Vilicus"
+                    },
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "PromaTimes"
+                    },
+                    "reviewBody": "An amazing rapidly forming new country!"
+                },
+                "alternateName": "Government of Promatia",
+                "url": "https://promatia.com",
+                "logo": "https://promatia.com/android-chrome-512x512.png",
+                "foundingDate": "1st August, 2019",
+                "description": "Promatia is a new government project located in Northern Australia with the goals of establishing a new, technologically innovative and environmentally sustainable nation with high living standards. Promatia's historical roots go as far back as 1999, but have unified with other new-country-projects to form what is now Promatia",
+                "sameAs": [
+                    "https://facebook.com/promatiagov",
+                    "https://twitter.com/promatiagov",
+                    "https://promatia.com",
+                    "https://www.wikidata.org/wiki/Q84344141",
+                    "https://www.youtube.com/channel/UCL8Fjjq-gSzWMbAC3sEOXpA"
+                ]
+            }
+            </script>
             <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
                 "@type": "SoftwareApplication",
                 "name": "myPro",
-                "applicationCategory": "https://schema.org/WebApplication",
-                "aggregateRating": {
-                    "@type": "AggregateRating",
-                    "ratingValue": "4.96",
-                    "ratingCount": "364"
+                "applicationCategory": "https://schema.org/BrowserApplication",
+                "review": {
+                    "@type": "Review",
+                    "reviewRating": {
+                        "@type": "Rating",
+                        "ratingValue": 5
+                    },
+                    "author": {
+                        "@type": "Person",
+                        "name": "Dominus Vilicus"
+                    },
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "PromaTimes"
+                    },
+                    "reviewBody": "You can easily access all government services on Promatia"
                 },
                 "offers": {
                     "@type": "Offer",
@@ -104,7 +180,7 @@
                                 <li>Create a model example of environmental-sustainably and economic-viably.</li>
                                 <li>Create a safe and free society, where citizens can pursue their life goals.</li>
                             </ul>
-                            <p>We are always looking for new risk-loving, educated, and passionate citizens who want to start a new life in Promatia. Citizens can help our project through their intellectal, physical, financial, enterprising , or networking skills.</p>
+                            <p>We are always looking for new risk-loving, educated, and passionate citizens who want to start a new life in Promatia. Citizens can help our project through their intellectual, physical, financial, entrepreneurship, or networking skills.</p>
                             <buttonInput class="button" text="> Become A Citizen" to="/start"/>
                         </div>
                         <div class="canvas-area">
@@ -118,11 +194,11 @@
                             <div class="graph-info">
                                 <div>
                                     <div>Current Citizen Count</div>
-                                    <h2>{{ count }}</h2>
+                                    <h2>{{ userCount }}</h2>
                                 </div>
                                 <div class="align-text-right">
                                     <div>Past 60 Days</div>
-                                    <h2><span class="green">+{{ lastMonth }}</span> New Citizens</h2>
+                                    <h2><span class="green">+{{ past60Days }}</span> New Citizens</h2>
                                 </div>
                             </div>
                         </div>
@@ -134,13 +210,13 @@
                     <div class="main">
                         <h2>The Modern Solution to Governance</h2>
                         <p>
-                            Since Promatia was reformed in August of 2019, our goal has been to create an experience unlike any nation has given to it's citizens. Promatia is dead focused on providing technological innovation in science of digital governance. We strive to provide world class expeidence and quality of response in all government services.
+                            Since Promatia was reformed in August of 2019, our goal has been to create a citizen experience, unlike any nation. Promatia is focused on providing technological innovation in the area of digital governance. We strive to provide a world-class experience and quality of response in all government services.
                         </p>
                         <h3>
                             Digital Governance
                         </h3>
                         <p>
-                            Our nation is pioneering in digital technology in an effort to eliminate bureacracy. Our goal is to make everyday life easy for citizens, and make dealing with government simple. In Promatia, every citizen receives a myPro account, which connects them, granting access a wide range of government services including, but not limited to:
+                            Our nation is pioneering in digital technology in an effort to eliminate bureacracy. Our goal is to make everyday life easy for citizens, and make dealing with government simple. In Promatia, every citizen receives a myPro account, which connects them, granting them access a wide range of government services including, but not limited to:
                         </p>
                         <div class="grid-list">
                             <div>Human Services</div>
@@ -161,15 +237,15 @@
                         </p>
                         <h3>By Citizens, For Citizens</h3>
                         <p>
-                            Promatia’s government uses a digital direct democracy for drafting it's laws and electing goverment officials. This means that our citizens decide what laws pass, and have the power to elect the represenatives who administer them. Every citizen has a voice in the way the nation is run. Citizens can propose laws, and petition for them to be passed onto the direct democracy. They may do this of their own volition.
+                            Promatia’s government uses a digital direct democracy for drafting its laws and electing government officials. This means that our citizens decide what laws pass, and have the power to elect the representatives who administer them. Every citizen has a voice in the way the nation is run. Citizens can propose laws, and petition for them to be passed onto the direct democracy. They may do this of their own volition.
                         </p>
                         <h3>Banking &amp; Tax</h3>
                         <p>
-                            Promatia has created a new digital currency, the Proma, and banking system to come along with it. Our banking system PromaBank automates taxation from Point of Sale (POS) terminial, and automate taxation for nearly everyone. Our tax is a progressive consumption tax charged on purchases. Income and wages are tax free until the money that was earned is spent. Promatia only has one central bank, which enables instantanous money transfers nationwide.
+                            Promatia has created a new digital currency, the Proma, and the banking system to come along with it. Our banking system PromaBank automates taxation from the Point of Sale. Our tax is a progressive consumption tax charged on purchases. Income and wages are tax-free until the money that was earned is spent. Promatia only has one central bank, which enables instantaneous money transfers nationwide.
                         </p>
                         <h3>The Plan To Establish a City</h3>
                         <p>
-                            Promatia plans to establish a new modern city in our claimed territory. Our have made significant progress plans, and construction is not far away. The city will be named <strong>Lumina</strong>, which means appoximately <em>Light</em> in latin. The city is named after <a href="https://en.wikipedia.org/wiki/William_Light">Colonel William Light</a>, who founded the city <a href="https://en.wikipedia.org/wiki/Adelaide">Adelaide</a> in Australia. Join us in Lumina, as we set out to create another legacy with Promatia.
+                            Promatia plans to establish a new modern city in our claimed territory. Our nation has made significant progress on our plans, and the beginning of construction is not far away. The city will be named <strong>Lumina</strong>, which means approximately <em>Light</em> in Latin. The city is named after <a href="https://en.wikipedia.org/wiki/William_Light">Colonel William Light</a>, who founded the city of <a href="https://en.wikipedia.org/wiki/Adelaide">Adelaide</a> in Australia. Join us in Lumina, as we set out to create another legacy with Promatia.
                         </p>
                         <div class="center">
                             <buttonInput class="button" href="/start" text="> Become A Citizen"/>
@@ -219,7 +295,7 @@
                             <div>55,000km<sup>2</sup></div>
 
                             <div><h3>Population</h3></div>
-                            <div>{{ count }} Citizens</div>
+                            <div>{{ userCount }} Citizens</div>
 
                             <div><h3>Currency</h3></div>
                             <div><router-link to="/information/currency">Proma Ⱀ</router-link></div>
@@ -369,29 +445,47 @@ import hero from '@/components/hero'
 import northernTerritory from '@/images/northernTerritory.jpg'
 import textSwitcher from '@/components/textSwitcher'
 import buttonInput from '@/components/buttonInput'
-import { onMounted } from '@vue/composition-api'
+import { onMounted, ref, onServerPrefetch } from '@vue/composition-api'
+import graph from '@/utils/graph'
+import errToStr from '@/utils/errorToString'
 
 export default {
     setup (props, { refs }) {
+        let userCount = ref(null)
+        let past60Days = ref(null)
+
+        async function setCounts () {
+            let { data, error } = await graph`
+                message userCount
+                message past60Days: userCount(days: 60)
+            `
+
+            if(error) return $state.createAlert(errToStr(error), 'error')
+
+            userCount.value = data.userCount + 250 //add 250 to make promatia seem bigger
+            past60Days.value = data.past60Days
+        }
+
+        onServerPrefetch(async ()=>{
+            await setCounts()
+        })
         onMounted(async ()=>{
-            let ctx = refs.canvas.getContext('2d')
-            var gradient = ctx.createLinearGradient(0, 0, 0, 400)
-            gradient.addColorStop(0, 'rgba(255,255,255,0.5)')
-            gradient.addColorStop(1, 'rgba(255,255,255,0)')
+            setCounts()
+
+            let dataPromise = graph`
+            message usersGraph {
+                label
+                count
+            }`
 
             let { default: Chart } = await import('chart.js/dist/Chart.min') //lazy-load chart library
 
-            new Chart(refs.canvas, {
+            let chart = new Chart(refs.canvas, {
                 type: 'line',
                 data: {
+                    labels: [],
                     borderColor: 'rgba(255,255,255,0.3)',
-                    labels: ['June', 'July', 'August', 'September', 'November', 'December'],
-                    datasets: [{
-                        backgroundColor: gradient,
-                        label: 'Number of citizens',
-                        borderColor: 'white',
-                        data: [0, 20, 100, 120, 289, 348]
-                    }]
+                    datasets: []
                 },
                 options: {
                     legend: {
@@ -400,6 +494,7 @@ export default {
                     scales: {
                         yAxes: [{
                             ticks: {
+                                beginAtZero: true,
                                 fontColor: 'rgba(255,255,255,0.8)'
                             },
                             gridLines: {
@@ -417,10 +512,36 @@ export default {
                     }
                 }
             })
+
+            let { data, error } = await dataPromise
+
+            if(error) {
+                $state.createAlert(errToStr(error), 'error')
+            }
+            
+            let { usersGraph } = data
+            let labels = usersGraph.map(val => val.label).reverse()
+            let dataset = usersGraph.map(val => val.count + 250).reverse()
+
+            let ctx = refs.canvas.getContext('2d')
+            var gradient = ctx.createLinearGradient(0, 0, 0, 400)
+            gradient.addColorStop(0, 'rgba(255,255,255,0.5)')
+            gradient.addColorStop(1, 'rgba(255,255,255,0)')
+
+            chart.data.labels = labels
+            chart.data.datasets.push({
+                backgroundColor: gradient,
+                label: 'Number of citizens',
+                borderColor: 'white',
+                data: dataset
+            })
+
+            chart.update()
         })
+        
         return {
-            count: 348,
-            lastMonth: 150,
+            userCount,
+            past60Days,
             northernTerritory
         }
     },
