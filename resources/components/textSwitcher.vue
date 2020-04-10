@@ -12,7 +12,7 @@
 
 .switcher
     background white
-    color #222
+    color #00779f
     padding 0 6px
     display block
     word-wrap none

@@ -143,7 +143,7 @@
             -->
         </template>
         <template slot="content">
-            <hero class="hero image" :img="northernTerritory">
+            <hero class="gradient">
                 <div class="padding-10">
                     <div class="dark-card">
                         <div>
@@ -161,159 +161,144 @@
                                 'A New Story',
                                 'A New Life']"/></h1>
                             <p>
-                                Welcome to Promatia, a new country project located on the Australian continent bordering the Gulf of Carpentaria. Promatia has its own government, currency and laws.
+                                Welcome to Promatia, a new and independent nation with it’s own government, currency and laws. Promatia is building a new city in it’s claim.
                             </p>
                             <p>
-                                Promatia formed from the unification of a number of smaller young nation projects, with history leading back to November of 1999.
+                                Promatia is on-track to becoming a fully independent state.
                             </p>
-                            <p>
-                                Promatia is in the process of establishing a new and autonomous government, city, community, and country. Promatia is on a fast track to becoming a self-sufficient, sustainable and independent nation.
-                            </p>
-                            <p>
-                                Our aspirations are to:
-                            </p>
-                            <ul>
-                                <li>Create a pragmatic government, led by citizens, for citizens.</li>
-                                <li>Allow citizens to pursue their life goals, aided by Promatia's unique governmental system.</li>
-                                <li>Develop inexpensive, modern infrastructure, to achieve the highest living standards.</li>
-                                <li>Modernize and digitize every aspect of governance, banking, education, and more.</li>
-                                <li>Create a model example of environmental-sustainably and economic-viably.</li>
-                                <li>Create a safe and free society, where citizens can pursue their life goals.</li>
-                            </ul>
-                            <p>We are always looking for new risk-loving, educated, and passionate citizens who want to start a new life in Promatia. Citizens can help our project through their intellectual, physical, financial, entrepreneurship, or networking skills.</p>
-                            <buttonInput class="button" text="> Become A Citizen" to="/start"/>
+                            <buttonInput class="button" to="/start"><ChevronIcon/>Become A Citizen</buttonInput>
                         </div>
-                        <div class="canvas-area">
+                        <div class="canvas-wrapper">
+                            <canvas ref="canvas" height="105"/>
                             <div class="top">
-                                <h2>Citizen Count</h2>
-                                <div class="end"><div class="live">LIVE</div></div>
-                            </div>
-                            <div class="canvas-wrapper">
-                                <canvas ref="canvas" height="200"/>
-                            </div>
-                            <div class="graph-info">
-                                <div>
+                                <div class="uclabel">
+                                    <h2>{{ userCount }}400</h2>
                                     <div>Current Citizen Count</div>
-                                    <h2>{{ userCount }}</h2>
                                 </div>
-                                <div class="align-text-right">
+                                <div class="ccclabel">
+                                    <h2><span class="green">+{{ past60Days }}36</span></h2>
                                     <div>Past 60 Days</div>
-                                    <h2><span class="green">+{{ past60Days }}</span> New Citizens</h2>
                                 </div>
+                            </div>
+                            <div class="end">
+                                <div class="live">LIVE</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </hero>
-            <hero>
-                <div class="grid-info-area">
-                    <div class="main">
-                        <h2>The Modern Solution to Governance</h2>
-                        <p>
-                            Since Promatia was reformed in August of 2019, our goal has been to create a citizen experience, unlike any nation. Promatia is focused on providing technological innovation in the area of digital governance. We strive to provide a world-class experience and quality of response in all government services.
-                        </p>
-                        <h3>
-                            Digital Governance
-                        </h3>
-                        <p>
-                            Our nation is pioneering in digital technology in an effort to eliminate bureacracy. Our goal is to make everyday life easy for citizens, and make dealing with government simple. In Promatia, every citizen receives a myPro account, which connects them, granting them access a wide range of government services including, but not limited to:
-                        </p>
-                        <div class="grid-list">
-                            <div>Human Services</div>
-                            <div>PromaBank</div>
-                            <div>Instant Voting</div>
-                            <div>Licensing</div>
-                            <div>Business Registration</div>
-                            <div>Employment Services</div>
-                            <div>Healthcare Benefits</div>
-                            <div>Education Enrollment</div>
-                            <div>Budget &amp; Finances</div>
-                            <div>Land Allocation</div>
-                            <div>Tax Affairs</div>
-                            <div>Utility Services</div>
-                        </div>
-                        <p>
-                            The heavy digitization and automation, of these services, allows for smaller government, lower taxes, faster response, and better efficiency.
-                        </p>
-                        <h3>By Citizens, For Citizens</h3>
-                        <p>
-                            Promatia’s government uses a digital direct democracy for drafting its laws and electing government officials. This means that our citizens decide what laws pass, and have the power to elect the representatives who administer them. Every citizen has a voice in the way the nation is run. Citizens can propose laws, and petition for them to be passed onto the direct democracy. They may do this of their own volition.
-                        </p>
-                        <h3>Banking &amp; Tax</h3>
-                        <p>
-                            Promatia has created a new digital currency, the Proma, and the banking system to come along with it. Our banking system PromaBank automates taxation from the Point of Sale. Our tax is a progressive consumption tax charged on purchases. Income and wages are tax-free until the money that was earned is spent. Promatia only has one central bank, which enables instantaneous money transfers nationwide.
-                        </p>
-                        <h3>The Plan To Establish a City</h3>
-                        <p>
-                            Promatia plans to establish a new modern city in our claimed territory. Our nation has made significant progress on our plans, and the beginning of construction is not far away. The city will be named <strong>Lumina</strong>, which means approximately <em>Light</em> in Latin. The city is named after <a href="https://en.wikipedia.org/wiki/William_Light">Colonel William Light</a>, who founded the city of <a href="https://en.wikipedia.org/wiki/Adelaide">Adelaide</a> in Australia. Join us in Lumina, as we set out to create another legacy with Promatia.
-                        </p>
-                        <div class="center">
-                            <buttonInput class="button" href="/start" text="> Become A Citizen"/>
-                        </div>
+            <div class="info-wrapper">
+                <div class="grid-info">
+                    <div>
+                        <router-link to="/information/values">
+                        <div class="flex"><VisionIcon/><h2 class="subtitle">Vision &amp; Values</h2></div>
+                        <div class="para">Promatia has a detailed vision of the future. Find out how you can help us help you.</div>
+                        </router-link>
                     </div>
                     <div>
-                        <div class="info-box vcard">
-                            <div class="center name">
-                                <h3 class="fn org country-name organization-name adr">Promatia</h3>
-                                <span class="nickname">Government of Promatia</span>
-                            </div>
-                            <div class="center">
-                                <h3>Flag</h3>
-                                <img class="logo photo" src="@/images/flag.jpg" alt="Promatia Official Flag"/>
-                            </div>
-                            <div class="center">
-                                <h3>Symbol</h3>
-                                <img src="@/images/symbol.png" alt="Promatia Official Symbol"/>
-                            </div>
-                            <div class="map center">
-                                <h3>Map</h3>
-                                <img class="map" src="@/images/map.png" alt="Promatia Map"/>
-                            </div>
-
-                            <div><h3>Website</h3></div>
-                            <div><a href="https://promatia.com" class="url">promatia.com</a></div>
-
-                            <div><h3>National Language</h3></div>
-                            <div>English</div>
-
-                            <div><h3>Legislature</h3></div>
-                            <div>
-                                <router-link to="/information/ministers">Ministers</router-link> +
-                                <div>
-                                    <router-link to="/information/direct-democracy">Direct Democracy</router-link>
-                                </div>
-                            </div>
-
-                            <div><h3>Government</h3></div>
-                            <div>
-                                <div><router-link to="/information/ministries">Ministry System</router-link></div>
-                                <div><router-link to="/information/unitary-state">Unitary State</router-link></div>
-                                <div><router-link to="/information/constitution">Constitution</router-link></div>
-                            </div>
-
-                            <div><h3>Area</h3></div>
-                            <div>55,000km<sup>2</sup></div>
-
-                            <div><h3>Population</h3></div>
-                            <div>{{ userCount }} Citizens</div>
-
-                            <div><h3>Currency</h3></div>
-                            <div><router-link to="/information/currency">Proma Ⱀ</router-link></div>
-
-                            <div><h3>National Bank</h3></div>
-                            <div><router-link to="/information/services/PromaBank">PromaBank</router-link></div>
-
-                            <div><h3>Founding Date</h3></div>
-                            <div class="bday">1st August, 2019</div>
-                        </div>
+                        <router-link to="/information/government">
+                        <div class="flex"><GovernmentIcon/><h2 class="subtitle">Our Government</h2></div>
+                        <div class="para">Learn more about Promatia's unique system of government, how laws are passed, and how Ministires are formed and run.</div>
+                        </router-link>
+                    </div>
+                    <div>
+                        <router-link to="/information/plan">
+                        <div class="flex"><PlanIcon/><h2 class="subtitle">Our Plan</h2></div>
+                        <div class="para">See how you plan to bring Promatia in to fruition. Get a roadmap of events and updates.</div>
+                        </router-link>
+                    </div>
+                    <div>
+                        <router-link to="/information/citizenship">
+                        <div class="flex"><CitizenshipIcon/><h2 class="subtitle">Citizenship</h2></div>
+                        <div class="para">Find out what being a citizen of Promatia will mean to you, and how to becoming a citizen of Promatia can help the project.</div>
+                        </router-link>
+                    </div>
+                    <div>
+                        <router-link to="/information/mypro">
+                        <div class="flex"><ProIcon/><h2 class="subtitle">myPro</h2></div>
+                        <div class="para">Need to know more about myPro and how to best utilize the resources it provides? We have you covered with this indepth guide about the myPro platform.</div>
+                        </router-link>
+                    </div>
+                    <div>
+                        <router-link to="/information/services">
+                        <div class="flex"><ServiceIcon/><h2 class="subtitle">Services</h2></div>
+                        <div class="para">It can be a little confusing trying to find a specific service we offer. So we put them all into one easy to access location.</div>
+                        </router-link>
+                    </div>
+                    <div>
+                        <router-link to="/information/lumina">
+                        <div class="flex"><LuminaIcon/><h2 class="subtitle">Lumina</h2></div>
+                        <div class="para">Lumina will be Promatia's first city. Learn about how it will be built, what techonologies we will use, and what to look forward to.</div>
+                        </router-link>
+                    </div>
+                    <div>
+                        <router-link to="/information/voting">
+                        <div class="flex"><VoteIcon/><h2 class="subtitle">Voting</h2></div>
+                        <div class="para">Need help getting involved in Promatia's direct democracy? No problem! You can inform yourself on the voting process here.</div>
+                        </router-link>
+                    </div>
+                    <div>
+                        <router-link to="/information/business">
+                        <div class="flex"><BusinessIcon/><h2 class="subtitle">Starting a Business</h2></div>
+                        <div class="para">Do you plan to start or operate an existing business in Promatia? We can help you set up your business to get it up and running smoothly.</div>
+                        </router-link>
+                    </div>
+                    <div>
+                        <router-link to="/information/proma">
+                        <div class="flex"><MoneyIcon/><h2 class="subtitle">Monetary System</h2></div>
+                        <div class="para">Learn more about Promatia's unique digital currency, the Proma, and how using it can automate taxes and transactions with PromaBank.</div>
+                        </router-link>
+                    </div>
+                    <div>
+                        <router-link to="/information/education">
+                        <div class="flex"><EducationIcon/><h2 class="subtitle">Education</h2></div>
+                        <div class="para">Promatia aims to provide world class education curriculum. Learn how to register and reroll in our education programs.</div>
+                        </router-link>
+                    </div>
+                    <div>
+                        <router-link to="/information/work">
+                        <div class="flex"><WorkIcon/><h2 class="subtitle">Work &amp; Employment</h2></div>
+                        <div class="para">Applying for a new job? Promatia lists every employer looking to hire. Find out how to use this tool to job search.</div>
+                        </router-link>
+                    </div>
+                    <div>
+                        <router-link to="/information/family">
+                        <div class="flex"><FamilyIcon/><h2 class="subtitle">Family</h2></div>
+                        <div class="para">Want to help grow the world's newest nation? Learn about the benefits of starting a family in Promatia.</div>
+                        </router-link>
+                    </div>
+                    <div>
+                        <router-link to="/information/budget">
+                        <div class="flex"><BudgetIcon/><h2 class="subtitle">Budgeting &amp; FairTax</h2></div>
+                        <div class="para">The government of Promatia keeps a tightly mangaged budget. Find out how we allocate the taxed you pay, and learn about FairTax.</div>
+                        </router-link>
+                    </div>
+                    <div>
+                        <router-link to="/information/law">
+                        <div class="flex"><LawIcon/><h2 class="subtitle">Laws</h2></div>
+                        <div class="para">Keep up to date with Promatia's fast acting legal system. View all of Promatia's active legislation in our easy to use portal.</div>
+                        </router-link>
+                    </div>
+                    <div>
+                        <router-link to="/information/tourism">
+                        <div class="flex"><TourismIcon/><h2 class="subtitle">Tourism</h2></div>
+                        <div class="para">Get information how you can visit Proamtia, and it's iconic sights. Learn how you can apply for an holiday visa.</div>
+                        </router-link>
                     </div>
                 </div>
-            </hero>
+                <p>
+                    We also offer a wide range of <a href="/information/services">Government Services</a>.
+                </p>
+            </div>
         </template>
     </web>
 </template>
 <style lang="stylus" scoped>
 @import "~@/stylus/variables"
+
+.gradient
+    background rgb(0,84,131)
+    background linear-gradient(0deg, rgba(0,84,131,1) 0%, rgba(0,152,186,1) 100%)
 
 .grid-list
     display grid
@@ -322,7 +307,53 @@
         margin-left 30px
         display list-item
     grid-template-columns repeat(auto-fit, minmax(180px, 1fr))
+    
+.flex  
+    display flex
+    align-items center
+.para
+    padding-top 0px
+    color #1B232C
+.subtitle
+    color #1B232C
+    font-weight 500
+    font-size 1.2em
+.big-text
+    margin 0
 
+.info-wrapper
+    padding 80px 40px
+    max-width: 1000px
+    margin: auto
+
+.grid-info
+    display grid
+    .material-design-icon
+        color #3C7CBC
+    grid-gap 0 0px
+        color #FF0000
+    > * 
+        border-bottom 5px solid #DDDDDD
+        background-color #FFFFFF
+        height auto
+        padding 5px 15px 15px 15px
+    > * p
+        margin-bottom 0px
+    > * p:hover
+        margin-bottom 0px
+    > *:hover
+        border-bottom 5px solid #3C7CBC
+        background-color #F6F6F6
+        padding 5px 15px 15px 15px
+        .subtitle
+            color #3C7CBC
+            text-decoration underline
+    grid-template-columns repeat(auto-fit, minmax(300px, 1fr))
+    a.fill-div
+        display block
+        height 100%
+        width 100%
+        text-decoration: none
 .info-box
     background white
     box-shadow 0 5px 5px rgba(0,0,0,0.1)
@@ -368,8 +399,7 @@
     grid-gap 25px
 
 .dark-card
-    background rgba(0,0,0,0.45)
-    border-radius 5px
+    color #ffffff
     padding 20px
     display grid
     max-width 1300px
@@ -381,13 +411,15 @@
 
 .special-title
     font-weight 600
+    color #ffffff
     @media (max-width 900px)
         font-size 1.6em
     @media (max-width 700px)
         font-size 1.4em
 
 .live
-    color #ff4444
+    color #ffffff
+    background-color #DF4040
     display inline-block
     padding 2px 4px
     border-radius 3px
@@ -405,7 +437,7 @@
         animation-name live
         animation-duration 1s
         animation-iteration-count infinite
-        background #ff4444
+        background #DF4040
 
 .graph-info
     display grid
@@ -414,29 +446,65 @@
     h2
         margin 0
         font-weight 600
-    .green
-        color #66ff66
+
+.green
+    color #66ff66
 
 .align-text-right
     text-align right
-
-.top
-    display flex
-    align-items center
-
-.end
-    margin-left auto
-
 
 @keyframes live
     0%, 100%
         background transparent
     50%
-        background #ff6666
+        background #DF4040
 
-.canvas-area
-    min-width 0
-    margin auto 0
+.canvas-wrapper
+    position relative
+    
+.canvas-wrapper canvas, .top, .end, .uclabel, .ccclabel
+    position absolute
+
+.top
+    left 50px
+
+.end
+    top 180px
+    left 580px
+
+.uclabel
+    top 10px
+    left 0px
+    width 500px
+    h2
+        margin 0
+        padding 0
+        font-size 28px
+    div 
+        margin 0
+        padding 0
+        font-size 18px
+
+.ccclabel
+    top 80px
+    left 0px
+    width 500px
+    h2
+        margin 0
+        padding 0
+        font-size 18px
+    div 
+        font-size 16px
+
+.button
+    background-color #ffffff
+    color #3C7CBC
+    padding-left 8px
+
+.button:hover
+    background-color #3C7CBC
+    color #ffffff
+    padding-left 8px
 
 </style>
 <script>
@@ -448,6 +516,23 @@ import buttonInput from '@/components/buttonInput'
 import { onMounted, ref, onServerPrefetch } from '@vue/composition-api'
 import graph from '@/utils/graph'
 import errToStr from '@/utils/errorToString'
+import VisionIcon from 'icons/Eye'
+import GovernmentIcon from 'icons/Bank'
+import PlanIcon from 'icons/FloorPlan'
+import CitizenshipIcon from 'icons/PassportBiometric'
+import ProIcon from 'icons/Bank'
+import ServiceIcon from 'icons/Toolbox'
+import LuminaIcon from 'icons/Domain'
+import VoteIcon from 'icons/CheckboxMarkedOutline'
+import BusinessIcon from 'icons/Briefcase'
+import MoneyIcon from 'icons/Domain'
+import EducationIcon from 'icons/BookOpenPageVariant'
+import WorkIcon from '@/components/icons/Work'
+import FamilyIcon from 'icons/HomeHeart'
+import BudgetIcon from 'icons/ChartPie'
+import LawsIcon from 'icons/ScriptText'
+import TourismIcon from 'icons/AirplaneLanding'
+import ChevronIcon from 'icons/ChevronRight'
 
 export default {
     setup (props, { refs }) {
@@ -549,7 +634,24 @@ export default {
         web,
         hero,
         textSwitcher,
-        buttonInput
+        buttonInput,
+        VisionIcon,
+        GovernmentIcon,
+        PlanIcon,
+        CitizenshipIcon,
+        ProIcon,
+        ServiceIcon,
+        LuminaIcon,
+        VoteIcon,
+        BusinessIcon,
+        MoneyIcon,
+        EducationIcon,
+        WorkIcon,
+        FamilyIcon,
+        BudgetIcon,
+        LawsIcon,
+        TourismIcon,
+        ChevronIcon
     }
 }
 </script>

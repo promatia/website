@@ -14,6 +14,7 @@
                         <MenuIcon :size="30"/>
                     </a>
                 </div>
+                <!--
                 <div class="nav-container" :class="{ menuOpened }">
                     <nav>
                         <template v-for="link in links" >
@@ -26,6 +27,7 @@
                         </template>
                     </nav>
                 </div>
+                -->
             </div>
         </div>
     </header>
@@ -33,7 +35,7 @@
 <style lang="stylus" scoped>
 @import "~@/stylus/variables"
 
-$headerBackground = mix($main, #040404, 13%)
+$headerBackground = mix($main, #f8f8f8, 0%)
 
 header
     background $headerBackground
@@ -43,7 +45,7 @@ header
     z-index 20
 
 .inner-header
-    max-width 1200px
+    max-width 1300px
     width 100%
     margin auto
     display flex
