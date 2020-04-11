@@ -19,7 +19,8 @@ let routes = [
         { path: '/media', component: () => import('@/pages/information/media')},
         { path: '/values', component: () => import('@/pages/information/values')},
         { path: '/government', component: () => import('@/pages/information/government')},
-        { path: '/education', component: () => import('@/pages/information/education')}
+        { path: '/education', component: () => import('@/pages/information/education')},
+        { path: '/coronavirus', component: () => import('@/pages/information/coronavirus')}
     ]),
     { path: '/*', component: () => import('@/templates/error')} //404
 ]
