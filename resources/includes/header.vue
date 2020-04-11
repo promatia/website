@@ -84,7 +84,7 @@ header
         grid-gap 5px
         text-align center
         @media (max-width $phoneWidth)
-            grid-auto-flow row
+            grid-auto-flow column
             align-items center
             justify-self center
 

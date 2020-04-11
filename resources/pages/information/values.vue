@@ -2,9 +2,18 @@
     <web>
         <template slot="title">Values</template>
         <template slot="content">
+            <div class="hero-header">
+                <div class="content">
+                    <h1 itemprop="name">Promatian Values</h1>
+                    <hr>
+                    <div class="subtitle" itemprop="description">
+                        Promatia has a detailed vision of the future.
+                    </div>
+                </div>
+            </div>
             <div class="wrapper">
                 <h1 class="big-text">
-                    Promatian Values
+                    
                 </h1>
                 <p>
                     Promatia is a new country project located in the continent of Australia, bordering the coast of the Gulf of Carpentaria. The project was first invisioned in November of 1999 as has maintained stable workflow since. After 20 years of hard work, we have pulled back the curtains on the project in order to promote a more public image.
@@ -38,16 +47,44 @@
     </web>
 </template>
 <style lang="stylus" scoped>
+
+.hero-header
+    background #03539D
+    padding 20px 20px
+    position relative
+    overflow hidden
+    color white
+    h1
+        font-weight 500
+        font-size 3.2em
+        margin-top 0
+        margin-bottom 10px
+    hr
+        border 3px solid #01294D
+        border-radius 3px
+        margin-bottom 15px
+    .subtitle
+        font-size 1.5em
+    .content
+        max-width 800px
+        align-items center
+        max-width $tabletWidth
+        margin auto
+        position relative
+        z-index 1
+
 .subtitle
     font-weight 500
     font-size 1.2em
+
 .big-text
     margin 0
 
 .wrapper
-    padding 80px 40px
-    max-width: 1000px
-    margin: auto
+    padding 40px 40px
+    max-width 800px
+    margin auto
+    background #ffffff
 
 </style>
 <script>

@@ -2,13 +2,16 @@
     <web>
         <template slot="title">Media</template>
         <template slot="content">
+            <div class="hero-header">
+                <div class="content">
+                    <h1 itemprop="name">Media &amp; Press</h1>
+                    <hr>
+                    <div class="subtitle" itemprop="description">
+                        For Media or Press Contact: <a href="mailto:gov@promatia.com">gov@promatia.com</a>
+                    </div>
+                </div>
+            </div>
             <div class="wrapper">
-                <h1 class="big-text">
-                    Media Contact
-                </h1>
-                <p>
-                    For Media or Press Contact: <a href="mailto:gov@promatia.com">gov@promatia.com</a>
-                </p>
                 <p>
                     Promatia will take correspondence from any interested reputable agency. If you wish to maintain long to contact with the government of Promatia, please supply your name, telephone number, and preferred contact time including your time zone. This is for us to reach out to you for media correspondence at a time easy to reach you.
                 </p>
@@ -23,16 +26,49 @@
     </web>
 </template>
 <style lang="stylus" scoped>
+
+.hero-header
+    background #03539D
+    padding 20px 20px
+    position relative
+    overflow hidden
+    color white
+    h1
+        font-weight 500
+        font-size 3.2em
+        margin-top 0
+        margin-bottom 10px
+    hr
+        border 3px solid #01294D
+        border-radius 3px
+        margin-bottom 15px
+    a
+        color white
+        text-decoration underline
+    a:hover
+        text-decoration none
+    .subtitle
+        font-size 1.5em
+    .content
+        max-width 800px
+        align-items center
+        max-width $tabletWidth
+        margin auto
+        position relative
+        z-index 1
+
 .subtitle
     font-weight 500
     font-size 1.2em
+
 .big-text
     margin 0
 
 .wrapper
-    padding 80px 40px
-    max-width: 1000px
-    margin: auto
+    padding 40px 40px
+    max-width 800px
+    margin auto
+    background #ffffff
 
 </style>
 <script>

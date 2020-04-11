@@ -201,7 +201,7 @@
                         <div class="flex"><PlanIcon/><h2 class="subtitle">Our Plan</h2></div>
                         <div class="para">See how you plan to bring Promatia in to fruition. Get a roadmap of events and updates.</div>
                     </router-link>
-                    <router-link class="item" to="/information/citizenship">
+                    <router-link class="item" to="/start">
                         <div class="flex"><CitizenshipIcon/><h2 class="subtitle">Citizenship</h2></div>
                         <div class="para">Find out what being a citizen of Promatia will mean to you, and how to becoming a citizen of Promatia can help the project.</div>
                     </router-link>
@@ -253,6 +253,10 @@
                         <div class="flex"><TourismIcon/><h2 class="subtitle">Tourism</h2></div>
                         <div class="para">Get information how you can visit Proamtia, and it's iconic sights. Learn how you can apply for an holiday visa.</div>
                     </router-link>
+                    <router-link class="item" to="/information/media">
+                        <div class="flex"><MediaIcon/><h2 class="subtitle">Media &amp; Press</h2></div>
+                        <div class="para">Are you a memeber of the press looking to speak to a Promatian representative? Get quick access to contact details.</div>
+                    </router-link>
                 </div>
                 <p>
                     We also offer a wide range of <a href="/information/services">Government Services</a>.
@@ -265,8 +269,8 @@
 @import "~@/stylus/variables"
 
 .gradient
-    background rgb(0,84,131)
-    background linear-gradient(0deg, rgba(0,84,131,1) 0%, rgba(0,152,186,1) 100%)
+    background #03539D
+    background linear-gradient(0deg, #03539D 0%, #259BCE 100%)
 
 .grid-list
     display grid
@@ -496,6 +500,7 @@ import BudgetIcon from 'icons/ChartPie'
 import LawsIcon from 'icons/ScriptText'
 import TourismIcon from 'icons/AirplaneLanding'
 import ChevronIcon from 'icons/ChevronRight'
+import MediaIcon from 'icons/NewspaperVariantMultiple'
 
 export default {
     setup (props, { refs }) {
@@ -614,7 +619,8 @@ export default {
         BudgetIcon,
         LawsIcon,
         TourismIcon,
-        ChevronIcon
+        ChevronIcon,
+        MediaIcon
     }
 }
 </script>
