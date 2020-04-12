@@ -36,6 +36,7 @@
                     </p>
                 </div>
             </div>
+        <Rater/>
         </template>
     </web>
 </template>
@@ -61,7 +62,6 @@
     .content
         max-width 800px
         align-items center
-        max-width $tabletWidth
         margin auto
         position relative
         z-index 1
@@ -88,10 +88,12 @@
 </style>
 <script>
 import web from "@/layouts/web"
+import Rater from "@/components/rater"
 
 export default {
     components: {
-        web
+        web,
+        Rater
     }
 }
 </script>

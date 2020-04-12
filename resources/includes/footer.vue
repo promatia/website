@@ -31,7 +31,7 @@
                         Gain 50Ⱀ, by signing up today. Promatia's fully digital currency.
                     </p>
                     <p>
-                        <buttonInput class="button" text="> Become A Citizen" to="/start"/>
+                        <buttonInput class="button" to="/start"><ChevronIcon/>Become A Citizen</buttonInput>
                     </p>
                 </div>
             </div>
@@ -156,6 +156,7 @@ import Facebook from 'icons/Facebook'
 import Twitter from 'icons/Twitter'
 import Instagram from 'icons/Instagram'
 import Backlink from 'icons/Link'
+import ChevronIcon from 'icons/ChevronRight'
 
 export default {
     setup () {
@@ -220,7 +221,8 @@ export default {
         Facebook,
         Twitter,
         Instagram,
-        Backlink
+        Backlink,
+        ChevronIcon
     }
 }
 </script>
