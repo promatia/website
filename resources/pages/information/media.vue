@@ -67,7 +67,7 @@
     margin 0
 
 .wrapper
-    padding 40px 40px
+    padding 20px 20px
     max-width 1000px
     width 100%
     margin auto

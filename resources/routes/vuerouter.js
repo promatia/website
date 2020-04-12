@@ -20,6 +20,7 @@ let routes = [
         { path: '/values', component: () => import('@/pages/information/values')},
         { path: '/government', component: () => import('@/pages/information/government')},
         { path: '/education', component: () => import('@/pages/information/education')},
+        { path: '/proma', component: () => import('@/pages/information/proma')},
         { path: '/coronavirus', component: () => import('@/pages/information/coronavirus')}
     ]),
     { path: '/*', component: () => import('@/templates/error')} //404
