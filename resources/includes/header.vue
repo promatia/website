@@ -10,7 +10,7 @@
                         <buttonInput class="button" to="/start" text="Start"/>
                         <buttonInput class="button" to="/sign-in" text="Sign In"/>
                     </div>
-                    <a class="menu-icon" @click="menuOpened = !menuOpened">
+                    <a v-if="false" class="menu-icon" @click="menuOpened = !menuOpened">
                         <MenuIcon :size="30"/>
                     </a>
                 </div>

@@ -283,45 +283,31 @@ export const resolvers = {
         return null
     },
     async userCount ({days}) {
-        let day = 1000 * 60 * 60 * 24
         let query = {}
         if(days) { //check for users in the past number of days
-            query._id = { $lt: new ObjectID(~~(new Date() - day * days))}
+            let daysDate = new Date().getDate() - days
+            query._id = { $gt: new ObjectID(~~(new Date().setDate(daysDate) / 1000))}
         }
 
         return await User.collection.countDocuments(query)
     },
     async usersGraph () {
         let coll = User.collection
-        // oldest user month
-        // number of months since that month, including today
-        // turn months into timestamps
-        // loop
-            // countDocument since time
-
         let latestDate = new Date('02 December 2019')
         let now = new Date()
-        let monthsSince = monthDiff(latestDate, now)
+        let monthsSince = monthDiff(latestDate, now) + 1
         let arr = []
         for(let i = 0; i < monthsSince; i++) {
-            console.log(latestDate.toLocaleDateString('en-au', {month: 'short'}))
-        }
-
-        console.log(arr)
-
-        let weeksToCountBack = 7
-        let week = 1000 * 60 * 60 * 24 * 7
-        let current = new Date().getTime() + week
-        //let arr = []
-
-        for(let i = 0; i < weeksToCountBack; i++) { //create an array item containing date and count for each week
-            let date = new Date(current - week)
-            current -= week
-            let label = date.toLocaleDateString('en-au', { day: '2-digit', month: '2-digit'})
-            let id = new ObjectID(~~(date / 1000))
+            let newDate = new Date(latestDate)
+            let thisDate = new Date(newDate.setMonth(newDate.getMonth() + (i)))
+            let label = thisDate.toLocaleDateString('en-au', {month: 'short'})
+            let id = new ObjectID(~~(thisDate / 1000))
             let count = await coll.countDocuments({_id: { $lt: id}})
+
             arr.push({label, count})
         }
+
+        arr.push({ label: 'Today', count: await coll.countDocuments()})
 
         return arr
     }

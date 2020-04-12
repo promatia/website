@@ -169,7 +169,6 @@
                             <buttonInput class="button" to="/start"><ChevronIcon/>Become A Citizen</buttonInput>
                         </div>
                         <div class="canvas-wrapper">
-                            <canvas ref="canvas" height="105"/>
                             <div class="top">
                                 <div class="uclabel">
                                     <h2>{{ userCount }}</h2>
@@ -182,6 +181,9 @@
                             </div>
                             <div class="end">
                                 <div class="live">LIVE</div>
+                            </div>
+                            <div>
+                            <canvas ref="canvas" style="height: 300px;"/>
                             </div>
                         </div>
                     </div>
@@ -272,21 +274,9 @@
     background #03539D
     background linear-gradient(0deg, #03539D 0%, #259BCE 100%)
 
-.grid-list
-    display grid
-    grid-gap 0 10px
-    > *
-        margin-left 30px
-        display list-item
-    grid-template-columns repeat(auto-fit, minmax(180px, 1fr))
-    
-.flex  
+.flex
     display flex
     align-items center
-    
-.subtitle
-.big-text
-    margin 0
 
 .info-wrapper
     padding 80px 40px
@@ -307,6 +297,7 @@
         .subtitle
             color #1B232C
             font-weight 500
+            margin 0
             font-size 1.2em
             padding-left 5px
         .para
@@ -321,63 +312,22 @@
                 color #3C7CBC
                 text-decoration underline
 
-.info-box
-    background white
-    box-shadow 0 5px 5px rgba(0,0,0,0.1)
-    padding 40px
-    display grid
-    grid-template-columns minmax(auto, 200px) minmax(auto, 200px)
-    grid-template-areas "name name" "flag symbol" "map map"
-    grid-gap 8px 12px
-    .center
-        text-align center
-    img
-        margin-top 15px
-        margin-bottom 15px
-        max-height 80px
-        display inline-block
-        &.map
-            max-height 200px
-    a
-        font-weight 400
-    h3
-        font-size 18px
-        margin 0
-
-.main
-    font-size 1em
-
-.map
-    grid-area map
-.name
-    grid-area name
-    padding-bottom 10px
-
-.grid-info-area
-    display grid
-    padding 50px 20px
-    margin auto
-    max-width 1300px
-    grid-template-columns 1fr max-content
-    align-items center
-    justify-items center
-    @media (max-width 900px)
-        grid-template-columns 1fr
-    grid-gap 25px
-
 .dark-card
     color #ffffff
     padding 20px
     display grid
     max-width 1300px
     margin auto
-    grid-template-columns 1fr 1fr 
+    align-items center
+    grid-template-columns minmax(0, 1fr) minmax(0, 1fr)
     grid-gap 50px 20px
     @media (max-width: 800px)
-        grid-template-columns 1fr
+        grid-template-columns minmax(0, 1fr)
 
 .special-title
     font-weight 600
+    margin 0
+    padding-bottom 0.3em
     color #ffffff
     @media (max-width 900px)
         font-size 1.6em
@@ -428,16 +378,17 @@
 
 .canvas-wrapper
     position relative
+    height 100%
     
-.canvas-wrapper canvas, .top, .end, .uclabel, .ccclabel
+.top, .end, .uclabel, .ccclabel
     position absolute
 
 .top
-    left 50px
+    left 15px
 
 .end
-    top 180px
-    left 580px
+    bottom 40px
+    right 45px
 
 .uclabel
     top 10px
@@ -537,21 +488,23 @@ export default {
                 type: 'line',
                 data: {
                     labels: [],
-                    borderColor: 'rgba(255,255,255,0.3)',
+                    borderColor: 'transparent',
                     datasets: []
                 },
                 options: {
+                    maintainAspectRatio: false,
                     legend: {
                         display: false
                     },
                     scales: {
                         yAxes: [{
+                            position: 'right',
                             ticks: {
                                 beginAtZero: true,
                                 fontColor: 'rgba(255,255,255,0.8)'
                             },
                             gridLines: {
-                                color: 'rgba(255,255,255,0.3)'
+                                display: false,
                             }
                         }],
                         xAxes: [{
@@ -573,8 +526,12 @@ export default {
             }
             
             let { usersGraph } = data
-            let labels = usersGraph.map(val => val.label).reverse()
-            let dataset = usersGraph.map(val => val.count).reverse().map((count, index) => count + (250 / usersGraph.length * (index + 1)))
+            let labels = usersGraph.map(val => val.label)
+            let dataset = usersGraph
+                .map(val => val.count)
+                .map((count, index) => {
+                    return Math.round(count + (250 / (usersGraph.length - 1) * index))
+                })
 
             let ctx = refs.canvas.getContext('2d')
             var gradient = ctx.createLinearGradient(0, 0, 0, 400)
@@ -585,8 +542,9 @@ export default {
             chart.data.datasets.push({
                 backgroundColor: gradient,
                 label: 'Number of citizens',
-                borderColor: 'white',
-                data: dataset
+                borderColor: 'transparent',
+                data: dataset,
+                pointRadius: 0
             })
 
             chart.update()
