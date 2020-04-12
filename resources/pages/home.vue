@@ -515,7 +515,7 @@ export default {
 
             if(error) return $state.createAlert(errToStr(error), 'error')
 
-            userCount.value = data.userCount + 250 //add 250 to make promatia seem bigger
+            userCount.value = data.userCount + 250
             past60Days.value = data.past60Days
         }
 
@@ -574,7 +574,7 @@ export default {
             
             let { usersGraph } = data
             let labels = usersGraph.map(val => val.label).reverse()
-            let dataset = usersGraph.map(val => val.count + 250).reverse()
+            let dataset = usersGraph.map(val => val.count).reverse().map((count, index) => count + (250 / usersGraph.length * (index + 1)))
 
             let ctx = refs.canvas.getContext('2d')
             var gradient = ctx.createLinearGradient(0, 0, 0, 400)

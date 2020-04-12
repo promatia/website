@@ -3,6 +3,7 @@ import { gql } from '@promatia/prograph'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import mongodb from 'mongodb'
+import { monthDiff } from '../utils/dateUtils.js'
 import { generateDisplayPicture } from '../utils/displayPicture.js'
 
 const { ObjectID } = mongodb
@@ -291,18 +292,34 @@ export const resolvers = {
         return await User.collection.countDocuments(query)
     },
     async usersGraph () {
+        let coll = User.collection
+        // oldest user month
+        // number of months since that month, including today
+        // turn months into timestamps
+        // loop
+            // countDocument since time
+
+        let latestDate = new Date('02 December 2019')
+        let now = new Date()
+        let monthsSince = monthDiff(latestDate, now)
+        let arr = []
+        for(let i = 0; i < monthsSince; i++) {
+            console.log(latestDate.toLocaleDateString('en-au', {month: ''}))
+        }
+
+        console.log(arr)
+
         let weeksToCountBack = 7
         let week = 1000 * 60 * 60 * 24 * 7
         let current = new Date().getTime() + week
-        let arr = []
-        let col = User.collection
+        //let arr = []
 
         for(let i = 0; i < weeksToCountBack; i++) { //create an array item containing date and count for each week
             let date = new Date(current - week)
             current -= week
             let label = date.toLocaleDateString('en-au', { day: '2-digit', month: '2-digit'})
             let id = new ObjectID(~~(date / 1000))
-            let count = await col.countDocuments({_id: { $lt: id}})
+            let count = await coll.countDocuments({_id: { $lt: id}})
             arr.push({label, count})
         }
 

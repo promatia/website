@@ -12,15 +12,17 @@
                 </div>
             </div>
             <div class="wrapper">
-                <p>
-                    Promatia will take correspondence from any interested reputable agency. If you wish to maintain long to contact with the government of Promatia, please supply your name, telephone number, and preferred contact time including your time zone. This is for us to reach out to you for media correspondence at a time easy to reach you.
-                </p>
-                <p>
-                    The Government of Promatia will make an effort to respond to submitted requests within 24 to 48 hours via email. Please keep in mind, due to a high volume of contact requests, that more time may be necessary to respond to you via email. For this reason we ask in addition to your email request you supply relevant contact information, especially for inquiries or questions.
-                </p>
-                <p>
-                    If you are an employee of a reputable media company or organization, you can expedite this process by clearly identifying the company of your employ in the subject line your email.
-                </p>
+                <div class="inner-page">
+                    <p>
+                        Promatia will take correspondence from any interested reputable agency. If you wish to maintain long to contact with the government of Promatia, please supply your name, telephone number, and preferred contact time including your time zone. This is for us to reach out to you for media correspondence at a time easy to reach you.
+                    </p>
+                    <p>
+                        The Government of Promatia will make an effort to respond to submitted requests within 24 to 48 hours via email. Please keep in mind, due to a high volume of contact requests, that more time may be necessary to respond to you via email. For this reason we ask in addition to your email request you supply relevant contact information, especially for inquiries or questions.
+                    </p>
+                    <p>
+                        If you are an employee of a reputable media company or organization, you can expedite this process by clearly identifying the company of your employ in the subject line your email.
+                    </p>
+                </div>
             </div>
         </template>
     </web>
@@ -66,9 +68,15 @@
 
 .wrapper
     padding 40px 40px
-    max-width 800px
+    max-width 1000px
+    width 100%
     margin auto
     background #ffffff
+
+.inner-page
+    max-width 750px
+    font-size 1.1em
+    margin auto
 
 </style>
 <script>
