@@ -304,7 +304,7 @@ export const resolvers = {
         let monthsSince = monthDiff(latestDate, now)
         let arr = []
         for(let i = 0; i < monthsSince; i++) {
-            console.log(latestDate.toLocaleDateString('en-au', {month: ''}))
+            console.log(latestDate.toLocaleDateString('en-au', {month: 'short'}))
         }
 
         console.log(arr)
