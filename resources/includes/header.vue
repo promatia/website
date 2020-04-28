@@ -35,14 +35,14 @@
 <style lang="stylus" scoped>
 @import "~@/stylus/variables"
 
-$headerBackground = mix($main, #f8f8f8, 0%)
 
 header
-    background $headerBackground
+    background #fff
     position sticky
     top 0
     color white
     z-index 20
+    border-bottom 1px solid #dddddd
 
 .inner-header
     max-width 1300px
@@ -112,7 +112,7 @@ header
             right 0
             justify-content center
             nav
-                background mix($headerBackground, #fff, 90%)
+                background #fff
                 border-bottom-left-radius 5px
                 max-width 400px
                 position absolute

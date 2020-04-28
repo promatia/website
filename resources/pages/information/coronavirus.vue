@@ -23,7 +23,7 @@
                         We also advise you to contact your medical provider, insurer, or family doctor. If you do not have access to these kinds of services, please get into contact with a local clinic or government-operated medical facility for personal assistance at no cost.
                     </p>
                     <p>
-                        If your employer has any questions regarding the status of the Aromatic government's emergency order, please refer them to this page. We encourage any business with the capability to do so to allow their employees to work remotely, or from home if possible. If you work in an industry that is critical to the continuity of Promatia, or another essential industry: such as in logistics distribution, food preparation, or as a healthcare service provider; you are asked to maintain your work schedule whenever possible.
+                        If your employer has any questions regarding the status of Promatia's emergency declaration, please refer them to this page. We encourage any business with the capability to do so to allow their employees to work remotely, or from home if possible. If you work in an industry that is critical to the continuity of Promatia, or another essential industry: such as in logistics distribution, food preparation, or as a healthcare service provider; you are asked to maintain your work schedule whenever possible.
                     </p>
                     <p>
                         During this person of time, there may be many school closures, closures of other high-density buildings, or other high traffic areas. If you have a child that is sick, please keep them at home, and contact a medical professional, pediatric physician, or family doctor.
