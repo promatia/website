@@ -111,10 +111,6 @@ export default {
                 {
                     link: 'https://news.google.com/publications/CAAqBwgKMIGdkwswsMqoAw?hl=en-AU&gl=AU&ceid=AU:en',
                     text: 'Google News - PromaTimes'
-                },
-                {
-                    link: 'https://renovationsadelaide.com.au',
-                    text: 'Renovations Adelaide, Patrick Clare'
                 }
             ]
         }

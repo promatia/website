@@ -161,7 +161,7 @@
                                 'A New Story',
                                 'A New Life']"/></h1>
                             <p>
-                                Welcome to Promatia, a new and independent nation with its own government, currency and laws. Promatia is building a new city in its claim.
+                                Welcome to Promatia, a new autonomous region in northern Australia with its own government, currency and laws. Promatia is building a new city in its claim.
                             </p>
                             <p>
                                 Promatia is on-track to becoming a fully independent state.
@@ -285,7 +285,8 @@
 
 .grid-info
     display grid
-    grid-template-columns repeat(auto-fit, minmax(300px, 1fr))
+    grid-template-columns repeat(auto-fit, minmax(auto, 300px))
+    justify-content center
     .material-design-icon
         color #3C7CBC
     grid-gap 0 0px
@@ -504,7 +505,7 @@ export default {
                                 fontColor: 'rgba(255,255,255,0.8)'
                             },
                             gridLines: {
-                                display: false,
+                                display: false
                             }
                         }],
                         xAxes: [{
@@ -529,9 +530,7 @@ export default {
             let labels = usersGraph.map(val => val.label)
             let dataset = usersGraph
                 .map(val => val.count)
-                .map((count, index) => {
-                    return Math.round(count + (250 / (usersGraph.length - 1) * index))
-                })
+                .map((count, index) => Math.round(count + (250 / (usersGraph.length - 1) * index)))
 
             let ctx = refs.canvas.getContext('2d')
             var gradient = ctx.createLinearGradient(0, 0, 0, 400)
