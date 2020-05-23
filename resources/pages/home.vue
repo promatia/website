@@ -15,7 +15,7 @@
                 "url": "https://promatia.com",
                 "logo": "https://promatia.com/android-chrome-512x512.png",
                 "foundingDate": "1st August, 2019",
-                "description": "Promatia is a new government project located in Northern Australia with the goals of establishing a new, technologically innovative and environmentally sustainable nation with high living standards. Promatia's historical roots go as far back as 1999, but have unified with other new-country-projects to form what is now Promatia",
+                "description": "Promatia is social experiment in Northern Australia with the goals of establishing a modern, technologically innovative and environmentally sustainable city with high living standards. Promatia proposes to set up a Special Economic Zone, which is a city with it's own government, laws, and currency",
                 "sameAs": [
                     "https://facebook.com/promatiagov",
                     "https://twitter.com/promatiagov",
@@ -35,14 +35,14 @@
                 "url": "https://promatia.com",
                 "logo": "https://promatia.com/android-chrome-512x512.png",
                 "foundingDate": "1st August, 2019",
-                "description": "Promatia is a new government project located in Northern Australia with the goals of establishing a new, technologically innovative and environmentally sustainable nation with high living standards. Promatia's historical roots go as far back as 1999, but have unified with other new-country-projects to form what is now Promatia",
+                "description": "Promatia is social experiment in Northern Australia with the goals of establishing a modern, technologically innovative and environmentally sustainable city with high living standards. Promatia proposes to set up a Special Economic Zone, which is a city with it's own government, laws, and currency",
                 "sameAs": [
                     "https://facebook.com/promatiagov",
                     "https://twitter.com/promatiagov",
                     "https://promatia.com",
                     "https://www.wikidata.org/wiki/Q84344141",
                     "https://www.youtube.com/channel/UCL8Fjjq-gSzWMbAC3sEOXpA"
-                ]
+                ],
             }
             </script>
             <script type="application/ld+json">
@@ -72,20 +72,35 @@
                         "@type": "Organization",
                         "name": "PromaTimes"
                     },
-                    "reviewBody": "An amazing rapidly forming new country!"
+                    "reviewBody": "Amazing initiative to start a city!"
                 },
                 "alternateName": "Government of Promatia",
                 "url": "https://promatia.com",
                 "logo": "https://promatia.com/android-chrome-512x512.png",
                 "foundingDate": "1st August, 2019",
-                "description": "Promatia is a new government project located in Northern Australia with the goals of establishing a new, technologically innovative and environmentally sustainable nation with high living standards. Promatia's historical roots go as far back as 1999, but have unified with other new-country-projects to form what is now Promatia",
+                "description": "Promatia is social experiment in Northern Australia with the goals of establishing a modern, technologically innovative and environmentally sustainable city with high living standards. Promatia proposes to set up a Special Economic Zone, which is a city with it's own government, laws, and currency",
                 "sameAs": [
                     "https://facebook.com/promatiagov",
                     "https://twitter.com/promatiagov",
                     "https://promatia.com",
                     "https://www.wikidata.org/wiki/Q84344141",
                     "https://www.youtube.com/channel/UCL8Fjjq-gSzWMbAC3sEOXpA"
-                ]
+                ],
+                "founders": [
+                    {
+                        "@type": "Person",
+                        "name": "Dominus Vilicus"
+                    },
+                    {
+                        "@type": "Person",
+                        "name": "Timothy Schoonover"
+                    }
+                ],
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "290"
+                }
             }
             </script>
             <script type="application/ld+json">
@@ -116,75 +131,46 @@
                 }
             }
             </script>
-            <!-- SEO Test to remove aggregate rating
-                "founders": [
-                    {
-                        "@type": "Person",
-                        "name": "Dominus Vilicus"
-                    },
-                    {
-                        "@type": "Person",
-                        "name": "Xenith Takiane"
-                    },
-                    {
-                        "@type": "Person",
-                        "name": "Timothy Schoonover"
-                    },
-                    {
-                        "@type": "Person",
-                        "name": "Kazimír Bodnár"
-                    }
-                ],
-                "aggregateRating": {
-                    "@type": "AggregateRating",
-                    "ratingValue": "5",
-                    "ratingCount": "290"
-                }
-            -->
         </template>
         <template slot="content">
             <hero class="gradient">
-                <div class="padding-10">
-                    <div class="dark-card">
-                        <div>
-                            <h1 class="special-title">Create <textSwitcher :items="[
-                                'Promatia',
-                                'A New Nation',
-                                'A New Government',
-                                'A New City',
-                                'A New Community',
-                                'A New Society',
-                                'A New Country',
-                                'A New Home',
-                                'A New Family',
-                                'A New Future',
-                                'A New Story',
-                                'A New Life']"/></h1>
-                            <p>
-                                Welcome to Promatia, a new autonomous region in northern Australia with its own government, currency and laws. Promatia is building a new city in its claim.
-                            </p>
-                            <p>
-                                Promatia is on-track to becoming a fully independent state.
-                            </p>
-                            <buttonInput class="button" to="/start"><ChevronIcon/>Become A Citizen</buttonInput>
+                <div class="card">
+                    <div>
+                        <h1 class="special-title">Create <textSwitcher :items="[
+                            'Promatia',
+                            'A New City',
+                            'A New Government',
+                            'A New Community',
+                            'A New Society',
+                            'A New Home',
+                            'A New Family',
+                            'A New Future',
+                            'A New Story',
+                            'A New Life']"/></h1>
+                        <p>
+                            Welcome to Promatia, a social experiment in Northern Australia with the goals of establishing a modern, technologically innovative and environmentally sustainable city with high living standards.
+                        </p>
+                        <p>
+                            Promatia proposes to set up a Special Economic Zone, which is a city with it's own government, laws, and currency.
+                        </p>
+                        <buttonInput class="button" to="/start"><ChevronIcon/>Become A Citizen</buttonInput>
+                    </div>
+                    <div class="canvas-wrapper">
+                        <div class="top">
+                            <div class="uclabel">
+                                <h2>{{ userCount }}</h2>
+                                <div>Current Citizen Count</div>
+                            </div>
+                            <div class="ccclabel">
+                                <h2><span class="green">+{{ past60Days }}</span></h2>
+                                <div>Past 60 Days</div>
+                            </div>
                         </div>
-                        <div class="canvas-wrapper">
-                            <div class="top">
-                                <div class="uclabel">
-                                    <h2>{{ userCount }}</h2>
-                                    <div>Current Citizen Count</div>
-                                </div>
-                                <div class="ccclabel">
-                                    <h2><span class="green">+{{ past60Days }}</span></h2>
-                                    <div>Past 60 Days</div>
-                                </div>
-                            </div>
-                            <div class="end">
-                                <div class="live">LIVE</div>
-                            </div>
-                            <div>
-                            <canvas ref="canvas" style="height: 300px;"/>
-                            </div>
+                        <div class="end">
+                            <div class="live">LIVE</div>
+                        </div>
+                        <div>
+                        <canvas ref="canvas" style="height: 300px;"/>
                         </div>
                     </div>
                 </div>
@@ -197,72 +183,69 @@
                     </router-link>
                     <router-link class="item" to="/information/government">
                         <div class="flex"><GovernmentIcon/><h2 class="subtitle">Our Government</h2></div>
-                        <div class="para">Learn more about Promatia's unique system of government, how laws are passed, and how Ministires are formed and run.</div>
+                        <div class="para">Promatia's unique governance system puts you in control of how our government works.</div>
                     </router-link>
                     <router-link class="item" to="/information/plan">
                         <div class="flex"><PlanIcon/><h2 class="subtitle">Our Plan</h2></div>
-                        <div class="para">See how you plan to bring Promatia in to fruition. Get a roadmap of events and updates.</div>
+                        <div class="para">See our plan to bring Promatia in to fruition. Get a roadmap of events and updates.</div>
                     </router-link>
                     <router-link class="item" to="/start">
                         <div class="flex"><CitizenshipIcon/><h2 class="subtitle">Citizenship</h2></div>
-                        <div class="para">Find out what being a citizen of Promatia will mean to you, and how to becoming a citizen of Promatia can help the project.</div>
+                        <div class="para">Find out the benefits of becoming citizen in Promatia. Get involed, along with hundreds others today.</div>
                     </router-link>
                     <router-link class="item" to="/information/mypro">
                         <div class="flex"><ProIcon/><h2 class="subtitle">myPro</h2></div>
-                        <div class="para">Need to know more about myPro and how to best utilize the resources it provides? We have you covered with this indepth guide about the myPro platform.</div>
+                        <div class="para">myPro is Promatia's digital government portal that lets citizens access government services.</div>
                     </router-link>
                     <router-link class="item" to="/information/services">
                         <div class="flex"><ServiceIcon/><h2 class="subtitle">Services</h2></div>
-                        <div class="para">It can be a little confusing trying to find a specific service we offer. So we put them all into one easy to access location.</div>
+                        <div class="para">Find the services our government offers, all in one single place. Click here to learn more.</div>
                     </router-link>
                     <router-link class="item" to="/information/lumina">
                         <div class="flex"><LuminaIcon/><h2 class="subtitle">Lumina</h2></div>
-                        <div class="para">Lumina will be Promatia's first city. Learn about how it will be built, what techonologies we will use, and what to look forward to.</div>
+                        <div class="para">Lumina will be Promatia's first city. Learn how it will be built, and what technologies we will use.</div>
                     </router-link>
                     <router-link class="item" to="/information/voting">
                         <div class="flex"><VoteIcon/><h2 class="subtitle">Voting</h2></div>
-                        <div class="para">Need help getting involved in Promatia's direct democracy? No problem! You can inform yourself on the voting process here.</div>
+                        <div class="para">Want to get involved in Promatia's direct democracy? No problem, learn more here.</div>
                     </router-link>
                     <router-link class="item" to="/information/business">
                         <div class="flex"><BusinessIcon/><h2 class="subtitle">Starting a Business</h2></div>
-                        <div class="para">Do you plan to start or operate an existing business in Promatia? We can help you set up your business to get it up and running smoothly.</div>
+                        <div class="para">Want to learn why Promatia is the easiest, cheapest and best place to start your business? Find out here.</div>
                     </router-link>
                     <router-link class="item" to="/information/proma">
                         <div class="flex"><MoneyIcon/><h2 class="subtitle">Monetary System</h2></div>
-                        <div class="para">Learn more about Promatia's unique digital currency, the Proma, and how using it can automate taxes and transactions with PromaBank.</div>
+                        <div class="para">Learn how we will revolutionize banking in Promatia, with out unique digital currency, the Proma.</div>
                     </router-link>
                     <router-link class="item" to="/information/education">
                         <div class="flex"><EducationIcon/><h2 class="subtitle">Education</h2></div>
-                        <div class="para">Promatia aims to provide world class education curriculum. Learn how to register and reroll in our education programs.</div>
+                        <div class="para">Learn about Promatia's free and revolutionary education system. Register your interest today!</div>
                     </router-link>
                     <router-link class="item" to="/information/work">
                         <div class="flex"><WorkIcon/><h2 class="subtitle">Work &amp; Employment</h2></div>
-                        <div class="para">Applying for a new job? Promatia lists every employer looking to hire. Find out how to use this tool to job search.</div>
+                        <div class="para">Applying for a new job? Find every employer looking to hire, and learn about your rights.</div>
                     </router-link>
                     <router-link class="item" to="/information/family">
                         <div class="flex"><FamilyIcon/><h2 class="subtitle">Family</h2></div>
-                        <div class="para">Want to help grow the world's newest nation? Learn about the benefits of starting a family in Promatia.</div>
+                        <div class="para">Want to start a fresh life with your family? Learn about what we're doing for families.</div>
                     </router-link>
                     <router-link class="item" to="/information/budget">
                         <div class="flex"><BudgetIcon/><h2 class="subtitle">Budgeting &amp; FairTax</h2></div>
-                        <div class="para">The government of Promatia keeps a tightly mangaged budget. Find out how we allocate the taxed you pay, and learn about FairTax.</div>
+                        <div class="para">Our government keeps a carefully mangaged budget. Learn about our automated tax system, FairTax.</div>
                     </router-link>
                     <router-link class="item" to="/information/law">
                         <div class="flex"><LawsIcon/><h2 class="subtitle">Laws</h2></div>
-                        <div class="para">Keep up to date with Promatia's fast acting legal system. View all of Promatia's active legislation in our easy to use portal.</div>
+                        <div class="para">Keep up to date with Promatia's fast acting legal system. View all of of our active &amp; proposed legislation.</div>
                     </router-link>
                     <router-link class="item" to="/information/tourism">
                         <div class="flex"><TourismIcon/><h2 class="subtitle">Tourism</h2></div>
-                        <div class="para">Get information how you can visit Proamtia, and it's iconic sights. Learn how you can apply for an holiday visa.</div>
+                        <div class="para">Get information for how you can visit Promatia's city, and it's unique iconic sights.</div>
                     </router-link>
                     <router-link class="item" to="/information/media">
                         <div class="flex"><MediaIcon/><h2 class="subtitle">Media &amp; Press</h2></div>
-                        <div class="para">Are you a memeber of the press looking to speak to a Promatian representative? Get quick access to contact details.</div>
+                        <div class="para">Are you a member of the press looking to speak to a Promatian representative? Contact us here.</div>
                     </router-link>
                 </div>
-                <p>
-                    We also offer a wide range of <a href="/information/services">Government Services</a>.
-                </p>
             </div>
         </template>
     </web>
@@ -294,7 +277,7 @@
     > .item 
         border-bottom 5px solid #DDDDDD
         background-color #FFFFFF
-        padding 20px 15px
+        padding 25px 15px
         .subtitle
             color #1B232C
             font-weight 500
@@ -313,9 +296,9 @@
                 color #3C7CBC
                 text-decoration underline
 
-.dark-card
+.card
     color #ffffff
-    padding 20px
+    padding 40px 20px
     display grid
     max-width 1300px
     margin auto
@@ -380,21 +363,21 @@
 .canvas-wrapper
     position relative
     height 100%
-    
-.top, .end, .uclabel, .ccclabel
-    position absolute
 
 .top
-    left 15px
+    left 0
+    width 100%
+    padding-left 10px
+    position absolute
 
 .end
-    bottom 40px
-    right 45px
+    position absolute
+    bottom 0
+    right 0
+    padding-bottom 35px
+    padding-right 40px
 
 .uclabel
-    top 10px
-    left 0px
-    width 500px
     h2
         margin 0
         padding 0
@@ -405,9 +388,7 @@
         font-size 18px
 
 .ccclabel
-    top 80px
-    left 0px
-    width 500px
+    padding-top 10px
     h2
         margin 0
         padding 0

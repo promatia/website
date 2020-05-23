@@ -7,7 +7,7 @@
                     <h1 itemprop="name">Media &amp; Press</h1>
                     <hr>
                     <div class="subtitle" itemprop="description">
-                        For Media or Press Contact: <a href="mailto:gov@promatia.com">gov@promatia.com</a>
+                        For Media or Press Contact
                     </div>
                 </div>
             </div>
@@ -22,6 +22,9 @@
                     <p>
                         If you are an employee of a reputable media company or organization, you can expedite this process by clearly identifying the company of your employ in the subject line your email.
                     </p>
+                    <p>
+                        <strong>Email: <a href="mailto:gov@promatia.com">gov@promatia.com</a></strong>
+                    </p>
                 </div>
             </div>
         <Rater/>
@@ -29,10 +32,9 @@
     </web>
 </template>
 <style lang="stylus" scoped>
-
 .hero-header
     background #03539D
-    padding 20px 20px
+    padding 50px 20px
     position relative
     overflow hidden
     color white
@@ -45,26 +47,15 @@
         border 3px solid #01294D
         border-radius 3px
         margin-bottom 15px
-    a
-        color white
-        text-decoration underline
-    a:hover
-        text-decoration none
     .subtitle
-        font-size 1.5em
+        font-size 1.2em
+        font-weight 400
     .content
         max-width 800px
         align-items center
         margin auto
         position relative
         z-index 1
-
-.subtitle
-    font-weight 500
-    font-size 1.2em
-
-.big-text
-    margin 0
 
 .wrapper
     padding 20px 20px
@@ -80,8 +71,8 @@
 
 </style>
 <script>
-import web from "@/layouts/web"
-import Rater from "@/components/rater"
+import web from '@/layouts/web'
+import Rater from '@/components/rater'
 
 export default {
     components: {

@@ -5,10 +5,10 @@
                 <div class="grid-item">
                     <div class="footer-title">About Promatia</div>
                     <p>
-                        Promatia is a new country project located on the Australian continent bordering the Gulf of Carpentaria.
+                        Promatia is a social experiment with the goal of establishing a new city &amp; special economic zone in northern Australia.
                     </p>
                     <p>
-                        Our goal is to establish a technologically innovative, environmentally sustainable, and democratic nation.
+                        Our goal is to establish a technologically innovative, environmentally sustainable, and democratic city.
                     </p>
                     <p>
                         <router-link to="/information">Learn About Our Government</router-link>
@@ -17,9 +17,7 @@
                 <div class="grid-item">
                     <div class="footer-title">Quick Links</div>
                     <div class="links">
-                        <div class="link-group" v-for="(linkGroup, index) in links" :key="index">
-                            <a class="footer-link" v-for="link in linkGroup" :key="link.text" :href="link.href">{{ link.text }}</a>
-                        </div>
+                        <a class="footer-link" v-for="link in links" :key="link.text" :href="link.href">{{ link.text }}</a>
                     </div>
                 </div>
                 <div class="grid-item">
@@ -28,7 +26,7 @@
                         Become a citizen of Promatia today!
                     </p>
                     <p>
-                        Gain 50Ⱀ, by signing up today. Promatia's fully digital currency.
+                        Get 50Ⱀ, by signing up today. Promatia's fully digital currency.
                     </p>
                     <p>
                         <buttonInput class="button" to="/start"><ChevronIcon/>Become A Citizen</buttonInput>
@@ -89,7 +87,7 @@
     grid-gap 30px
     @media (max-width 800px)
         grid-template-columns 1fr 1fr
-    @media (max-width 500px)
+    @media (max-width 600px)
         grid-template-columns 1fr
 
 a
@@ -98,8 +96,10 @@ a
 .links
     padding-top 5px
     display grid 
-    grid-gap 20px
-    grid-template-columns max-content 1fr
+    grid-gap 0 20px
+    grid-template-columns 1fr 1fr
+    @media (max-width 400px)
+        grid-template-columns 1fr
 
 .footer-link
     display block
@@ -163,49 +163,46 @@ export default {
         return {
             pentark,
             links: [
-                [
-                    {
-                        text: 'Home',
-                        href: '/'
-                    },
-                    {
-                        text: 'Information',
-                        href: '/information'
-                    },
-                    {
-                        text: 'Proma Times',
-                        href: 'https://promatimes.com'
-                    },
-                    {
-                        text: 'Media',
-                        href: '/information/media'
-                    },
-                    {
-                        text: 'Services',
-                        href: '/information/services'
-                    }
-                ], [
-                    {
-                        text: 'Sign In',
-                        href: '/sign-in'
-                    },
-                    {
-                        text: 'myPro',
-                        href: '/app'
-                    },
-                    {
-                        text: 'PromaBank',
-                        href: 'https://promabank.com'
-                    },
-                    {
-                        text: 'Discord',
-                        href: 'https://discord.gg/frVSDck'
-                    },
-                    {
-                        text: 'Values',
-                        href: '/information/values'
-                    }
-                ]
+                {
+                    text: 'Home',
+                    href: '/'
+                },
+                {
+                    text: 'Information',
+                    href: '/information'
+                },
+                {
+                    text: 'Proma Times',
+                    href: 'https://promatimes.com'
+                },
+                {
+                    text: 'Media',
+                    href: '/information/media'
+                },
+                {
+                    text: 'Services',
+                    href: '/information/services'
+                },
+                {
+                    text: 'Sign In',
+                    href: '/sign-in'
+                },
+                {
+                    text: 'myPro',
+                    href: '/app'
+                },
+                {
+                    text: 'PromaBank',
+                    href: 'https://promabank.com'
+                },
+                {
+                    text: 'Discord',
+                    href: 'https://discord.gg/frVSDck'
+                },
+                {
+                    text: 'Values',
+                    href: '/information/values'
+                }
             ]
         }
     },

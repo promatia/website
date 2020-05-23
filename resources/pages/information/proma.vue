@@ -32,7 +32,7 @@
 
 .hero-header
     background #03539D
-    padding 20px 20px
+    padding 50px 20px
     position relative
     overflow hidden
     color white
@@ -55,13 +55,6 @@
         position relative
         z-index 1
 
-.subtitle
-    font-weight 500
-    font-size 1.2em
-
-.big-text
-    margin 0
-
 .wrapper
     padding 20px 20px
     max-width 1000px
@@ -73,16 +66,19 @@
     max-width 750px
     font-size 1.1em
     margin auto
-
 </style>
 <script>
 import web from '@/layouts/web'
-import Rater from '@/components/rater'
+import Rater from '@/components/Rater'
+import buttonInput from '@/components/buttonInput'
+import ChevronIcon from 'icons/ChevronRight'
 
 export default {
     components: {
         web,
-        Rater
+        Rater,
+        buttonInput,
+        ChevronIcon
     }
 }
 </script>

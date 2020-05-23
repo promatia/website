@@ -14,32 +14,21 @@
             <div class="wrapper">
                 <div class="inner-page">
                     <p>
-                        Promatia is a new country project located in the continent of Australia, bordering the coast of the Gulf of Carpentaria. The project was first invisioned in November of 1999 as has maintained stable workflow since. After 20 years of hard work, we have pulled back the curtains on the project in order to promote a more public image.
+                        Promatia is a social experiment to establish a new <a href="https://en.wikipedia.org/wiki/Special_economic_zone"><strong>Special Economic Zone (SEZ)</strong></a> in northern Australia. A special economic zone is a city with it's own autonomous government, enabling more experimental policies to be used. This means our city will be able to revolutionise the way we deal with government, in areas ranging from education, healthcare, currency and banking, law-making and much more.
                     </p>
                     <p>
-                        Promatia is a project that aims to construct a peaceful and co-operative self-governing body a the most remote part of the Australian continent through building of scalable infrastructure. It is a collection of bright minds from a new generation with the expressed goal of establishing a technologically innovative, and environmentally sustainable platform for transparent and direct democracy. Promatia provides open and democratic architecture of digital governance. A place where any citizen can contribute to the rule of law.
+                        Promatia is a project that aims to construct a peaceful and co-operative self-governing body in an uninhabited part of nothern Australia. Our project is establishing a city with scalable infrastructure that will enable it to grow rapidly. It is a collection of bright minds with the goal of establishing a technologically innovative, and environmentally sustainable city, with full transparency and citizen involvement. Promatia provides open and democratic architecture of digital governance. A place where any citizen can contribute to the rule of law.
                     </p>
                     <p>
-                        Our project aims to create a national identity and place of belonging for intelligent, innovative, and inquisitive minds. Giving people a chance to express their creativity and educate themselves. It strives to become a community of simplicity. From a simple majority voting structure, to expectable rates in the application of our tax system, to clear and concise legal language.
+
+                        People in Promatia shall feel free from the threat of corruption. That includes foreign interference, and protection from interference from corporate interests. Promatia is the place where people have the power to influence policy, make an impact and change lives.
                     </p>
                     <p>
-                        It is important to Promatia that its people feel free from the threat of corruption. Promatia has been founded by a like mineded group of people wary of the condition of many of the world's governments. We see them as influenced by corporate interests and extra-national interference. Promatia wishes to become a place where people have the power to change their own policy, and make and enforce that policy in real time.
+                        Our project is looking for people that want to make an impact with their skills, no matter what they are. We're always looking for new citizens with useful skills, resources and knowledge.
                     </p>
                     <p>
-                        Promatia is not a hoax, not a prank, and not a teenage dream. We are a collaboration of like minded individuals from around the globe with knowledge in diverse fields ranging from information security and public key cryptography, architectural design and city planing, and machine learning.
+                        <buttonInput class="button" to="/start"><ChevronIcon/>Become A Citizen</buttonInput>
                     </p>
-                    <h1 class="big-text">
-                        Skills
-                    </h1>
-                    <p>
-                        The Promatian government recruits as many interested people as possible to maintain a high baseline of manpower in order to make our its dream a reality. We look for specialists in their field, so that the can use their skills for the purpose of building a better world. Here is a short list of the kind skill Promatia recruits for, and why they part of creating and executing the Promatian vision.
-                    </p>
-                    <ul>
-                        <li><b>App Development:</b> Promatia has the experience to develop web applications accessible to every individual, even those outside of the nation, to conduct business transactions with its digital currency in a seamless fashion.</li><br>
-                        <li><b>Computer-Aided Design:</b> Our government employees have the skills to organize cities, buildings, infrastructure, inventions, as well as other designs using computer aided design and graphic design software. A breath of fresh air for people tired of archaic paper forms, and walls of black and white when taxes come around.</li><br>
-                        <li><b>Rapid Prototyping:</b> Promatia streamlines every part of its organizational hierarchy. Gone are the days of waiting years for changes to come. Expertise with powerful and premium tools in the design industry, allow our government to rapidly prototype new applications and features in the digital workspace for the progress of digital governance.</li><br>
-                        <li><b>Machine Learning:</b> We specialize in the development of powerful machine learning models, artificial intelligence, and deep neural networks at the bleeding edge of technology. Our research helps get to the core of what the citizenship really needs, and how the government can best deliver on its promises. Promatia seeks to automate as much of the governmental process as possible, to allow its employees to focus more closely on the problems of individuals.</li>
-                    </ul>
                 </div>
             </div>
         <Rater/>
@@ -50,7 +39,7 @@
 
 .hero-header
     background #03539D
-    padding 20px 20px
+    padding 50px 20px
     position relative
     overflow hidden
     color white
@@ -73,13 +62,6 @@
         position relative
         z-index 1
 
-.subtitle
-    font-weight 500
-    font-size 1.2em
-
-.big-text
-    margin 0
-
 .wrapper
     padding 20px 20px
     max-width 1000px
@@ -96,11 +78,15 @@
 <script>
 import web from '@/layouts/web'
 import Rater from '@/components/Rater'
+import buttonInput from '@/components/buttonInput'
+import ChevronIcon from 'icons/ChevronRight'
 
 export default {
     components: {
         web,
-        Rater
+        Rater,
+        buttonInput,
+        ChevronIcon
     }
 }
 </script>

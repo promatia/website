@@ -92,8 +92,8 @@
     margin auto
 </style>
 <script>
-import web from "@/layouts/web"
-import Rater from "@/components/rater"
+import web from '@/layouts/web'
+import Rater from '@/components/rater'
 
 export default {
     components: {

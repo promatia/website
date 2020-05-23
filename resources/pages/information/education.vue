@@ -41,10 +41,9 @@
     </web>
 </template>
 <style lang="stylus" scoped>
-
 .hero-header
     background #03539D
-    padding 20px 20px
+    padding 50px 20px
     position relative
     overflow hidden
     color white
@@ -58,20 +57,14 @@
         border-radius 3px
         margin-bottom 15px
     .subtitle
-        font-size 1.5em
+        font-size 1.2em
+        font-weight 400
     .content
         max-width 800px
         align-items center
         margin auto
         position relative
         z-index 1
-
-.subtitle
-    font-weight 500
-    font-size 1.2em
-    
-.big-text
-    margin 0
 
 .wrapper
     padding 20px 20px
@@ -87,13 +80,17 @@
 
 </style>
 <script>
-import web from "@/layouts/web"
-import Rater from "@/components/rater"
+import web from '@/layouts/web'
+import Rater from '@/components/Rater'
+import buttonInput from '@/components/buttonInput'
+import ChevronIcon from 'icons/ChevronRight'
 
 export default {
     components: {
         web,
-        Rater
+        Rater,
+        buttonInput,
+        ChevronIcon
     }
 }
 </script>
