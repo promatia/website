@@ -35,7 +35,7 @@
     "koa-compress": "^3.0.0",
     "koa-cookie": "^1.0.0",
     "koa-mount": "^4.0.0",
-    "koa-router": "^7.4.0",
+    "koa-router": "^9.1.0",
     "koa-sslify": "^4.0.3",
     "koa-static": "^5.0.0",
     "koa-webpack": "^5.2.4",
