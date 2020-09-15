@@ -41,7 +41,7 @@
     "koa-webpack": "^5.2.4",
     "mime": "^2.4.4",
     "mongodb": "^3.3.3",
-    "node-forge": "^0.9.1",
+    "node-forge": "^0.10.0",
     "node-gzip": "^1.1.2",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
