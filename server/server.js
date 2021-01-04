@@ -9,9 +9,12 @@ import router from './routes/router.js'
 import ssl from './bootstrap/ssl.js'
 import { dbsetup } from './bootstrap/db.js'
 import { models, graph} from './models/graph.js'
+import cors from '@koa/cors'
 
 async function startServer () {
     let app = new Koa()
+    app.use(cors)
+    
     let httpServer = createServer(app.callback())
     let http2Server = createSecureServer({allowHTTP1: true}, app.callback())
     
