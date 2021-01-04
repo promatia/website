@@ -7,7 +7,7 @@ import errorToString from '@/utils/errorToString'
 Vue.use(VueRouter)
 
 let routes = [
-    { path: '/', component: () => import('@/pages/home')},
+    { path: '/', redirect: '/app' },
     { path: '/sign-up', component: () => import('@/pages/app/sign-up')},
     { path: '/sign-in', component: () => import('@/pages/app/sign-in')},
     { path: '/start', component: () => import('@/pages/start')},
