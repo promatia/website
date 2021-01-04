@@ -1,6 +1,6 @@
 import { Model, collection } from './model.js'
 import { gql } from '@promatia/prograph'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import mongodb from 'mongodb'
 import { monthDiff } from '../utils/dateUtils.js'
@@ -76,7 +76,7 @@ export class User extends Model {
     `
 
     set password (value) {
-        this.doc.password = bcrypt.hashSync(value, 10)
+        this.doc.password = bcrypt.hashSync(value, 12)
     }
 
     comparePassword (value) {
