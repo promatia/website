@@ -28,6 +28,12 @@ export default async () => router
     .use(stateContext)
     .use(errorMiddleware)
     .use(redirectArkovia)
+    .use(async (ctx, next) => {
+        ctx.set('Access-Control-Allow-Origin', '*')
+        ctx.set('Access-Control-Allow-Headers', '*')
+        ctx.set('Access-Control-Allow-Methods', '*')
+        await next()
+    })
     .use(noWWW)
     .use(koaCookie.default())
     .use(bodyParser())
