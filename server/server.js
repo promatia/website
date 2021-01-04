@@ -13,7 +13,7 @@ import cors from '@koa/cors'
 
 async function startServer () {
     let app = new Koa()
-    app.use(cors)
+    app.use(cors())
     
     let httpServer = createServer(app.callback())
     let http2Server = createSecureServer({allowHTTP1: true}, app.callback())
