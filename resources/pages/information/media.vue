@@ -72,7 +72,7 @@
 </style>
 <script>
 import web from '@/layouts/web'
-import Rater from '@/components/rater'
+import Rater from '@/components/Rater'
 
 export default {
     components: {
