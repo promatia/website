@@ -40,7 +40,7 @@
     "koa-router": "^7.4.0",
     "koa-sslify": "^4.0.3",
     "koa-static": "^5.0.0",
-    "koa-webpack": "^5.2.4",
+    "koa-webpack": "^6.0.0",
     "mime": "^2.4.4",
     "mongodb": "^3.3.3",
     "node-forge": "^0.9.1",
