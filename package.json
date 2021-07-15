@@ -18,7 +18,7 @@
     "@koa/cors": "^3.1.0",
     "@promatia/phone-input": "^0.1.4",
     "@promatia/prograph": "0.0.22",
-    "@vue/composition-api": "^0.3.4",
+    "@vue/composition-api": "^1.0.0",
     "acme-client": "^3.2.0",
     "axios": "^0.19.0",
     "babel-loader": "^8.0.6",
